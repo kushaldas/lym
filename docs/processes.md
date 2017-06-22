@@ -40,7 +40,7 @@ Here, we are first running the ps command, and then passing the output of that t
 command using a | character. In this case, grep is that second command, as you can see, we can find
 some text using grep tool. We will learn more about grep in future.
 
-### How to kill/stp a particular process?
+### How to kill/stop a particular process?
 
 We can kill/stop any process using the *kill* command. As we found out that the id of the Firefox process in my computer is 26752, we can use that id to kill it.
 
