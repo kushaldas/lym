@@ -40,15 +40,52 @@ Here, we are first running the ps command, and then passing the output of that t
 command using a | character. In this case, grep is that second command, as you can see, we can find
 some text using grep tool. We will learn more about grep in future.
 
-### How to kill a particular process?
+### How to kill/stp a particular process?
 
-We can kill any process using the *kill* command. As we found out that the id of the Firefox process in my computer is 26752, we can use that id to kill it.
+We can kill/stop any process using the *kill* command. As we found out that the id of the Firefox process in my computer is 26752, we can use that id to kill it.
 
 ```
 $ kill 26752
 ```
 
 If there is no error message, you should be able to see that the Firefox has disappeared. 
+
+### Signals
+
+Signals are a limited way to communicate to a process. You can think about them as notifications
+to a process, and depending on the signal handler in the code, the process does something with
+that signal. The *kill* command actually sends a signal to the given process id, the default
+signal is *TERM*, which says to terminate the process. To directly a process, you can send the *KILL* signal.
+
+```
+$ kill -9 26752
+```
+
+Here *9* is number representation of the *KILL* signal. To know more about Linux signals,
+read from the man page.
+
+```
+$ man 7 signal
+```
+
+*kill* command also has a *-l* flag, which prints all of the signal names, and numbers on the screen.
+
+```
+$ kill -l
+ 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP
+ 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1
+11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM
+16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP
+21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ
+26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR
+31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3
+38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8
+43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13
+48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
+53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
+58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
+63) SIGRTMAX-1	64) SIGRTMAX	
+```
 
 ### top command
 
@@ -100,4 +137,12 @@ To know more about htop, please read the man page.
 
 ```
 $ man htop
+```
+
+### More about Linux processes
+
+You can learn more about Linux processes in the glibc manual. Use the *info* command for the same.
+
+```
+$ info libc process
 ```
