@@ -94,6 +94,7 @@ all the running processes in the system, and status about CPU and memory usage i
 out of top, press the key *q*.
 
 ```
+top - 17:37:28 up 24 days, 11:52,  2 users,  load average: 0.57, 0.73, 0.75
 Tasks: 372 total,   2 running, 370 sleeping,   0 stopped,   0 zombie
 %Cpu(s): 11.6 us,  2.6 sy,  0.0 ni, 84.9 id,  0.1 wa,  0.3 hi,  0.5 si,  0.0 st
 KiB Mem :  7858752 total,  1701052 free,  4444136 used,  1713564 buff/cache
@@ -114,6 +115,22 @@ KiB Swap:  3268604 total,  1558396 free,  1710208 used.  2431656 avail Mem
 ```
 
 Btw, feel free to press *1* and see if anything changes in the top command output.
+
+### Load average
+
+If you look at the *top* output carefully, you will find something mentioned as
+load average. Actually there are 3 numbers provided, these the load average of the
+system, load average of the last one minute, 5 minutes ago, and 15 minutes ago.
+
+```
+load average: 0.57, 0.73, 0.75
+```
+
+In simple words, load average means the average time any process has to wait to get
+access tot the CPU (or other resources), in idle state the load average is 0. This information
+is a quick way to learn about the system,  if the system is slow to respond, just looking at the
+load-average, and then rest of the top ouput should be a good starting point.
+
 
 ### htop tool
 
