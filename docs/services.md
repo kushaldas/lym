@@ -121,3 +121,12 @@ Created symlink /etc/systemd/system/multi-user.target.wants/sshd.service → /us
 $ sudo systemctl disable sshd.service
 Removed /etc/systemd/system/multi-user.target.wants/sshd.service.
 ```
+
+### Shutdown or reboot the system using systemctl
+
+We can also reboot or shutdown the system using the systemctl command.
+
+```
+$ sudo systemctl reboot
+$ sudo systemctl shutdown
+```
