@@ -51,6 +51,19 @@ to */tmp* directory in our example.::
 Here you can see that first we moved to */tmp* directory, and then we moved back to the home directory by using
 *~* character.
 
+. and ..
+----------
+
+*.* and *..* has special meaning in the Linux. *.* means the current
+directory and *..* means the parent directory. We can use these in various
+situations for daily activities.
+
+::
+
+    $ cd ..
+
+The above command moves to the parent directory.
+
 ls command
 ----------
 
