@@ -1,7 +1,6 @@
 ## Linux Services
 
-I could have named the chapter as *systemd*, because you are going to read that term many times
-in this chapter :)
+This is also a chapter related to the *systemd* tool.
 
 ### What is a service?
 
