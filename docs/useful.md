@@ -50,3 +50,35 @@ lrwxrwxrwx. 1 fedora fedora   13 Jun 23 12:32 name -> /etc/hostname
 ```
 
 If you look carefully, in the above example, we created a hard link using the *ln* command. When we made a change to the original *hello.txt* file, that also reflects in the *bye.txt* file. But, because *bye.txt* is a hard link, even if I deleted the *hello.txt*, the hard link still exists, and also have the original content.
+
+
+### Extracting a tar file
+
+*tar* is a tool to create and extract archive files. Many times we will have to download and then extract a tar file in our regular computer usage.
+
+```
+$ tar -xzvf files.tar.gz 
+hello.c
+bye.txt
+```
+
+*files.tar.gz* file is compressed with gzip, if the file name ends with
+*.tar.bz2*, then it is compressed wth bzip2.
+
+```
+$ tar -xjvf files.tar.bz2 
+hello.c
+bye.txt
+```
+
+### Creating a tar file
+
+We can use the same *tar* command to create a tar file.
+
+```
+$ tar -czvf files.tar.gz hello.c bye.txt 
+hello.c
+bye.txt
+$ ls
+bye.txt  files.tar.gz  hello.c
+```
