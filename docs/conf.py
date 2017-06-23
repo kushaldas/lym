@@ -103,6 +103,11 @@ todo_include_todos = False
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_sidebars = { 
+    'index':    ['sidebarintro.html', 'sourcelink.html', 'searchbox.html'],
+    '**':       ['sidebarlogo.html', 'localtoc.html', 'relations.html',
+                 'sourcelink.html', 'searchbox.html']
+}
 
 # -- Options for HTMLHelp output ------------------------------------------
 

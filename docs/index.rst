@@ -13,8 +13,8 @@ Welcome to Linux command line for you and me!
    :caption: Contents:
 
    startingcommands
-   useful
    fhsandaccess
+   useful
    processes
    services
    users
