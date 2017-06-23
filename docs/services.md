@@ -158,7 +158,7 @@ Jun 22 14:54:26 kushal-test.novalocal sshd[13522]: Connection closed by 139.162.
 Jun 22 15:15:29 kushal-test.novalocal sshd[13541]: Did not receive identification string from 5.153.62.226 port 48677
 ```
 
-### Continuos stream of logs
+### Continuous stream of logs
 
 In case you want to monitor the logs of any service, that is keep reading the logs in real time, you can use *-f* flag with the *journalctl* command.
 
