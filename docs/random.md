@@ -24,4 +24,7 @@ $ uptime
  17:31:30 up 24 days, 11:46,  2 users,  load average: 0.76, 0.98, 0.81
 ```
 
+### dmesg command
 
+*dmesg* command prints out the various messages from the kernel buffer. Using this tool we can
+learn about the messages from the kernel drivers during and after the boot up process.

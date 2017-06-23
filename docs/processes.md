@@ -129,7 +129,7 @@ load average: 0.57, 0.73, 0.75
 In simple words, load average means the average time any process has to wait to get
 access tot the CPU (or other resources), in idle state the load average is 0. This information
 is a quick way to learn about the system,  if the system is slow to respond, just looking at the
-load-average, and then rest of the top ouput should be a good starting point.
+load-average, and then rest of the top output should be a good starting point.
 
 
 ### htop tool
