@@ -26,6 +26,26 @@ In our case the username is *babai*, hostname is *kdas-laptop*, and directory is
 is a special character in our case. It means the home directory of the user. In our case the home directory path
 is */home/babai/*.
 
+whoami command
+---------------
+
+*whoami* command will tell you which user account you are using in this system.
+
+::
+
+    $ whoami
+    fedora
+
+id command
+-----------
+
+*id* prints real user id, and various other details related to the account.
+
+::
+
+    $ id
+    uid=1000(fedora) gid=1000(fedora) groups=1000(fedora),4(adm),10(wheel),190(systemd-journal) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+
 pwd command
 ------------
 
