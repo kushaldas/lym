@@ -129,3 +129,52 @@ We can also reboot or shutdown the system using the systemctl command.
 $ sudo systemctl reboot
 $ sudo systemctl shutdown
 ```
+
+### Finding the logs of a service
+
+We can use the *journalctl* command to find the log of a given service.
+The general format is *journalctl -u servicename". Like below is the log for *sshd* service.
+
+```
+$ sudo journalctl -u sshd
+-- Logs begin at Thu 2017-06-22 14:16:45 UTC, end at Fri 2017-06-23 05:21:29 UTC. --
+Jun 22 14:17:39 kushal-test.novalocal systemd[1]: Starting OpenSSH server daemon...
+Jun 22 14:17:39 kushal-test.novalocal systemd[1]: sshd.service: PID file /var/run/sshd.pid not readable (yet?) after start: No such file or directory
+Jun 22 14:17:39 kushal-test.novalocal sshd[827]: Server listening on 0.0.0.0 port 22.
+Jun 22 14:17:39 kushal-test.novalocal sshd[827]: Server listening on :: port 22.
+Jun 22 14:17:39 kushal-test.novalocal systemd[1]: Started OpenSSH server daemon.
+Jun 22 14:22:08 kushal-test.novalocal sshd[863]: Accepted publickey for fedora from 103.249.881.17 port 56124 ssh2: RSA SHA256:lvn4rIszmfB14PBQwh4k9C
+Jun 22 14:29:24 kushal-test.novalocal systemd[1]: Stopping OpenSSH server daemon...
+Jun 22 14:29:24 kushal-test.novalocal sshd[827]: Received signal 15; terminating.
+Jun 22 14:29:24 kushal-test.novalocal systemd[1]: Stopped OpenSSH server daemon.
+Jun 22 14:29:24 kushal-test.novalocal systemd[1]: Starting OpenSSH server daemon...
+Jun 22 14:29:24 kushal-test.novalocal sshd[2164]: Server listening on 0.0.0.0 port 22.
+Jun 22 14:29:24 kushal-test.novalocal sshd[2164]: Server listening on :: port 22.
+Jun 22 14:29:24 kushal-test.novalocal systemd[1]: Started OpenSSH server daemon.
+Jun 22 14:54:26 kushal-test.novalocal sshd[13522]: Invalid user  from 139.162.122.110 port 51012
+Jun 22 14:54:26 kushal-test.novalocal sshd[13522]: input_userauth_request: invalid user  [preauth]
+Jun 22 14:54:26 kushal-test.novalocal sshd[13522]: Failed none for invalid user  from 139.162.122.110 port 51012 ssh2
+Jun 22 14:54:26 kushal-test.novalocal sshd[13522]: Connection closed by 139.162.122.110 port 51012 [preauth]
+Jun 22 15:15:29 kushal-test.novalocal sshd[13541]: Did not receive identification string from 5.153.62.226 port 48677
+```
+
+### Continuos stream of logs
+
+In case you want to monitor the logs of any service, that is keep reading the logs in real time, you can use *-f* flag with the *journalctl* command.
+
+```
+$ sudo journalctl -f -u sshd
+-- Logs begin at Thu 2017-06-22 14:16:45 UTC. --
+Jun 23 03:39:09 kushal-test.novalocal sshd[14095]: Did not receive identification string from 158.85.81.118 port 10000
+Jun 23 04:13:32 kushal-test.novalocal sshd[14109]: Received disconnect from 221.194.47.242 port 55028:11:  [preauth]
+Jun 23 04:13:32 kushal-test.novalocal sshd[14109]: Disconnected from 221.194.47.242 port 55028 [preauth]
+Jun 23 04:33:59 kushal-test.novalocal sshd[14115]: Received disconnect from 59.45.175.64 port 36248:11:  [preauth]
+Jun 23 04:36:53 kushal-test.novalocal sshd[14121]: Did not receive identification string from 82.193.122.22 port 58769
+Jun 23 04:42:01 kushal-test.novalocal sshd[14123]: Received disconnect from 221.194.47.233 port 51797:11:  [preauth]
+Jun 23 04:42:01 kushal-test.novalocal sshd[14123]: Disconnected from 221.194.47.233 port 51797 [preauth]
+Jun 23 04:51:46 kushal-test.novalocal sshd[14130]: Did not receive identification string from 191.253.13.227 port 4668
+Jun 23 05:05:16 kushal-test.novalocal sshd[14189]: Received disconnect from 59.45.175.88 port 33737:11:  [preauth]
+Jun 23 05:05:16 kushal-test.novalocal sshd[14189]: Disconnected from 59.45.175.88 port 33737 [preauth]
+```
+
+I can see that someone was trying to break into this VM by trying random ports :)
