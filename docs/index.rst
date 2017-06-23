@@ -16,6 +16,7 @@ Welcome to Linux command line for you and me!
    fhsandaccess
    processes
    services
+   users
    random
 
 Indices and tables
