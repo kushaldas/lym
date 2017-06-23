@@ -163,3 +163,24 @@ You can learn more about Linux processes in the glibc manual. Use the *info* com
 ```
 $ info libc process
 ```
+
+### /proc directory
+
+*/proc* is a special directory in our filesystem. This is a virtual filesystem which contains information about all the running processes, and information about the hardware present in the system. You will find that the files in the virtual filesystem are showing *0* as the size.
+
+Now we will learn about a few files inside of this directory.
+
+### /proc/cpuinfo
+
+*/proc/cpuinfo* file has the information abou the CPU in your system.
+It includes the model number, and also the various flags available in
+that particular CPU model.
+
+### /proc/cmdline
+
+*/proc/cmdline* file has all the parameters passed to the kernel at the boot up time. The following is from a cloud based virtual machine.
+
+```
+$ cat /proc/cmdline 
+BOOT_IMAGE=/boot/vmlinuz-4.8.6-300.fc25.x86_64 root=UUID=9be70055-35f2-4a57-b120-5a003dfdb504 ro no_timer_check console=tty1 console=ttyS0,115200n8 rhgb quiet console=ttyS1 LANG=en_US.UTF-8 initrd=/boot/initramfs-4.8.6-300.fc25.x86_64.img
+```
