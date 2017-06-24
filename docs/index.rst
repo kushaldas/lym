@@ -7,6 +7,7 @@ Welcome to Linux command line for you and me!
 ==============================================
 
 .. warning:: This book is under heavy development. Think like alpha release.
+    No editing has been done on the book yet, so there can be errors.
 
 .. toctree::
    :maxdepth: 2
