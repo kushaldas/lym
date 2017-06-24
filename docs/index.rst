@@ -15,9 +15,9 @@ Welcome to Linux command line for you and me!
    startingcommands
    fhsandaccess
    useful
+   users
    processes
    services
-   users
    random
 
 Indices and tables
