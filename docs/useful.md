@@ -82,3 +82,30 @@ bye.txt
 $ ls
 bye.txt  files.tar.gz  hello.c
 ```
+
+### Becoming root user
+
+*root* is the superuser. It has power to make changes in various parts
+of a Linux system, that also means if you by mistake make any dangerous change (say deleting your user account) as root, that cause real problem. The general rule is, only when you need superuser power, use the *sudo* command to get it done, and keep using your normal user account for everything else. The *su -* command will help you to become the *root* user, use this carefully.
+
+```
+$ su -
+Password:
+# 
+``` 
+
+Notice how the command prompt changed to *#* from *$*, *#* shows that you are using the *root*, that is another visible indication to think
+about every command you give as *root*. You can press *Ctrl+d* to log out from the *root* account.
+
+### Using sudo command
+
+You can add *sudo* command in front of any command to execute them as
+*root*. For example:
+
+```
+$ less /var/log/secure
+/var/log/secure: Permission denied
+$ sudo less /var/log/secure
+[sudo] password for fedora:
+... long output
+```
