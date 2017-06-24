@@ -1,4 +1,4 @@
-## Users and Groups and basic access control
+## Users and Groups
 
 In this chapter we will learn about user and group management on your
 system, and also about basic access control.

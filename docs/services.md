@@ -178,3 +178,31 @@ Jun 23 05:05:16 kushal-test.novalocal sshd[14189]: Disconnected from 59.45.175.8
 ```
 
 I can see that someone was trying to break into this VM by trying random ports :)
+
+### Listing of previous boots
+
+In systems like Fedora, *journalctl* by default keeps the history from
+old boots. To know about all the available boot history, type the following command.
+
+```
+$ sudo journalctl --list-boots
+[sudo] password for fedora: 
+-112 7a88e13a76434a1199f82ad90441ae7f Tue 2014-12-09 03:41:08 IST—Tue 2014-12-09 03:41:08 IST
+-111 b86086ed59b84b228e74f91ab08a66b3 Sun 2015-06-28 23:54:26 IST—Sun 2015-07-12 07:27:48 IST
+-110 71d3f6024f514653bfd2574243d096d1 Sun 2016-06-05 01:51:05 IST—Sun 2016-06-05 01:51:16 IST
+-109 b7721878a5144d009418cf269b5eea71 Fri 2016-08-19 19:47:57 IST—Sat 2016-08-20 01:16:07 IST
+-108 6102102fc7804379b888d83cea66838b Sat 2016-08-20 01:21:36 IST—Sun 2016-08-21 00:05:38 IST
+... long output
+```
+
+To know about any particular boot log, you can use the hash along with *-b* flag to the *journalctl* command.
+
+```
+$ sudo journalctl -b 7a88e13a76434a1199f82ad90441ae7f
+-- Logs begin at Tue 2014-12-09 03:41:08 IST, end at Sat 2017-06-24 13:40:49 IST. --
+Dec 09 03:41:08 localhost.localdomain systemd[1344]: Stopping Default.
+Dec 09 03:41:08 localhost.localdomain systemd[1344]: Stopped target Default.
+Dec 09 03:41:08 localhost.localdomain systemd[1344]: Starting Shutdown.
+Dec 09 03:41:08 localhost.localdomain systemd[1344]: Reached target Shutdown.
+Dec 09 03:41:08 localhost.localdomain systemd[1344]: Starting Exit the Session..
+```
