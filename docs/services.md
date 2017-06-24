@@ -206,3 +206,30 @@ Dec 09 03:41:08 localhost.localdomain systemd[1344]: Starting Shutdown.
 Dec 09 03:41:08 localhost.localdomain systemd[1344]: Reached target Shutdown.
 Dec 09 03:41:08 localhost.localdomain systemd[1344]: Starting Exit the Session..
 ```
+
+### Time based log viewing
+
+We can also use *journalctl* to view logs for a certain time. For example, if we want to see all the logs since yesterday, we can use the following command.
+
+```
+sudo journalctl --since yesterday
+[sudo] password for fedora: 
+-- Logs begin at Tue 2014-12-09 03:41:08 IST, end at Sat 2017-06-24 15:21:54 IST. --
+Jun 23 00:00:00 kushal-test.novalocal /usr/libexec/gdm-x-session[28622]: (evolution-alarm-notify:11609): evolution-alarm-notify-WARNING **: alarm.c:253: Reques
+Jun 23 00:01:01 kushal-test.novalocal CROND[22327]: (root) CMD (run-parts /etc/cron.hourly)
+... long output
+```
+
+You can also use date time following *YYYY-MM-DD HH:MM:SS* format.
+
+```
+$ sudo journalctl --since "2015-11-10 14:00:00"
+-- Logs begin at Tue 2014-12-09 03:41:08 IST, end at Sat 2017-06-24 15:25:30 IST. --
+Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Reached target Timers.
+Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Reached target Paths.
+Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Starting D-Bus User Message Bus Socket.
+Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Listening on D-Bus User Message Bus Socket.
+Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Reached target Sockets.
+Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Reached target Basic System.
+Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Reached target Default.
+```
