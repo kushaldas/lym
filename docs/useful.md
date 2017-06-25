@@ -109,3 +109,32 @@ $ sudo less /var/log/secure
 [sudo] password for fedora:
 ... long output
 ```
+
+### Environment variables
+
+Environment variables are a way to pass data to the applications. We can set values of different variables, which then any of the application can access. There are various variables which decides how
+the shell will behave. To see all the variables use the *printenv* command.
+
+```
+$ printenv
+... long output
+```
+
+You can execute the same command once as normal user, and once as *root*, and then check for the differences between the output. That is because the variables can be user specific.
+
+### Setting up environment variable values
+
+ We can use the *export* and *set* commands to create a new environment variable or we can change an existing one. We can use the *echo* command to print one particular environment variable value.
+
+```
+$ export NAME="Kushal Das"
+$ echo $NAME
+Kushal Das
+$ export NAME="Babai Das"
+$ echo $NAME
+Babai Das
+````
+
+In the above example we first created a new variable called *name* and then we changed the value of the variable.
+
+ 

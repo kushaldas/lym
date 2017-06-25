@@ -156,3 +156,14 @@ tree command
     ├── Public
     ├── Templates
     └── Videos
+
+
+echo command
+-------------
+
+*echo* command echos any given string to the display.
+
+::
+
+    $ echo "Hello"
+    Hello
