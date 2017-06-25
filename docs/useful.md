@@ -137,4 +137,30 @@ Babai Das
 
 In the above example we first created a new variable called *name* and then we changed the value of the variable.
 
+
+### locate command
+
+*locate* is a very useful tool to find files in the system. This is part of the *mlocate* package. For example, the following command will
+search all the files with firewalld in the name.
+
+```
+$ locate firewalld
+/etc/firewalld
+/etc/sysconfig/firewalld
+/etc/systemd/system/basic.target.wants/firewalld.service
+/home/kdas/.local/share/Zeal/Zeal/docsets/Ansible.docset/Contents/Resources/Documents/docs.ansible.com/ansible/firewalld_module.html
+/home/kdas/Downloads/ansible-devel/lib/ansible/modules/system/firewalld.py
+/home/kdas/Downloads/ansible-fail-on-github-zipfile/lib/ansible/modules/system/firewalld.py
+/home/kdas/code/git/ansible/lib/ansible/modules/system/firewalld.py
+... long output
+```
+
+You can update the search database by using *updatedb* command as root.
+
+```
+$ sudo updatedb
+```
+
+This may take some time as it will index all the files in your computer.
+
  
