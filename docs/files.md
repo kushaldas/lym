@@ -60,3 +60,29 @@ In the first line, we created a new file called *myfile.txt* using the *echo* co
 read/write capability of the owner on that particular file.
 
 The executable permission is required for the directory access, and also for any file you want to execute.
+
+
+### PATH variable
+
+The *PATH* variable is a special variable, when we type a command in the bash shell, it searches for the command in the directories menioned
+in the PATH variable. We can know the current *PATH* value using the *echo* command.
+
+```
+$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/fedora/.local/bin:/home/fedora/bin
+```
+
+The different directories are separated by *:*. You can see that in the */home/fedora/bin* directory is mentioned in the path, means if we have that directory, and an executable file is there, we can use it as a normal command in our shell. We will see example of this in the later part of this book.
+
+### which command
+
+By using the *which* command, we can find out the exact path of the executable being used a command in our shell.
+
+```
+$ which chmod
+/usr/bin/chmod
+$ which tree
+/usr/bin/which: no tree in (/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/fedora/.local/bin:/home/fedora/bin)
+```
+
+The second examples shows the output in case the *which* command can not find the executable mentioned.

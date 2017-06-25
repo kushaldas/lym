@@ -17,6 +17,7 @@ Welcome to Linux command line for you and me!
    fhsandaccess
    useful
    users
+   files
    processes
    services
    random
