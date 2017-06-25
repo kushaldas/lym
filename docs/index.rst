@@ -21,6 +21,7 @@ Welcome to Linux command line for you and me!
    processes
    services
    packages
+   networking
    random
 
 Indices and tables
