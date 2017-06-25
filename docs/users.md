@@ -71,7 +71,7 @@ username:password:uid:gid:gecos:/home/dirname:shell
 There are accounts with */sbin/nologin* as shell, these are generally
 accounts for various services, which are not supposed to be used by a normal human user, that is why they don't have a shell to be used.
 
-The actual user passwords are stored in */etc/shadow* file, only the
+The actual user passwords are stored in an encrypted form in  */etc/shadow* file, only the
 root user can access this file.
 
 ```
@@ -88,6 +88,8 @@ one primary group, and zero or more supplementary groups.
 
 If your user is part of the *wheel* group, then it has sudo access. If you remember Fedora Installer, it actually gives an option to mark the new user to be part of wheel group during installation.
 
+```.. index:: useradd
+```
 ### Adding a new user
 
 *useradd* command adds a new user to the system. You can guess that this command has to execute as root, otherwise anyone can add random user accounts in the system. The following command adds a new user
@@ -99,6 +101,8 @@ $ sudo useradd babai
 
 In Fedora, the initial user you create gets the uid 1000.
 
+```.. index:: passwd
+```
 ### Changing user password
 
 *passwd* command helps to change any user password.
@@ -111,6 +115,8 @@ Retype new password:
 passwd: all authentication tokens updated successfully.
 ```
 
+```.. index:: usermod
+```
 ### Modifying existing user details
 
 *usermod* command can help to modify any existing user.
@@ -123,6 +129,8 @@ Password:
 su: Authentication failure 
 ```
 
+```.. index:: userdel
+```
 ### Deleting an user
 
 We can use *userdel* command to delete an user from the system.

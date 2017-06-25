@@ -3,6 +3,8 @@
 I am yet to figure out where to put these information, that is why they are in 
 the random chapter. These will be moved to different chapters in future.
 
+```.. index:: w
+```
 
 ### w command
 
@@ -15,6 +17,10 @@ $ w
 USER     TTY        LOGIN@   IDLE   JCPU   PCPU WHAT
 kdas     tty2      31May17 22days  3:07m  3:16  i3 -a --restart /run/user/1000/i3/restart-state.28641
 ```
+
+```.. index:: uptime
+```
+
 ### How long is the system running?
 
 We have *uptime* command which tells us about how long the system is running, you can figure out when did you last time turned it off or rebooted from this information. For my laptop, it was 24 days ago.
@@ -22,6 +28,9 @@ We have *uptime* command which tells us about how long the system is running, yo
 ```
 $ uptime
  17:31:30 up 24 days, 11:46,  2 users,  load average: 0.76, 0.98, 0.81
+```
+
+```.. index:: dmesg
 ```
 
 ### dmesg command

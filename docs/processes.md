@@ -4,6 +4,8 @@ A process is a program (think about any Linux application) in running state. It 
 details, like the memory space the program needs, it has a process id, the files opened by
 the process, etc.
 
+```.. index:: ps
+```
 
 ### How to view all the running processes?
 
@@ -40,6 +42,9 @@ Here, we are first running the ps command, and then passing the output of that t
 command using a | character. In this case, grep is that second command, as you can see, we can find
 some text using grep tool. We will learn more about grep in future.
 
+```.. index:: kill
+```
+
 ### How to kill/stop a particular process?
 
 We can kill/stop any process using the *kill* command. As we found out that the id of the Firefox process in my computer is 26752, we can use that id to kill it.
@@ -49,6 +54,9 @@ $ kill 26752
 ```
 
 If there is no error message, you should be able to see that the Firefox has disappeared. 
+
+```.. index:: signal
+```
 
 ### Signals
 
@@ -87,6 +95,9 @@ $ kill -l
 63) SIGRTMAX-1	64) SIGRTMAX	
 ```
 
+```.. index:: top
+```
+
 ### top command
 
 *top* is a very special command while using a Linux system, this is a quick way to know about
@@ -115,6 +126,9 @@ KiB Swap:  3268604 total,  1558396 free,  1710208 used.  2431656 avail Mem
 ```
 
 Btw, feel free to press *1* and see if anything changes in the top command output.
+
+```.. index:: load average
+```
 
 ### Load average
 
@@ -164,11 +178,17 @@ You can learn more about Linux processes in the glibc manual. Use the *info* com
 $ info libc process
 ```
 
+```.. index:: proc filesystem
+```
+
 ### /proc directory
 
 */proc* is a special directory in our filesystem. This is a virtual filesystem which contains information about all the running processes, and information about the hardware present in the system. You will find that the files in the virtual filesystem are showing *0* as the size.
 
 Now we will learn about a few files inside of this directory.
+
+```.. index:: cpuinfo
+```
 
 ### /proc/cpuinfo
 
@@ -176,6 +196,8 @@ Now we will learn about a few files inside of this directory.
 It includes the model number, and also the various flags available in
 that particular CPU model.
 
+```.. index:: cmdline
+```
 ### /proc/cmdline
 
 */proc/cmdline* file has all the parameters passed to the kernel at the boot up time. The following is from a cloud based virtual machine.
@@ -183,6 +205,9 @@ that particular CPU model.
 ```
 $ cat /proc/cmdline 
 BOOT_IMAGE=/boot/vmlinuz-4.8.6-300.fc25.x86_64 root=UUID=9be70055-35f2-4a57-b120-5a003dfdb504 ro no_timer_check console=tty1 console=ttyS0,115200n8 rhgb quiet console=ttyS1 LANG=en_US.UTF-8 initrd=/boot/initramfs-4.8.6-300.fc25.x86_64.img
+```
+
+```.. index:: meminfo
 ```
 
 ### /proc/meminfo

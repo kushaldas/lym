@@ -51,7 +51,8 @@ lrwxrwxrwx. 1 fedora fedora   13 Jun 23 12:32 name -> /etc/hostname
 
 If you look carefully, in the above example, we created a hard link using the *ln* command. When we made a change to the original *hello.txt* file, that also reflects in the *bye.txt* file. But, because *bye.txt* is a hard link, even if I deleted the *hello.txt*, the hard link still exists, and also have the original content.
 
-
+```.. index:: tar
+```
 ### Extracting a tar file
 
 *tar* is a tool to create and extract archive files. Many times we will have to download and then extract a tar file in our regular computer usage.
@@ -83,6 +84,9 @@ $ ls
 bye.txt  files.tar.gz  hello.c
 ```
 
+
+```.. index:: vim
+```
 ### Vim editor
 
 Text editors are the tool to edit files. This can be a configuration file, or source code, or an email, or any other kind of text file.
@@ -122,6 +126,8 @@ the current file.
 
 Vim is a powerful editor, and we learned about only a very basic steps into it. It will a complete book to explain different features of vim. But, the steps above are sufficient for this book's scope. 
 
+```.. index:: su
+```
 ### Becoming root user
 
 *root* is the superuser. It has power to make changes in various parts
@@ -136,6 +142,8 @@ Password:
 Notice how the command prompt changed to *#* from *$*, *#* shows that you are using the *root*, that is another visible indication to think
 about every command you give as *root*. You can press *Ctrl+d* to log out from the *root* account.
 
+```.. index:: sudo
+```
 ### Using sudo command
 
 You can add *sudo* command in front of any command to execute them as
@@ -149,6 +157,8 @@ $ sudo less /var/log/secure
 ... long output
 ```
 
+```.. index:: Environment variable
+```
 ### Environment variables
 
 Environment variables are a way to pass data to the applications. We can set values of different variables, which then any of the application can access. There are various variables which decides how
@@ -161,6 +171,8 @@ $ printenv
 
 You can execute the same command once as normal user, and once as *root*, and then check for the differences between the output. That is because the variables can be user specific.
 
+```.. index:: export
+```
 ### Setting up environment variable values
 
  We can use the *export* and *set* commands to create a new environment variable or we can change an existing one. We can use the *echo* command to print one particular environment variable value.
@@ -172,11 +184,12 @@ Kushal Das
 $ export NAME="Babai Das"
 $ echo $NAME
 Babai Das
-````
+```
 
 In the above example we first created a new variable called *name* and then we changed the value of the variable.
 
-
+```.. index:: locate
+```
 ### locate command
 
 *locate* is a very useful tool to find files in the system. This is part of the *mlocate* package. For example, the following command will
@@ -196,6 +209,8 @@ $ locate firewalld
 
 You can update the search database by using *updatedb* command as root.
 
+```.. index:: updatedb
+```
 ```
 $ sudo updatedb
 ```

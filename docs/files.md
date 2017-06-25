@@ -1,5 +1,8 @@
 ## File permissions
 
+```.. index:: file permission
+```
+
 Linux followed the long Unix history, and has the same kind of permission and ownership of files and directories. In this chapter, we will learn in details about the same.
 
 Let us look back the output of *ls -l* command.

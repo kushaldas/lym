@@ -4,7 +4,8 @@ In the Free and Open Source Software world, most of the software is being releas
 
 It is generally recommend to the use the distribution provided software using the package management system for the users. If you are very much sure about what steps you are doing in the system, you can install from the source files too, but that can be dangerous.
 
-
+```.. index:: dnf
+```
 ### dnf command
 
 *dnf* is the package management system in Fedora. The actual packages come in *rpm* format. *dnf* can help you to search, install or uninstall any package from the Fedora package repositories. You can also use the same command to update the packages in your system.
@@ -45,6 +46,9 @@ Description : pss is a power-tool for searching inside source code files.
             : extensions and file names to search and which to ignore, automatically
             : skips directories you wouldn't want to search in (for example .svn or .git),
             : colors its output in a helpful way, and does much more.
+```
+
+```.. index:: dnf install
 ```
 
 ### Installing a package

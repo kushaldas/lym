@@ -2,6 +2,9 @@
 
 This is also a chapter related to the *systemd* tool.
 
+```.. index:: bootup
+```
+
 ### What is a service?
 
 A service is a process or application which is running in the background, either doing some predefined tasks,or waiting for some events. If you remember our process chapter, we learned about *systemd* for the first time there. It is the first process to run in our sysytem, it
@@ -10,6 +13,9 @@ read the *bootup* man page. [Click here](https://www.freedesktop.org/software/sy
 
 ```
 $ man bootup
+```
+
+```.. index:: daemon
 ```
 
 ### What is a daemon?
@@ -27,11 +33,16 @@ If you look at the Unix/Linux history, you will find the first process which sta
 Units are a standardized way for the systemd to manage various parts of a system. There are different kinds of units, *.service* is for system services, *.path* for path based ones. There is also *.socket* which are socket based systemd units. There are various other types, we can
 learn about those later.
 
+```.. index:: services
+```
+
 ### .service units in systemd
 
 These are service units, which explains how to manage a particular service in the system. In our
 daily life, we generally only have to work with these unit files.
 
+```.. index:: systemctl
+```
 
 ### How to find about all the systemd units in the system?
 
@@ -156,6 +167,9 @@ Jun 22 14:54:26 kushal-test.novalocal sshd[13522]: input_userauth_request: inval
 Jun 22 14:54:26 kushal-test.novalocal sshd[13522]: Failed none for invalid user  from 139.162.122.110 port 51012 ssh2
 Jun 22 14:54:26 kushal-test.novalocal sshd[13522]: Connection closed by 139.162.122.110 port 51012 [preauth]
 Jun 22 15:15:29 kushal-test.novalocal sshd[13541]: Did not receive identification string from 5.153.62.226 port 48677
+```
+
+```.. index:: journalctl
 ```
 
 ### Continuous stream of logs
