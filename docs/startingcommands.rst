@@ -176,6 +176,30 @@ rm command
 
     dir1/dir2/:
 
+Coping a file using cp command
+-------------------------------
+
+We use *cp* command to copy a file in the Linux shell. To copy recursively
+use the *-r* flag to the *cp* command.
+
+::
+
+    $ cp hello.txt hello2.txt
+    $ ls -l
+    -rw-rw-r--. 1 fedora fedora   75 Jun 25 04:47 hello2.txt
+    -rw-rw-r--. 1 fedora fedora   75 Jun 25 04:33 hello.txt
+
+Renaming or moving a file
+--------------------------
+
+*mv* command is used to rename or move a file or directory.
+
+::
+
+    $ mv hello.txt nothello.txt
+    $ ls -l nothello.txt
+    -rw-rw-r--. 1 fedora fedora 75 Jun 25 04:33 nothello.txt
+
 tree command
 -------------
 
