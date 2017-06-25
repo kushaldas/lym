@@ -168,7 +168,7 @@ rm command
 ----------
 
 *rm* command is used to remove a file, or directory. The -rf option is being used to remove in a recursive way.
-But, always double check before you *rm -rf* command, if you by mistake give this command in your home directory,
+But, always double check before you use *rm -rf* command, if you by mistake give this command in your home directory,
 or any other important directory, it will not ask to confirm, but it will delete everything there.
 *-f* stands for force, it will just delete everything. So, please be careful and read twice before pressing enter key.
 ::
