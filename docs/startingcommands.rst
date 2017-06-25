@@ -26,6 +26,45 @@ In our case the username is *babai*, hostname is *kdas-laptop*, and directory is
 is a special character in our case. It means the home directory of the user. In our case the home directory path
 is */home/babai/*.
 
+date command
+-------------
+
+*date* command tells the current date time.
+
+::
+
+    $ date
+    Sun Jun 25 10:13:44 IST 2017
+
+cal command
+------------
+
+*cal* command is used to display calendar in your shell, by default it
+will display the current month
+
+::
+
+    $ cal
+          June 2017     
+    Su Mo Tu We Th Fr Sa
+                1  2  3 
+    4  5  6  7  8  9 10 
+    11 12 13 14 15 16 17 
+    18 19 20 21 22 23 24 
+    25 26 27 28 29 30    
+
+    $ cal 07 2017
+        July 2017     
+    Su Mo Tu We Th Fr Sa
+                    1 
+    2  3  4  5  6  7  8 
+    9 10 11 12 13 14 15 
+    16 17 18 19 20 21 22 
+    23 24 25 26 27 28 29 
+    30 31                
+
+
+
 whoami command
 ---------------
 
@@ -263,3 +302,5 @@ it will add the new input to the end of the file.
     total 776
     -rwxrwxr-x. 1 fedora fedora     34 Jun 24 07:56 helol.py
     -rw-------. 1 fedora fedora 784756 Jun 23 10:49 tmp3lDEho
+
+
