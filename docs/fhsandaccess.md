@@ -2,7 +2,8 @@
 
 Now you know few very basic Linux commands. Before we can learn anything else, we should look into how the files and directories are structured inside of a Linux system.
 
-```.. index:: fhs
+```eval_rst
+.. index:: fhs
 ```
 
 ### FHS
