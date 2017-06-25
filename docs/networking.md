@@ -3,6 +3,8 @@
 In this chapter we will learn about a few basic networking commands,
 which will help us in our daily Linux usage.
 
+```.. index:: ip
+```
 ### Finding the IP address
 
 *ip* command can be used to find IP address of the system.
@@ -25,6 +27,8 @@ $ ip addr show
 
 Here *lo* is a special device which points to the same system (also known as *localhost*). The IP *127.0.0.1* always points to the the *localhost*. *eth0* is our ethernet device which connects with the network.
 
+```.. index:: ping
+```
 ### ping command
 
 *ping* is simple way to find if you are connected to Internet or not. We can also ping any particular computer to find if the computer is connected to the network or not. Press *Ctrl+c* to stop the loop.
@@ -39,6 +43,9 @@ PING google.com (216.58.201.142) 56(84) bytes of data.
 --- google.com ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2000ms
 rtt min/avg/max/mdev = 156.373/156.811/157.566/0.704 ms
+```
+
+```.. index:: dns
 ```
 
 ### Short story about DNS
@@ -56,6 +63,9 @@ nameserver 8.8.8.8
 ```
 
 The *8.8.8.8* is the DNS server hosted by Google.
+
+```.. index:: dig
+```
 
 ### dig command
 
@@ -109,6 +119,8 @@ rtnpro.com.		3600	IN	SOA	dns1.bigrock.in. rtnpro.gmail.com. 2017021401 7200 7200
 ;; MSG SIZE  rcvd: 106
 ```
 
+```.. index:: ssh
+```
 ### Remote login to a computer using ssh tool
 
 We use *ssh* command to login to the remote computers. The remote
@@ -173,6 +185,9 @@ total 12
 Each key has two parts. The *id_rsa.pub* is the public key and *id_rsa* is the private part of the key. One can safely upload or use the public key anywhere. But, the private key should be kept in a safe manner, as if people get access to your private key, they can also access all of your information from any system using that key.
 
 In other words, do not give the private key to anyone, or do not randomly copy the *.ssh* directory to USB drive and then forget about it.
+
+```.. index:: ssh-copy-id
+```
 
 ### ssh-copy-id 
 

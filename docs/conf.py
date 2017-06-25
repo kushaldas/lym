@@ -43,6 +43,7 @@ templates_path = ['_templates']
 #
 # source_suffix = ['.rst', '.md']
 from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
 
 source_parsers = {
     '.md': CommonMarkParser,
@@ -166,4 +167,10 @@ texinfo_documents = [
 ]
 
 
+# At the bottom of conf.py
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+            'enable_eval_rst': True,
+            }, True)
+    app.add_transform(AutoStructify)
 
