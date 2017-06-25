@@ -20,6 +20,7 @@ Welcome to Linux command line for you and me!
    files
    processes
    services
+   packages
    random
 
 Indices and tables
