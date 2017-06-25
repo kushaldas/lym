@@ -140,6 +140,9 @@ tcp   ESTAB      0      0                                 192.168.1.101:59524   
 ... long output
 ```
 
+```eval_rst
+.. index:: traceroute
+```
 ### traceroute command
 
 The *traceroute* command is used to show all the full route of the network packets  from the system to any given host.
