@@ -89,3 +89,16 @@ $ which tree
 ```
 
 The second examples shows the output in case the *which* command can not find the executable mentioned.
+
+### she-bang or sha-bang in executable files
+
+she-bang or sha-bang is the first line the in scripts, which starts with *#!* and then the path of the interpreter which is to be used for the rest of the file. We will create a simple bash hello world script using the same, and then execute it.
+
+![](/img/she-bang.png)
+
+```
+$ vim hello.sh
+$ chmod +x hello.sh 
+$ ./hello.sh 
+Hello World!
+```
