@@ -83,6 +83,45 @@ $ ls
 bye.txt  files.tar.gz  hello.c
 ```
 
+### Vim editor
+
+Text editors are the tool to edit files. This can be a configuration file, or source code, or an email, or any other kind of text file.
+Which editor to use is generally a personal choice, and a lot good energy have been to wasted to tell which one is the best editor. In this book we will just learn about *Vim* editor. It is also known as *vi enhanced* editor. In the Fedora Linux distribution, the *vi* command is actually an alias to the the *vim* itself.
+
+If we just type vim, and press enter, we will see the following screen.
+
+![](/img/vim1.png)
+
+#### :q to exit vim
+
+Press Escape and then type *:q* to exit the vim.
+
+![](/img/vim2.png)
+
+#### Open a new file or edit an existing file
+
+*vim filename* is the command to open an existing file, if the file is not there, it will open a new empty file for editing.
+
+#### Different modes of vim
+
+Vim editor starts with command mode, every time you open any file, this is the default mode of the editor. You can press the *Escape* key in any other mode to come to the command mode.
+
+You can press *i* to go into insert mode, we edit documents in the insert mode. Here if you press *Escape* you will get back to the command mode.
+
+![](/img/vim3.png)
+
+#### :w to save a file
+
+In the command mode typing *:w* saves a file, if you want to save
+and quit the editor, then type either *:wq* or *:x*.
+
+#### :q! to quit without saving
+
+In the command typing *:q!* will allow us to quit without saving
+the current file.
+
+Vim is a powerful editor, and we learned about only a very basic steps into it. It will a complete book to explain different features of vim. But, the steps above are sufficient for this book's scope. 
+
 ### Becoming root user
 
 *root* is the superuser. It has power to make changes in various parts
