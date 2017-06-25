@@ -158,6 +158,26 @@ tree command
     └── Videos
 
 
+wc command
+-----------
+
+*wc* is an useful command which can help us to count newline, word and bytes
+of a file.
+
+::
+
+    $ cat hello.txt
+    HI that is a file.
+    This is the second line.
+    And we also have a third line.
+    $ wc -l hello.txt
+    3 hello.txt
+    $ wc -w hello.txt
+    17 hello.txt
+
+The *-l* flag finds the number of line in a file, *-w* counts the number
+of words in the file.
+
 echo command
 -------------
 
@@ -167,3 +187,79 @@ echo command
 
     $ echo "Hello"
     Hello
+
+Redirecting the command output
+-------------------------------
+
+In Linux shells, we can redirect the command output to a file, or as input
+to another command. *|* is the most common way to do so. Using this we
+can now count the number of directories in the root (*/*) directory very easily.
+
+::
+
+    $ ls /
+    bin  boot  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+    $ ls / | wc -w
+    20
+
+Using > to redirect output to a file
+------------------------------------
+
+We can use *>* to redirect the output of one command to a file, if the file
+exists this will remove the old content and only keep the input. We can use
+*>>* to append to a file, means it will keep all the old content, and
+it will add the new input to the end of the file.
+
+::
+
+    $ ls / > details.txt
+    $ cat details.txt 
+    bin
+    boot
+    dev
+    etc
+    home
+    lib
+    lib64
+    lost+found
+    media
+    mnt
+    opt
+    proc
+    root
+    run
+    sbin
+    srv
+    sys
+    tmp
+    usr
+    var
+    $ ls /usr/ > details.txt 
+    $ cat details.txt 
+    bin
+    games
+    include
+    lib
+    lib64
+    libexec
+    local
+    sbin
+    share
+    src
+    tmp
+    $ ls -l /tmp/ >> details.txt 
+    $ cat details.txt 
+    bin
+    games
+    include
+    lib
+    lib64
+    libexec
+    local
+    sbin
+    share
+    src
+    tmp
+    total 776
+    -rwxrwxr-x. 1 fedora fedora     34 Jun 24 07:56 helol.py
+    -rw-------. 1 fedora fedora 784756 Jun 23 10:49 tmp3lDEho
