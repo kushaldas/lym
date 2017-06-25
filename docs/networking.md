@@ -124,6 +124,46 @@ rtnpro.com.		3600	IN	SOA	dns1.bigrock.in. rtnpro.gmail.com. 2017021401 7200 7200
 ```
 
 ```eval_rst
+.. index:: ss
+```
+### ss command
+
+*ss* command shows the socket statistics from the system. You can use this command to replace older netstat command. Read the man page of
+the command to know more the different arguments we can pass in the command line.
+
+```
+$ ss -putn
+Netid State      Recv-Q Send-Q                           Local Address:Port                                          Peer Address:Port              
+tcp   ESTAB      0      0                                 192.168.1.101:51496                                       162.125.34.129:443                 users:(("dropbox",pid=28797,fd=80))
+tcp   ESTAB      0      0                                 192.168.1.101:47864                                       74.125.200.189:443                 users:(("chrome",pid=22112,fd=385))
+tcp   ESTAB      0      0                                 192.168.1.101:59524                                      209.132.184.117:22                  users:(("ssh",pid=26621,fd=3))
+... long output
+```
+
+### traceroute command
+
+The *traceroute* command is used to show all the full route of the network packets  from the system to any given host.
+
+```
+$ traceroute www.rtnpro.com
+traceroute to www.rtnpro.com (146.185.181.157), 30 hops max, 60 byte packets
+ 1  gateway (192.168.1.1)  1.434 ms  1.920 ms  1.891 ms
+ 2  45.113.248.3 (45.113.248.3)  7.478 ms  10.335 ms  10.343 ms
+ 3  45.113.248.1 (45.113.248.1)  10.319 ms  10.293 ms  10.274 ms
+ 4  121.244.26.1.static-pune.vsnl.net.in (121.244.26.1)  26.938 ms  26.608 ms  27.165 ms
+ 5  172.31.183.162 (172.31.183.162)  9.883 ms  10.133 ms  10.122 ms
+ 6  172.31.19.201 (172.31.19.201)  10.591 ms 172.29.250.33 (172.29.250.33)  6.894 ms 172.31.19.201 (172.31.19.201)  8.203 ms
+ 7  ix-ae-0-4.tcore1.MLV-Mumbai.as6453.net (180.87.38.5)  9.378 ms  8.886 ms  9.240 ms
+ 8  if-ae-9-5.tcore1.WYN-Marseille.as6453.net (80.231.217.77)  159.550 ms if-ae-5-2.tcore1.WYN-Marseille.as6453.net (180.87.38.126)  159.614 ms if-ae-9-5.tcore1.WYN-Marseille.as6453.net (80.231.217.77)  159.506 ms
+ 9  if-ae-8-1600.tcore1.PYE-Paris.as6453.net (80.231.217.6)  159.392 ms  159.474 ms  159.405 ms
+10  if-ae-15-2.tcore1.AV2-Amsterdam.as6453.net (195.219.194.145)  159.327 ms  158.355 ms  122.520 ms
+11  195.219.194.26 (195.219.194.26)  133.216 ms  134.168 ms  134.683 ms
+12  138.197.250.29 (138.197.250.29)  192.236 ms  192.125 ms 138.197.250.23 (138.197.250.23)  192.083 ms
+13  * 146.185.181.157 (146.185.181.157)  191.831 ms  191.861 ms
+```
+
+
+```eval_rst
 .. index:: ssh
 ```
 ### Remote login to a computer using ssh tool
