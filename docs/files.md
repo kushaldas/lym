@@ -1,6 +1,7 @@
 ## File permissions
 
-```.. index:: file permission
+```eval_rst
+.. index:: File permission
 ```
 
 Linux followed the long Unix history, and has the same kind of permission and ownership of files and directories. In this chapter, we will learn in details about the same.
@@ -36,6 +37,9 @@ There is another way to calculate the same file permissions, using numbers.
 Means, if you want to give read and write access only to the owner and group, you can mention it like this "660", where the first digit is for
 the owner, second digit is for the group, and the third digit is for the other users. We can use this format along with the *chmod* command to change permissions of any file or directory.
 
+```eval_rst
+.. index:: chmod
+```
 ### chmod command
 
 *chmod* is the command which changes the file mode bits. A few examples
@@ -64,7 +68,9 @@ read/write capability of the owner on that particular file.
 
 The executable permission is required for the directory access, and also for any file you want to execute.
 
-
+```eval_rst
+.. index:: PATH
+```
 ### PATH variable
 
 The *PATH* variable is a special variable, when we type a command in the bash shell, it searches for the command in the directories menioned
@@ -77,6 +83,9 @@ $ echo $PATH
 
 The different directories are separated by *:*. You can see that in the */home/fedora/bin* directory is mentioned in the path, means if we have that directory, and an executable file is there, we can use it as a normal command in our shell. We will see example of this in the later part of this book.
 
+```eval_rst
+.. index:: which
+```
 ### which command
 
 By using the *which* command, we can find out the exact path of the executable being used a command in our shell.
