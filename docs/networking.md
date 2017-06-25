@@ -197,3 +197,18 @@ and check to make sure that only the key(s) you wanted were added.
 
 If you don't need ssh access to your computer (say in your laptop), you should always stop and disable the *sshd* service in the computer.
 
+### Disable password based login for ssh
+
+Remember, this step can be harmful, unless you are very much sure that you can access a computer either to login physically or using your ssh key (and you have a backup of the key somewhere), you should not do this step.
+
+By disabling password based login in sshd service, you can make sure only the person with the right private key can login to the computer. This will help in case people trying to break into the system by guessing the password. This is really helpful in case your computer is connected to some network, and you still need to access it over ssh.
+
+We will use vim to open the */etc/ssh/sshd_config* file, which is the configuration file for *sshd* service.
+
+```
+$ sudo vim /etc/ssh/sshd_config
+```
+
+Search for the term *PasswordAuthentication*, and change the value to no. Below I added a new line for the same, you can also understand that the lines starting with *#* are comments in this configuration file. This configuration will disable password based authentication for the sshd service. You should remember to restart the sshd service after this step for the change to go live.
+
+![](/img/passwordauthno.png)
