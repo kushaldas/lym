@@ -189,6 +189,13 @@ use the *-r* flag to the *cp* command.
     -rw-rw-r--. 1 fedora fedora   75 Jun 25 04:47 hello2.txt
     -rw-rw-r--. 1 fedora fedora   75 Jun 25 04:33 hello.txt
 
+In another example, I will copy the file *passwordauthno.png* from the Pictures
+directory under my home directory to the current directory.
+
+::
+
+    $ cp ~/Pictures/passwordauthno.png .
+
 Renaming or moving a file
 --------------------------
 
