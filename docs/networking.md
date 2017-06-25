@@ -20,7 +20,7 @@ $ ip addr show
        valid_lft forever preferred_lft forever
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1454 qdisc fq_codel state UP group default qlen 1000
     link/ether fa:16:3e:3c:ed:27 brd ff:ff:ff:ff:ff:ff
-    inet 172.25.97.253/20 brd 172.25.111.255 scope global dynamic eth0
+    inet 172.10.95.253/20 brd 172.10.111.255 scope global dynamic eth0
        valid_lft 57021sec preferred_lft 57021sec
     inet6 fe80::f816:3eff:fe3c:ed27/64 scope link 
        valid_lft forever preferred_lft forever
@@ -136,7 +136,7 @@ $ ss -putn
 Netid State      Recv-Q Send-Q                           Local Address:Port                                          Peer Address:Port              
 tcp   ESTAB      0      0                                 192.168.1.101:51496                                       162.125.34.129:443                 users:(("dropbox",pid=28797,fd=80))
 tcp   ESTAB      0      0                                 192.168.1.101:47864                                       74.125.200.189:443                 users:(("chrome",pid=22112,fd=385))
-tcp   ESTAB      0      0                                 192.168.1.101:59524                                      209.132.184.117:22                  users:(("ssh",pid=26621,fd=3))
+tcp   ESTAB      0      0                                 192.168.1.101:59524                                      209.12.123.55:22                  users:(("ssh",pid=26621,fd=3))
 ... long output
 ```
 
@@ -245,15 +245,15 @@ this step one can use the ssh key to login to the box instead of the
 usual password method.
 
 ```
-$ ssh-copy-id fedora@209.132.184.117
+$ ssh-copy-id fedora@209.12.123.55
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 2 key(s) remain to be installed -- if you are prompted now it is to install the new keys
 
-fedora@209.132.184.117's password:
+fedora@209.12.123.55's password:
 
 Number of key(s) added: 2
 
-Now try logging into the machine, with:   "ssh 'fedora@209.132.184.117'"
+Now try logging into the machine, with:   "ssh 'fedora@209.12.123.55'"
 and check to make sure that only the key(s) you wanted were added.
 ```
 
