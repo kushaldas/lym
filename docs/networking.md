@@ -3,7 +3,8 @@
 In this chapter we will learn about a few basic networking commands,
 which will help us in our daily Linux usage.
 
-```.. index:: ip
+```eval_rst
+.. index:: ip
 ```
 ### Finding the IP address
 
@@ -27,7 +28,8 @@ $ ip addr show
 
 Here *lo* is a special device which points to the same system (also known as *localhost*). The IP *127.0.0.1* always points to the the *localhost*. *eth0* is our ethernet device which connects with the network.
 
-```.. index:: ping
+```eval_rst
+.. index:: ping
 ```
 ### ping command
 
@@ -45,7 +47,8 @@ PING google.com (216.58.201.142) 56(84) bytes of data.
 rtt min/avg/max/mdev = 156.373/156.811/157.566/0.704 ms
 ```
 
-```.. index:: dns
+```eval_rst
+.. index:: dns
 ```
 
 ### Short story about DNS
@@ -64,7 +67,8 @@ nameserver 8.8.8.8
 
 The *8.8.8.8* is the DNS server hosted by Google.
 
-```.. index:: dig
+```eval_rst
+.. index:: dig
 ```
 
 ### dig command
@@ -119,7 +123,8 @@ rtnpro.com.		3600	IN	SOA	dns1.bigrock.in. rtnpro.gmail.com. 2017021401 7200 7200
 ;; MSG SIZE  rcvd: 106
 ```
 
-```.. index:: ssh
+```eval_rst
+.. index:: ssh
 ```
 ### Remote login to a computer using ssh tool
 
@@ -186,7 +191,8 @@ Each key has two parts. The *id_rsa.pub* is the public key and *id_rsa* is the p
 
 In other words, do not give the private key to anyone, or do not randomly copy the *.ssh* directory to USB drive and then forget about it.
 
-```.. index:: ssh-copy-id
+```eval_rst
+.. index:: ssh-copy-id
 ```
 
 ### ssh-copy-id 

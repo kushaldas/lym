@@ -51,7 +51,8 @@ lrwxrwxrwx. 1 fedora fedora   13 Jun 23 12:32 name -> /etc/hostname
 
 If you look carefully, in the above example, we created a hard link using the *ln* command. When we made a change to the original *hello.txt* file, that also reflects in the *bye.txt* file. But, because *bye.txt* is a hard link, even if I deleted the *hello.txt*, the hard link still exists, and also have the original content.
 
-```.. index:: tar
+```eval_rst
+.. index:: tar
 ```
 ### Extracting a tar file
 
@@ -85,7 +86,8 @@ bye.txt  files.tar.gz  hello.c
 ```
 
 
-```.. index:: vim
+```eval_rst
+.. index:: vim
 ```
 ### Vim editor
 
@@ -126,7 +128,8 @@ the current file.
 
 Vim is a powerful editor, and we learned about only a very basic steps into it. It will a complete book to explain different features of vim. But, the steps above are sufficient for this book's scope. 
 
-```.. index:: su
+```eval_rst
+.. index:: su
 ```
 ### Becoming root user
 
@@ -142,7 +145,8 @@ Password:
 Notice how the command prompt changed to *#* from *$*, *#* shows that you are using the *root*, that is another visible indication to think
 about every command you give as *root*. You can press *Ctrl+d* to log out from the *root* account.
 
-```.. index:: sudo
+```eval_rst
+.. index:: sudo
 ```
 ### Using sudo command
 
@@ -157,7 +161,8 @@ $ sudo less /var/log/secure
 ... long output
 ```
 
-```.. index:: Environment variable
+```eval_rst
+.. index:: Environment variable
 ```
 ### Environment variables
 
@@ -171,7 +176,8 @@ $ printenv
 
 You can execute the same command once as normal user, and once as *root*, and then check for the differences between the output. That is because the variables can be user specific.
 
-```.. index:: export
+```eval_rst
+.. index:: export
 ```
 ### Setting up environment variable values
 
@@ -188,7 +194,8 @@ Babai Das
 
 In the above example we first created a new variable called *name* and then we changed the value of the variable.
 
-```.. index:: locate
+```eval_rst
+.. index:: locate
 ```
 ### locate command
 
@@ -209,7 +216,8 @@ $ locate firewalld
 
 You can update the search database by using *updatedb* command as root.
 
-```.. index:: updatedb
+```eval_rst
+.. index:: updatedb
 ```
 ```
 $ sudo updatedb

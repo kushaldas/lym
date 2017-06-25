@@ -3,7 +3,8 @@
 I am yet to figure out where to put these information, that is why they are in 
 the random chapter. These will be moved to different chapters in future.
 
-```.. index:: w
+```eval_rst
+.. index:: w
 ```
 
 ### w command
@@ -18,7 +19,8 @@ USER     TTY        LOGIN@   IDLE   JCPU   PCPU WHAT
 kdas     tty2      31May17 22days  3:07m  3:16  i3 -a --restart /run/user/1000/i3/restart-state.28641
 ```
 
-```.. index:: uptime
+```eval_rst
+.. index:: uptime
 ```
 
 ### How long is the system running?
@@ -30,7 +32,8 @@ $ uptime
  17:31:30 up 24 days, 11:46,  2 users,  load average: 0.76, 0.98, 0.81
 ```
 
-```.. index:: dmesg
+```eval_rst
+.. index:: dmesg
 ```
 
 ### dmesg command

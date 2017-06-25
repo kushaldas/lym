@@ -4,7 +4,8 @@ In the Free and Open Source Software world, most of the software is being releas
 
 It is generally recommend to the use the distribution provided software using the package management system for the users. If you are very much sure about what steps you are doing in the system, you can install from the source files too, but that can be dangerous.
 
-```.. index:: dnf
+```eval_rst
+.. index:: dnf
 ```
 ### dnf command
 
@@ -48,7 +49,8 @@ Description : pss is a power-tool for searching inside source code files.
             : colors its output in a helpful way, and does much more.
 ```
 
-```.. index:: dnf install
+```eval_rst
+.. index:: dnf install
 ```
 
 ### Installing a package

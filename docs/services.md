@@ -2,7 +2,8 @@
 
 This is also a chapter related to the *systemd* tool.
 
-```.. index:: bootup
+```eval_rst
+.. index:: bootup
 ```
 
 ### What is a service?
@@ -15,7 +16,8 @@ read the *bootup* man page. [Click here](https://www.freedesktop.org/software/sy
 $ man bootup
 ```
 
-```.. index:: daemon
+```eval_rst
+.. index:: daemon
 ```
 
 ### What is a daemon?
@@ -33,7 +35,8 @@ If you look at the Unix/Linux history, you will find the first process which sta
 Units are a standardized way for the systemd to manage various parts of a system. There are different kinds of units, *.service* is for system services, *.path* for path based ones. There is also *.socket* which are socket based systemd units. There are various other types, we can
 learn about those later.
 
-```.. index:: services
+```eval_rst
+.. index:: services
 ```
 
 ### .service units in systemd
@@ -41,7 +44,8 @@ learn about those later.
 These are service units, which explains how to manage a particular service in the system. In our
 daily life, we generally only have to work with these unit files.
 
-```.. index:: systemctl
+```eval_rst
+.. index:: systemctl
 ```
 
 ### How to find about all the systemd units in the system?
@@ -169,7 +173,8 @@ Jun 22 14:54:26 kushal-test.novalocal sshd[13522]: Connection closed by 139.162.
 Jun 22 15:15:29 kushal-test.novalocal sshd[13541]: Did not receive identification string from 5.153.62.226 port 48677
 ```
 
-```.. index:: journalctl
+```eval_rst
+.. index:: journalctl
 ```
 
 ### Continuous stream of logs

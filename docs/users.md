@@ -88,7 +88,8 @@ one primary group, and zero or more supplementary groups.
 
 If your user is part of the *wheel* group, then it has sudo access. If you remember Fedora Installer, it actually gives an option to mark the new user to be part of wheel group during installation.
 
-```.. index:: useradd
+```eval_rst
+.. index:: useradd
 ```
 ### Adding a new user
 
@@ -101,7 +102,8 @@ $ sudo useradd babai
 
 In Fedora, the initial user you create gets the uid 1000.
 
-```.. index:: passwd
+```eval_rst
+.. index:: passwd
 ```
 ### Changing user password
 
@@ -115,7 +117,8 @@ Retype new password:
 passwd: all authentication tokens updated successfully.
 ```
 
-```.. index:: usermod
+```eval_rst
+.. index:: usermod
 ```
 ### Modifying existing user details
 
@@ -129,7 +132,8 @@ Password:
 su: Authentication failure 
 ```
 
-```.. index:: userdel
+```eval_rst
+.. index:: userdel
 ```
 ### Deleting an user
 
