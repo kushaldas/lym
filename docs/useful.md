@@ -181,7 +181,7 @@ You can execute the same command once as normal user, and once as *root*, and th
 ```
 ### Setting up environment variable values
 
- We can use the *export* and *set* commands to create a new environment variable or we can change an existing one. We can use the *echo* command to print one particular environment variable value.
+ We can use the *export* command to create a new environment variable or we can change an existing one. We can use the *echo* command to print one particular environment variable value.
 
 ```
 $ export NAME="Kushal Das"
