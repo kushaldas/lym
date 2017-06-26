@@ -165,6 +165,34 @@ traceroute to www.rtnpro.com (146.185.181.157), 30 hops max, 60 byte packets
 13  * 146.185.181.157 (146.185.181.157)  191.831 ms  191.861 ms
 ```
 
+```eval_rst
+.. index:: tracepath
+```
+### tracepath command
+
+*tracpath* command traces path to a network host discovering MTU along the path. This is a modern replacement of the *traceroute* command, and also does not need superuser privilege to execute.
+
+```
+$ tracepath www.rtnpro.com
+ 1?: [LOCALHOST]                      pmtu 1500
+ 1:  gateway                                               0.950ms 
+ 1:  gateway                                               0.715ms 
+ 2:  gateway                                               0.689ms pmtu 1492
+ 2:  45.113.248.3                                          3.564ms 
+ 3:  45.113.248.1                                          4.639ms 
+ 4:  121.244.26.1.static-pune.vsnl.net.in                  4.132ms 
+ 5:  172.31.183.162                                        4.733ms asymm  7 
+ 6:  172.29.250.33                                        12.524ms asymm  7 
+ 7:  ix-ae-0-4.tcore1.MLV-Mumbai.as6453.net                7.208ms asymm  8 
+ 8:  if-ae-5-2.tcore1.WYN-Marseille.as6453.net           125.727ms asymm 12 
+ 9:  if-ae-8-1600.tcore1.PYE-Paris.as6453.net            128.893ms asymm 11 
+10:  if-ae-15-2.tcore1.AV2-Amsterdam.as6453.net          126.019ms asymm  9 
+11:  195.219.194.26                                      136.373ms asymm 10 
+12:  138.197.250.27                                      130.198ms 
+13:  146.185.181.157                                     131.040ms reached
+     Resume: pmtu 1492 hops 13 back 13 
+```
+
 
 ```eval_rst
 .. index:: ssh
