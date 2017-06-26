@@ -49,7 +49,7 @@ total 12
 lrwxrwxrwx. 1 fedora fedora   13 Jun 23 12:32 name -> /etc/hostname
 ```
 
-If you look carefully, in the above example, we created a hard link using the *ln* command. When we made a change to the original *hello.txt* file, that also reflects in the *bye.txt* file. But, because *bye.txt* is a hard link, even if I deleted the *hello.txt*, the hard link still exists, and also have the original content.
+If you look carefully, in the above example, we created a hard link using the *ln* command. When we made a change to the original *hello.txt* file, that also reflects in the *bye.txt* file. But, because *bye.txt* is a hard link, even if I had deleted the *hello.txt*, the hard link still exists, and also have the original content.
 
 ```eval_rst
 .. index:: tar
@@ -92,7 +92,7 @@ bye.txt  files.tar.gz  hello.c
 ### Vim editor
 
 Text editors are the tool to edit files. This can be a configuration file, or source code, or an email, or any other kind of text file.
-Which editor to use is generally a personal choice, and a lot good energy have been to wasted to tell which one is the best editor. In this book we will just learn about *Vim* editor. It is also known as *vi enhanced* editor. In the Fedora Linux distribution, the *vi* command is actually an alias to the the *vim* itself.
+Which editor to use is generally a personal choice, and a lot of good energy have been to wasted to tell which one is the best editor. In this book we will just learn about *Vim* editor. It is also known as *vi enhanced* editor. In the Fedora Linux distribution, the *vi* command is actually an alias to the the *vim* itself.
 
 If we just type vim, and press enter, we will see the following screen.
 
