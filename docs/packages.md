@@ -1,8 +1,8 @@
 ## Package management
 
-In the Free and Open Source Software world, most of the software is being released in source code format by the developers. This means generally if you want to install a software, you will the source code in the website of the project. As a user, you will have to find all the dependencies and then install the software. To solve this issue, all the Linux distributions have something called *package management system*. There volunteers (mostly) all across the world who helps to make binary software packages out of the source code released by the developers, in such a way that users of the Linux distribution can easily install, update or remove that software.
+In the Free and Open Source Software world, most of the software is being released in source code format by the developers. This means generally if you want to install a software, you will the source code on the website of the project. As a user, you will have to find all the dependencies and then install the software. To solve this issue, all the Linux distributions have something called *package management system*. There volunteers (mostly) all across the world who helps to make binary software packages out of the source code released by the developers, in such a way that users of the Linux distribution can easily install, update or remove that software.
 
-It is generally recommend to the use the distribution provided software using the package management system for the users. If you are very much sure about what steps you are doing in the system, you can install from the source files too, but that can be dangerous.
+It is generally recommended to the use the distribution provided software using the package management system for the users. If you are very much sure about what steps you are doing in the system, you can install from the source files too, but that can be dangerous.
 
 ```eval_rst
 .. index:: dnf
@@ -95,7 +95,7 @@ Complete!
 
 ### apt command
 
-*apt* is the package management system for *Debian* Linux distribution. As Ubuntu is a downstream of the *Debian* distribution, it also uses the same package management system.
+*apt* is the package management system for *Debian* Linux distribution. As Ubuntu is downstream of the *Debian* distribution, it also uses the same package management system.
 
 ### apt-get update
 

@@ -106,7 +106,7 @@ $ kill -l
 
 *top* is a very special command while using a Linux system, this is a quick way to know about
 all the running processes in the system, and status about CPU and memory usage in general. To get
-out of top, press the key *q*.
+out of the top, press the key *q*.
 
 ```
 top - 17:37:28 up 24 days, 11:52,  2 users,  load average: 0.57, 0.73, 0.75
@@ -138,8 +138,8 @@ Btw, feel free to press *1* and see if anything changes in the top command outpu
 ### Load average
 
 If you look at the *top* output carefully, you will find something mentioned as
-load average. Actually there are 3 numbers provided, these the load average of the
-system, load average of the last one minute, 5 minutes ago, and 15 minutes ago.
+load average. Actually, there are 3 numbers provided, these the load average of the
+system, a load average of the last one minute, 5 minutes ago, and 15 minutes ago.
 
 ```
 load average: 0.57, 0.73, 0.75
@@ -199,7 +199,7 @@ Now we will learn about a few files inside of this directory.
 
 ### /proc/cpuinfo
 
-*/proc/cpuinfo* file has the information abou the CPU in your system.
+*/proc/cpuinfo* file has the information about the CPU in your system.
 It includes the model number, and also the various flags available in
 that particular CPU model.
 
@@ -208,7 +208,7 @@ that particular CPU model.
 ```
 ### /proc/cmdline
 
-*/proc/cmdline* file has all the parameters passed to the kernel at the boot up time. The following is from a cloud based virtual machine.
+*/proc/cmdline* file has all the parameters passed to the kernel at the bootup time. The following is a cloud-based virtual machine.
 
 ```
 $ cat /proc/cmdline 
