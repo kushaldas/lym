@@ -1,14 +1,13 @@
 ## Networking commands
 
-In this chapter we will learn about a few basic networking commands,
-which will help us in our daily Linux usage.
+In this chapter, we will learn about a few basic networking commands, which will help us in our daily Linux usage.
 
 ```eval_rst
 .. index:: ip
 ```
 ### Finding the IP address
 
-*ip* command can be used to find IP address of the system.
+The *ip* command can be used to find the IP address of the system.
 
 ```
 $ ip addr show
@@ -26,14 +25,16 @@ $ ip addr show
        valid_lft forever preferred_lft forever
 ```
 
-Here *lo* is a special device which points to the same system (also known as *localhost*). The IP *127.0.0.1* always points to the the *localhost*. *eth0* is our ethernet device which connects with the network.
+Here *lo* is a special device which points to the same system (also known as *localhost*). The IP *127.0.0.1* always points to the the *localhost*.   
+*eth0* is our ethernet device which connects to the network.
 
 ```eval_rst
 .. index:: ping
 ```
 ### ping command
 
-*ping* is simple way to find if you are connected to Internet or not. We can also ping any particular computer to find if the computer is connected to the network or not. Press *Ctrl+c* to stop the loop.
+*ping* is simple way to find if you are connected to Internet or not.   
+We can also ping any particular computer to find if the computer is connected to the network or not. Press *Ctrl+c* to stop the loop.
 
 ```
 $ ping google.com
@@ -51,9 +52,10 @@ rtt min/avg/max/mdev = 156.373/156.811/157.566/0.704 ms
 .. index:: dns
 ```
 
-### Short story about DNS
+### Short note about DNS
 
-DNS or Domain Name System is a decentralized naming system for systems which are connected to Internet (can be for private networks too). This is way the computer knows which other computer to connect, when we type google.com in our browser, or in the ping command. There are servers known as dns servers, for every domain name the client system generally connect to these dns servers, and find out the IP address of the domain name.
+DNS or Domain Name System is a decentralized naming system for systems which are connected to Internet (can be for private networks too). This is the way a computer knows, which other computer to connect to, when we type google.com in our browser, or in the ping command.   
+There are servers known as dns servers, and for every domain name it needs to find, the client system generally connects to these dns servers, and finds out the IP address of the computer at that domain name.
 
 ### /etc/resolv.conf
 
@@ -98,7 +100,7 @@ kushaldas.in.		5528	IN	A	208.113.152.208
 ;; MSG SIZE  rcvd: 57
 ```
 
-If you want to specify the DNS server to use, you can do that with the address specified at the end of the command along with a @ sign.
+If you want to specify a DNS server to use, you can do that with the address specified at the end of the command along with a @ sign.
 
 ```
 $ dig rtnpro.com @208.67.222.222
@@ -128,8 +130,8 @@ rtnpro.com.		3600	IN	SOA	dns1.bigrock.in. rtnpro.gmail.com. 2017021401 7200 7200
 ```
 ### ss command
 
-*ss* command shows the socket statistics from the system. You can use this command to replace older netstat command. Read the man page of
-the command to know more the different arguments we can pass in the command line.
+*ss* command shows us socket statistics from the system. This command replaces the older netstat command.   
+Read the man page of the command to know more about the different arguments we can pass at the command line.
 
 ```
 $ ss -putn
@@ -145,7 +147,7 @@ tcp   ESTAB      0      0                                 192.168.1.101:59524   
 ```
 ### traceroute command
 
-The *traceroute* command is used to show all the full route of the network packets  from the system to any given host.
+The *traceroute* command is used to show the full route of a network packet from the system to any given host.
 
 ```
 $ traceroute www.rtnpro.com
@@ -170,7 +172,7 @@ traceroute to www.rtnpro.com (146.185.181.157), 30 hops max, 60 byte packets
 ```
 ### tracepath command
 
-*tracpath* command traces path to a network host discovering MTU along the path. This is a modern replacement of the *traceroute* command, and also does not need superuser privilege to execute.
+The *tracepath* command traces a path to a network host discovering MTU along the path. This is a modern replacement of the *traceroute* command, and also does not need superuser privileges to execute.
 
 ```
 $ tracepath www.rtnpro.com
@@ -199,10 +201,9 @@ $ tracepath www.rtnpro.com
 ```
 ### Remote login to a computer using ssh tool
 
-We use *ssh* command to login to the remote computers. The remote
-computer must have *sshd* service running, and should also allow
-clients to connect to this service. Let us try to connect to the
-localhost itself. Remember to start the *sshd* service before this
+We use the *ssh* command to login to remote computers. The remote
+computer must have the *sshd* service running, and should also allow
+clients to connect to this service. Let’s try to connect to localhost itself. Remember to start the *sshd* service before this
 step.
 
 ```
@@ -222,7 +223,7 @@ $
 
 ### ssh key generation
 
-ssh keys are used in daily life of Linux user or developer. In simple terms, it helps us to securely login to other computers. In the following example, we will create a new key for our user. 
+ssh keys are used in the daily life of a Linux user or developer. In simple terms, it helps us to securely login to other computers. In the following example, we will create a new key for our user. 
 
 ```
 $ ssh-keygen -t rsa -b 4096 -C "kushaldas@gmail.com"
@@ -248,8 +249,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-As you can see in the command output, the key has been saved in the *~/.ssh* directory. You can also find out that these files are only
-readable by the owner.
+As you can see in the output, the key has been saved in the *~/.ssh* directory. You can also find out that these files are only readable by the owner.
 
 ```
 $ ls -l .ssh
@@ -258,9 +258,9 @@ total 12
 -rw-r--r--. 1 fedora fedora  745 Jun 25 06:25 id_rsa.pub
 ```
 
-Each key has two parts. The *id_rsa.pub* is the public key and *id_rsa* is the private part of the key. One can safely upload or use the public key anywhere. But, the private key should be kept in a safe manner, as if people get access to your private key, they can also access all of your information from any system using that key.
+Each key has two parts. The *id_rsa.pub* is the public key and *id_rsa* is the private part of the key. One can safely upload or use the public key anywhere. But the private key, should be kept in a safe manner, because if people get access to your private key, they can also access all of your information from any system using that key.
 
-In other words, do not give the private key to anyone, or do not randomly copy the *.ssh* directory to USB drive and then forget about it.
+In other words, do not give the private key to anyone, or do not randomly copy the *.ssh* directory to a USB drive and then forget about it.
 
 ```eval_rst
 .. index:: ssh-copy-id
@@ -269,8 +269,8 @@ In other words, do not give the private key to anyone, or do not randomly copy t
 ### ssh-copy-id 
 
 *ssh-copy-id* command copies the keys to a given remote system. After
-this step one can use the ssh key to login to the box instead of the
-usual password method.
+this step we can use the ssh key to login to the box directly, instead of the
+usual username / password method.
 
 ```
 $ ssh-copy-id fedora@209.12.123.55
@@ -287,13 +287,14 @@ and check to make sure that only the key(s) you wanted were added.
 
 ### Stop and disable the sshd service
 
-If you don't need ssh access to your computer (say in your laptop), you should always stop and disable the *sshd* service in the computer.
+If you don't need ssh access to your computer (say, your laptop), you should always stop and disable the *sshd* service in the computer.
 
 ### Disable password based login for ssh
 
-Remember, this step can be harmful, unless you are very much sure that you can access a computer either to login physically or using your ssh key (and you have a backup of the key somewhere), you should not do this step.
+Remember, this step can be **dangerous**.  
+Unless you’re really, really sure that you can access a computer by either logging in physically or using your ssh key (and you have a backup of the key somewhere), you should not do this step.
 
-By disabling password based login in sshd service, you can make sure only the person with the right private key can login to the computer. This will help in case people trying to break into the system by guessing the password. This is really helpful in case your computer is connected to some network, and you still need to access it over ssh.
+By disabling password based login in the sshd service, you make sure that only people with the right private key can login to the computer. This helps greatly when people try to break into the system by guessing the password. This is also really helpful in case your computer is connected to some network, and you still need to access it over ssh.
 
 We will use vim to open the */etc/ssh/sshd_config* file, which is the configuration file for *sshd* service.
 
@@ -301,6 +302,7 @@ We will use vim to open the */etc/ssh/sshd_config* file, which is the configurat
 $ sudo vim /etc/ssh/sshd_config
 ```
 
-Search for the term *PasswordAuthentication*, and change the value to no. Below I added a new line for the same, you can also understand that the lines starting with *#* are comments in this configuration file. This configuration will disable password based authentication for the sshd service. You should remember to restart the sshd service after this step for the change to go live.
+Search for the term *PasswordAuthentication*, and change the value to no. Below I have added a new line to do the same.
+You can also understand, that the lines starting with *#* are comments in this configuration file. This configuration will disable password based authentication for the sshd service. You should remember to restart the sshd service after this step for the change to take place.
 
 ![](/img/passwordauthno.png)
