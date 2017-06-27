@@ -283,3 +283,63 @@ $ cat /proc/uptime
 ```
 
 The first value in this file shows the number of seconds the system is up. The second value is the total number of idle seconds for each CPU, so for the modern systems, this value can be more than the first value.
+
+```eval_rst
+.. index:: sysctl
+```
+### /proc/sys/ & sysctl command
+
+This directory is special one for system administrators, this not only
+provides information, but also allows to quickly change (enable/disable) different kernel features.
+
+We use the *sysctl*  command to view or edit the values for  */proc/sys/*. If you want to see all the different settings, use
+the following command.
+
+```
+$ sudo sysctl -a
+[sudo] password for kdas: 
+abi.vsyscall32 = 1
+crypto.fips_enabled = 0
+debug.exception-trace = 1
+debug.kprobes-optimization = 1
+dev.cdrom.autoclose = 1
+dev.cdrom.autoeject = 0
+dev.cdrom.check_media = 0
+dev.cdrom.debug = 0
+dev.cdrom.info = CD-ROM information, Id: cdrom.c 3.20 2003/12/17
+... long output
+```
+
+### Enabling IP forward with sysctl
+
+To enable IP forwarding to the VM(s), use the following command.
+
+```
+$ sudo sysctl -w net.ipv4.ip_forward=1
+```
+
+To check the current value, use the following command.
+
+```
+$ sysctl net.ipv4.ip_forward
+```
+
+You can see the same value in the */proc/sys/net/ipv4/ip_forward*
+file too.
+
+```
+$ cat /proc/sys/net/ipv4/ip_forward
+1
+```
+
+To make the change permanent, write the following in the */etc/sysctl.conf* file.
+
+```
+net.ipv4.ip_forward = 1
+```
+
+Then, enable the changes using the following command.
+
+```
+$ sudo sysctl -p /etc/sysctl.conf
+```
