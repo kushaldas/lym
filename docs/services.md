@@ -8,8 +8,8 @@ This is also a chapter related to the *systemd* tool.
 
 ### What is a service?
 
-A service is a process or application which is running in the background, either doing some predefined tasks,or waiting for some events. If you remember our process chapter, we learned about *systemd* for the first time there. It is the first process to run in our sysytem, it
-then start all the required processes and services. To know about how the system boots up,
+A service is a process or application which is running in the background, either doing some predefined tasks or waiting for some events. If you remember our process chapter, we learned about *systemd* for the first time there. It is the first process to run in our sysytem, it
+then starts all the required processes and services. To know about how the system boots up,
 read the *bootup* man page. [Click here](https://www.freedesktop.org/software/systemd/man/bootup.html) to read it online.
 
 ```
@@ -22,7 +22,7 @@ $ man bootup
 
 ### What is a daemon?
 
-Daemon is the actual term for those long running backgroud processes. A service actually consists of one or more daemons.
+Daemon is the actual term for those long-running background processes. A service actually consists of one or more daemons.
 
 
 ### What is init system?
@@ -226,7 +226,7 @@ Dec 09 03:41:08 localhost.localdomain systemd[1344]: Reached target Shutdown.
 Dec 09 03:41:08 localhost.localdomain systemd[1344]: Starting Exit the Session..
 ```
 
-### Time based log viewing
+### Time-based log viewing
 
 We can also use *journalctl* to view logs for a certain time. For example, if we want to see all the logs since yesterday, we can use the following command.
 
