@@ -1,7 +1,8 @@
 ## Random things
 
-I am yet to figure out where to put these information, that is why they are in 
-the random chapter. These will be moved to different chapters in future.
+I have yet to figure out where to put this information, which is why they are here, in 
+the random chapter.   
+These will be moved to different chapters in the future.
 
 ```eval_rst
 .. index:: w
@@ -9,8 +10,8 @@ the random chapter. These will be moved to different chapters in future.
 
 ### w command
 
-*w* command shows who all are logged into the computer. If you pass the *-f* flag, it
-toggles the information about from where each of the user is logged in.
+The *w* command shows all the users, logged in to the computer. If you pass the *-f* flag, it
+toggles information about where each user is logged in from.
 
 ```
 $ w
@@ -25,7 +26,9 @@ kdas     tty2      31May17 22days  3:07m  3:16  i3 -a --restart /run/user/1000/i
 
 ### How long is the system running?
 
-We have *uptime* command which tells us about how long the system is running, you can figure out when did you last time turned it off or rebooted from this information. For my laptop, it was 24 days ago.
+We have the *uptime* command which gives us information about how long the system is running.   
+You can figure out the last time the sytem turned off or rebooted at a glance.   
+For my laptop, it was 24 days ago.
 
 ```
 $ uptime
@@ -38,5 +41,6 @@ $ uptime
 
 ### dmesg command
 
-*dmesg* command prints out the various messages from the kernel buffer. Using this tool we can
-learn about the messages from the kernel drivers during and after the boot up process.
+The *dmesg* command prints out messages from the kernel buffer.
+Using this tool we can learn about the messages and information from the kernel drivers during and after the boot up process.  
+This can be very handy when troubleshooting; for e.g. when the machine fails to boot or a certain piece of hardware does not function correctly.
