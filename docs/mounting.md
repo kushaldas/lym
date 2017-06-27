@@ -1,7 +1,7 @@
 ## File system mounting
 
-In this chapter we will learn about how to mount file systems. If you type
-*mount* in the shell, it will tell you about various file systems, and 
+In this chapter, we’ll learn how to mount file systems.   
+If you type *mount* in the shell, it will tell you about various file systems, and 
 how are they mounted (as a directory) in the system.
 
 ```eval_rst
@@ -40,19 +40,20 @@ hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel)
 tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=404680k,mode=700,uid=1000,gid=1000)
 ```
 
-If you look carefully in the above output, you will find that */dev/vda1* is mount as root */* in the system. This is actually the primary hard drive in this system. The device can be different based on the system.
+If you look carefully at the output above, you’ll find that */dev/vda1* is mounted as root */* in the system. This is actually the primary hard drive in this system. The device can be different based on the system.
 
 - /dev/vd*  For virtual machines
 - /dev/sd*  For physical machines
 
-The number at the end of the device name is actually suggesting the partition number.
+The number at the end of the device name is the partition number.
 
 ```eval_rst
 .. index:: NTFS
 ```
 ### Connecting USB drives to your system
 
-If you connect any vfat partition USB drive (the normal pendrives), they are supposed to be auto mounted under */run/media/username/*  directory. But, for NTFS based drives, you will have to install the driver to mount those partitions.
+If you connect vfat partitioned USB drives (the normal pendrives), they will auto mount under the */run/media/username/*  directory.   
+But, for NTFS based drives, you will have to install the driver to mount those partitions.
 
 ```
 $ sudo dnf install ntfs-3g -y
@@ -60,13 +61,13 @@ $ sudo dnf install ntfs-3g -y
 
 ### Mounting a device
 
-We can use the *mount* command to mount a file system on an existing directory. The syntax for the same is *mount device /path/to/mount/at*.
+We can use the *mount* command to mount a file system on an existing directory. The syntax to do that is, *mount device /path/to/mount/at*.
 
 ```
 $ sudo mount /dev/sdb1 /mnt
 ```
 
-In the above example, we mounted the */dev/sdb1* on the */mnt* directory.
+In the example above, we mounted */dev/sdb1* on the */mnt* directory.
 
 ```eval_rst
 .. index:: umount
@@ -75,5 +76,6 @@ In the above example, we mounted the */dev/sdb1* on the */mnt* directory.
 
 We use the *umount* command on a given directory to unmount the file system.
 
-Do not remove any drive from the system before unmounting them. Just to be in the safer side, you can execute *sync* command, which will
-write any existing cache to the drives. That will make sure that your chances of loosing data is less.
+Do not remove any drive from the system before unmounting them.   
+Just to be on the safe side, you can execute the *sync* command, which will write any existing cache to the drives.   
+That will make sure that your chances of losing data is marginal.
