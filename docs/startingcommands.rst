@@ -339,3 +339,23 @@ it will add the new input to the end of the file.
     -rw-------. 1 fedora fedora 784756 Jun 23 10:49 tmp3lDEho
 
 
+### man pages
+
+*man* shows the system's manual pages. This is the command we use to
+view the help document (manual page) for any command. The man pages are organized based on *sections*, and if the same command is found in many different sections, only the first one is shown.
+
+The general syntax is *man section command*.
+
+You can know about different sections below. Press *q* to quit the program.
+
+```
+1      1   Executable programs or shell commands
+       2   System calls (functions provided by the kernel)
+       3   Library calls (functions within program libraries)
+       4   Special files (usually found in /dev)
+       5   File formats and conventions eg /etc/passwd
+       6   Games
+       7   Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
+       8   System administration commands (usually only for root)
+       9   Kernel routines [Non standard]
+```
