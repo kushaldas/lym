@@ -126,7 +126,11 @@ and quit the editor, then type either *:wq* or *:x*.
 In the command typing *:q!* will allow us to quit without saving
 the current file.
 
-Vim is a powerful editor, and we learned about only a very basic steps into it. It will a complete book to explain different features of vim. But, the steps above are sufficient for this book's scope. 
+Vim is a powerful editor, and we learned about only a very basic steps into it. It will a complete book to explain different features of vim. But, the steps above are sufficient for this book's scope.
+
+
+One major thing to remember for any text file is about keeping the newline character at the
+last line of the file. Because that is how [POSIX](https://en.wikipedia.org/wiki/POSIX) standard [defines](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_206) a line.
 
 ```eval_rst
 .. index:: su
@@ -224,5 +228,3 @@ $ sudo updatedb
 ```
 
 This may take some time as it will index all the files in your computer.
-
- 
