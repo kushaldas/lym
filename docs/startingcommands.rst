@@ -1,13 +1,14 @@
 Shell commands
 ===============
 
-Linux shell or the terminal is the lifeline of the developers, and of any power user. Things
-which can be done on the GUI (by clicking on different buttons), can be done much efficiently
-on the terminal by using commands. One can not remember all the commands, but with regular usage
-one can easily remember the most useful ones.
+Linux shell or the terminal is the lifeline of the developers, and of any
+power user. Things which can be done on the GUI (by clicking on different
+buttons), can be done much efficiently on the terminal by using commands. One
+can not remember all the commands, but with regular usage one can easily
+remember the most useful ones.
 
-The following guide will introduce you to some basic minimal commands required to use your Linux
-computer efficiently.
+The following guide will introduce you to some basic minimal commands
+required to use your Linux computer efficiently.
 
 Gnome Terminal
 ---------------
@@ -16,15 +17,15 @@ Gnome Terminal
    :width: 600px
    :align: center
 
-The above is the screenshot of the Gnome terminal application. As you can see the command prompt contains
-these following information::
-
+The above is the screenshot of the Gnome terminal application. As you can see
+the command prompt contains these following information::
 
     [username@hostname directoryname]
 
-In our case the username is *babai*, hostname is *kdas-laptop*, and directory is mentioned as *~*. This *~*
-is a special character in our case. It means the home directory of the user. In our case the home directory path
-is */home/babai/*.
+In our case the username is *babai*, hostname is *kdas-laptop*, and directory
+is mentioned as *~*. This *~* is a special character in our case. It means
+the home directory of the user. In our case the home directory path is
+*/home/babai/*.
 
 date command
 -------------
@@ -107,7 +108,8 @@ to */tmp* directory in our example.::
     [babai@kdas-laptop ~]$ pwd
     /home/babai
 
-Here you can see that first we moved to */tmp* directory, and then we moved back to the home directory by using
+Here you can see that first we moved to */tmp* directory, and then we moved
+back to the home directory by using
 *~* character.
 
 . and ..
@@ -126,9 +128,9 @@ The above command moves to the parent directory.
 ls command
 ----------
 
-We use *ls* command to view the files and directories inside any given directory. If you use *ls* command
-without any argument, then it will work on the current directory. We will see few examples of the command
-below.::
+We use *ls* command to view the files and directories inside any given
+directory. If you use *ls* command without any argument, then it will work on
+the current directory. We will see few examples of the command below.::
 
     [babai@kdas-laptop ~]$ ls
     Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
@@ -141,14 +143,15 @@ below.::
     bin   cpython  etc   lib    lost+found  mnt  proc  run   srv  sysroot  usr
     boot  dev      home  lib64  media       opt  root  sbin  sys  tmp      var
 
-In the last two commands we provided a path as the argument to the *ls* command. */* is a special
-directory, which represents root directory in Linux filesystem. You will know more in the next chapter.
+In the last two commands we provided a path as the argument to the *ls*
+command. */* is a special directory, which represents root directory in Linux
+filesystem. You will know more in the next chapter.
 
 mkdir command
 -------------
 
-We can create new directories using *mkdir* command. For our example we will create a *code* directory
-in our home directory.::
+We can create new directories using *mkdir* command. For our example we will
+create a *code* directory in our home directory.::
 
     [babai@kdas-laptop ~]$ mkdir code
     [babai@kdas-laptop ~]$ ls
@@ -167,10 +170,14 @@ We can also create directories in a recursive way using -p option.::
 rm command
 ----------
 
-*rm* command is used to remove a file, or directory. The -rf option is being used to remove in a recursive way.
-But, always double check before you use *rm -rf* command, if you by mistake give this command in your home directory,
-or any other important directory, it will not ask to confirm, but it will delete everything there.
-*-f* stands for force, it will just delete everything. So, please be careful and read twice before pressing enter key.
+*rm* command is used to remove a file, or directory. The -rf option is being
+*used to remove in a recursive way.
+But, always double check before you use *rm -rf* command, if you by mistake
+give this command in your home directory, or any other important directory,
+it will not ask to confirm, but it will delete everything there.
+*-f* stands for force, it will just delete everything. So, please be careful
+*and read twice before pressing enter key.
+
 ::
 
     [babai@kdas-laptop ~]$ rm -rf dir1/dir2/dir3
@@ -193,8 +200,8 @@ use the *-r* flag to the *cp* command.
     -rw-rw-r--. 1 fedora fedora   75 Jun 25 04:47 hello2.txt
     -rw-rw-r--. 1 fedora fedora   75 Jun 25 04:33 hello.txt
 
-In another example, I will copy the file *passwordauthno.png* from the Pictures
-directory under my home directory to the current directory.
+In another example, I will copy the file *passwordauthno.png* from the
+Pictures directory under my home directory to the current directory.
 
 ::
 
@@ -265,9 +272,9 @@ echo command
 Redirecting the command output
 -------------------------------
 
-In Linux shells, we can redirect the command output to a file, or as input
-to another command. *|* is the most common way to do so. Using this we
-can now count the number of directories in the root (*/*) directory very easily.
+In Linux shells, we can redirect the command output to a file, or as input to
+another command. *|* is the most common way to do so. Using this we can now
+count the number of directories in the root (*/*) directory very easily.
 
 ::
 
@@ -342,7 +349,9 @@ it will add the new input to the end of the file.
 ### man pages
 
 *man* shows the system's manual pages. This is the command we use to
-view the help document (manual page) for any command. The man pages are organized based on *sections*, and if the same command is found in many different sections, only the first one is shown.
+view the help document (manual page) for any command. The man pages are
+organized based on *sections*, and if the same command is found in many
+different sections, only the first one is shown.
 
 The general syntax is *man section command*.
 
