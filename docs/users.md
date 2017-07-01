@@ -1,21 +1,22 @@
 ## Users and Groups
 
-In this chapter we will learn about user and group management on your
-system, and also about basic access control.
+In this chapter we’ll learn about user and group management on your system, and also about basic access control.
 
-In Linux everything is associated to an user and a group. Based on these values, the system who can access what part of the system. That includes files, directories, network ports etc.
+In Linux everything is associated to an user and a group.  
+Based on these values, the system figures out, who can access what part of the system.  
+That includes files, directories, network ports etc.
 
 ### Finding the owner of file
 
-We can use *ls -l* command to find the owner, and group of a file or directory.
+We use the *ls -l* command to find the owner, and group of a file or directory.
 
 ![](img/lsl.png)
 
-In the above example, fedora is the name of the owner and group both. The first value talks about who all can access this file (we will learn about it in some time).
+In the above example, fedora is the name of the owner and group both. The first value talks about who can access this file (we will learn about this in a while.)
 
 ### /etc/passwd file
 
-*/etc/passwd* contains all the user available in the system. This is a plain text file, means you can view the information by using *cat* command.
+*/etc/passwd* contains all the users available in the system. This is a plain text file (this means you can view the information by using *cat* command.)
 
 ```
 $ cat /etc/passwd
@@ -68,33 +69,33 @@ username:password:uid:gid:gecos:/home/dirname:shell
 |---------------|---------------------------------|
 ```
 
-There are accounts with */sbin/nologin* as shell, these are generally
-accounts for various services, which are not supposed to be used by a normal human user, that is why they don't have a shell to be used.
+You’ll see accounts with */sbin/nologin* as their shell.  
+These are generally accounts for various services, which are not supposed to be used by a normal human user; (which is why, no shell is needed.)
 
-The actual user passwords are stored in an encrypted form in  */etc/shadow* file, only the
-root user can access this file.
+The actual user passwords are stored in an encrypted form in  */etc/shadow* file, with only the
+root user having access to this file.
 
 ```
 $ ls -l /etc/shadow
 ----------. 1 root root 2213 Jun 22 15:20 /etc/shadow
 ```
 
-### Details about the groups
+### Details about groups
 
-Group details are stored inside of */etc/group* file. Each user has
-one primary group, and zero or more supplementary groups.
+Group details are stored inside the */etc/group* file.  
+Each user has one primary group, and zero or more supplementary groups.
 
 ### wheel group
 
-If your user is part of the *wheel* group, then it has sudo access. If you remember Fedora Installer, it actually gives an option to mark the new user to be part of wheel group during installation.
+If your user is part of the *wheel* group, then it has sudo access. If you remember the Fedora Installer, it actually gives you the option to mark a new user to be part of the wheel group during installation.
 
 ```eval_rst
 .. index:: useradd
 ```
 ### Adding a new user
 
-*useradd* command adds a new user to the system. You can guess that this command has to execute as root, otherwise anyone can add random user accounts in the system. The following command adds a new user
-*babai* to the system.
+The *useradd* command adds a new user to the system.  
+As you can well guess, this command has to execute as root, otherwise anyone can add random user accounts in the system. The following command adds a new user *babai* to the system.
 
 ```
 $ sudo useradd babai
@@ -105,9 +106,9 @@ In Fedora, the initial user you create gets the uid 1000.
 ```eval_rst
 .. index:: passwd
 ```
-### Changing user password
+### Changing user passwords
 
-*passwd* command helps to change any user password.
+*passwd* helps to change any user password.
 
 ```
 $ sudo passwd babai
@@ -122,7 +123,7 @@ passwd: all authentication tokens updated successfully.
 ```
 ### Modifying existing user details
 
-*usermod* command can help to modify any existing user.
+The *usermod* command can help to modify an existing user.
 You can use the same command to lock any account in the system.
 
 ```
@@ -135,8 +136,8 @@ su: Authentication failure
 ```eval_rst
 .. index:: userdel
 ```
-### Deleting an user
+### Deleting a user
 
-We can use *userdel* command to delete an user from the system.
+We use the *userdel* command to delete a user from the system.
 
 
