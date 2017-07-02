@@ -8,8 +8,7 @@ This is also a chapter related to the *systemd* tool.
 
 ### What is a service?
 
-A service is a process or application which is running in the background, either doing some predefined tasks or waiting for some events. If you remember our process chapter, we learned about *systemd* for the first time there. It is the first process to run in our sysytem, it
-then starts all the required processes and services. To know about how the system boots up,
+A service is a process or application which is running in the background, either doing some predefined task or waiting for some event. If you remember our process chapter, we learned about *systemd* for the first time there. It is the first process to run in our system; it then starts all the required processes and services. To know about how the system boots up,
 read the *bootup* man page. [Click here](https://www.freedesktop.org/software/systemd/man/bootup.html) to read it online.
 
 ```
@@ -25,15 +24,14 @@ $ man bootup
 Daemon is the actual term for those long-running background processes. A service actually consists of one or more daemons.
 
 
-### What is init system?
+### What is the init system?
 
-If you look at the Unix/Linux history, you will find the first process which stars up, is also known as *init process*. This process used to start other processes by using the rc files from */etc/rc.d* directory. In the modern Linux systems, *systemd* replaced the init system.
+If you look at Unix/Linux history, you will find the first process which starts up, is also known as *init process*. This process used to start other processes by using the rc files from */etc/rc.d* directory. In the modern Linux systems, *systemd* has replaced the init system.
 
 
 ### Units in systemd
 
-Units are a standardized way for the systemd to manage various parts of a system. There are different kinds of units, *.service* is for system services, *.path* for path based ones. There is also *.socket* which are socket based systemd units. There are various other types, we can
-learn about those later.
+Units are a standardized way for the systemd to manage various parts of a system. There are different kinds of units, *.service* is for system services, *.path* for path based ones. There is also *.socket* which are socket based systemd units. There are various other types, we can learn about those later.
 
 ```eval_rst
 .. index:: services
@@ -48,7 +46,7 @@ daily life, we generally only have to work with these unit files.
 .. index:: systemctl
 ```
 
-### How to find about all the systemd units in the system?
+### How to find all the systemd units in the system?
 
 ```
 $ systemctl
@@ -78,7 +76,7 @@ $ systemctl --type=service
 Let us take the *sshd.service* as an example. The service controls the sshd daemon, which allows
 us to remotely login to a system using the *ssh* command.
 
-To know the current status of the service, I can execute the following command.
+To know the current status of the service, I execute the following command.
 
 ```
 $ sudo systemctl status sshd
@@ -100,7 +98,7 @@ Jun 22 18:17:24 kdas-laptop sshd[20932]: Received signal 15; terminating.
 Jun 22 18:17:24 kdas-laptop systemd[1]: Stopped OpenSSH server daemon.
 ```
 
-To start the service, I will use the following command, and then I can use the *status* argument to the *systemctl* to check the service status once again.
+To start the service, I’ll use the following command, and then I can use the *status* argument to the *systemctl* to check the service status once again.
 
 ```
 $ sudo systemctl start sshd
@@ -121,13 +119,12 @@ Jun 22 18:19:28 kdas-laptop sshd[3673]: Server listening on :: port 22.
 Jun 22 18:19:28 kdas-laptop systemd[1]: Started OpenSSH server daemon.
 ```
 
-In the same way, we can use either *stop* or *restart* arguments to the *systemctl* command.
+In the same way, we can use either the *stop* or *restart* arguments to the *systemctl* command.
 
 
 ### Enabling or disabling a service
 
-Even if you start a service, after you reboot the computer, you will find that the service
-did not start at the time of boot up. To do so, you will have to enable the service, or stop a service to start at the time of boot, you will have to disable the service.
+Even if you start a service, you’ll find that after you reboot the computer, the service did not start at the time of boot up. To do so, you will have to enable the service, or to stop a service from starting at boot, you will have to disable the service.
 
 ```
 $ sudo systemctl enable sshd.service
@@ -200,8 +197,7 @@ I can see that someone was trying to break into this VM by trying random ports :
 
 ### Listing of previous boots
 
-In systems like Fedora, *journalctl* by default keeps the history from
-old boots. To know about all the available boot history, type the following command.
+In systems like Fedora, *journalctl* by default keeps history from past boots. To know about all available boot history, type the following command.
 
 ```
 $ sudo journalctl --list-boots
@@ -228,7 +224,7 @@ Dec 09 03:41:08 localhost.localdomain systemd[1344]: Starting Exit the Session..
 
 ### Time-based log viewing
 
-We can also use *journalctl* to view logs for a certain time. For example, if we want to see all the logs since yesterday, we can use the following command.
+We can also use *journalctl* to view logs for a certain time period. For example, if we want to see all the logs since yesterday, we can use the following command.
 
 ```
 sudo journalctl --since yesterday
