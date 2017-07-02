@@ -1,14 +1,14 @@
-## Process in Linux
+## Processes in Linux
 
-A process is a program (think about any Linux application) in running state. It contains various
-details, like the memory space the program needs, it has a process id, the files opened by
+A process is a program (think about any Linux application) in a running state.  
+It contains various details, like the memory space the program needs, a process id, the files opened by
 the process, etc.
 
 ```eval_rst
 .. index:: ps
 ```
 
-### How to view all the running processes?
+### How to view all running processes?
 
 The following command shows all the processes from your computer.
 
@@ -23,15 +23,15 @@ root         7  0.0  0.0      0     0 ?        S    May29   8:27 [rcu_sched]
 ... long output
 ```
 
-You can see that the output also tells you under which user the process is running, what is actual command being used, the percentage of CPU and memory usage.
+You can see that the output also tells you under which user the process is running, what the actual command being used is, and the percentage of CPU and memory usage.
 
-*PID* column shows the process id, you can see that the *systemd* process has PID 1, means it is
+The *PID* column shows the process id; you can see that the *systemd* process has PID 1, which means it is
 the first process to start in the system.
 
-### How to find some particular process?
+### How to find a particular process?
 
-Say I know to know what is the process id of the Firefox browser in my system. I can use the
-following command to find that information.
+Let’s say, I want to know the process id of the Firefox browser in my system.  
+I can use the following command to find that information.
 
 ```
 $ ps aux | grep firefox
@@ -40,8 +40,8 @@ kdas     26919  0.0  0.0 118520   980 pts/3    S+   16:17   0:00 grep --color=au
 ```
 
 Here, we are first running the ps command, and then passing the output of that to the next
-command using a | character. In this case, grep is that second command, as you can see, we can find
-some text using grep tool. We will learn more about grep in future.
+command using the | character. In this case, as you see, grep is that second command.  
+We can find and look for text using the grep tool. We will learn more about grep in the future.
 
 ```eval_rst
 .. index:: kill
@@ -49,13 +49,13 @@ some text using grep tool. We will learn more about grep in future.
 
 ### How to kill/stop a particular process?
 
-We can kill/stop any process using the *kill* command. As we found out that the id of the Firefox process in my computer is 26752, we can use that id to kill it.
+We can kill/stop any process using the *kill* command. We found out, in the last example, that the id of the Firefox process in my computer is 26752, we can use that id to kill it.
 
 ```
 $ kill 26752
 ```
 
-If there is no error message, you should be able to see that the Firefox has disappeared. 
+If there is no error message, you’ll find that Firefox has disappeared. 
 
 ```eval_rst
 .. index:: signal
@@ -66,14 +66,14 @@ If there is no error message, you should be able to see that the Firefox has dis
 Signals are a limited way to communicate to a process. You can think about them as notifications
 to a process, and depending on the signal handler in the code, the process does something with
 that signal. The *kill* command actually sends a signal to the given process id, the default
-signal is *TERM*, which says to terminate the process. To directly a process, you can send the *KILL* signal.
+signal is *TERM*, which says to terminate the process. To directly/focibly kill a process, you can send the *KILL* signal.
 
 ```
 $ kill -9 26752
 ```
 
 Here *9* is number representation of the *KILL* signal. To know more about Linux signals,
-read from the man page.
+read the man page.
 
 ```
 $ man 7 signal
@@ -104,9 +104,9 @@ $ kill -l
 
 ### top command
 
-*top* is a very special command while using a Linux system, this is a quick way to know about
-all the running processes in the system, and status about CPU and memory usage in general. To get
-out of the top, press the key *q*.
+*top* is a very useful command while using a Linux system. It’s a quick way to know about
+all the running processes in the system, and their related status about CPU and memory usage in general. To get
+out of top, press the key *q*.
 
 ```
 top - 17:37:28 up 24 days, 11:52,  2 users,  load average: 0.57, 0.73, 0.75
@@ -129,7 +129,7 @@ KiB Swap:  3268604 total,  1558396 free,  1710208 used.  2431656 avail Mem
 ... long output
 ```
 
-Btw, feel free to press *1* and see if anything changes in the top command output.
+By the way, feel free to press *1* and see if anything changes in the top command output.
 
 ```eval_rst
 .. index:: load average
@@ -137,27 +137,26 @@ Btw, feel free to press *1* and see if anything changes in the top command outpu
 
 ### Load average
 
-If you look at the *top* output carefully, you will find something mentioned as
-load average. Actually, there are 3 numbers provided, these the load average of the
-system, a load average of the last one minute, 5 minutes ago, and 15 minutes ago.
+If you look at the *top* output carefully, you will find load average mentioned.  
+Actually, there are 3 numbers provided; these are the load averages of the
+system in the last one minute, 5 minutes ago, and 15 minutes ago.
 
 ```
 load average: 0.57, 0.73, 0.75
 ```
 
 In simple words, load average means the average time any process has to wait to get
-access tot the CPU (or other resources), in idle state the load average is 0. This information
+access to the CPU (or other resources), in idle state the load average is 0. This information
 is a quick way to learn about the system,  if the system is slow to respond, just looking at the
-load-average, and then rest of the top output should be a good starting point.
+load-average, and then the rest of the top output should be a good starting point.
 
 
 ### htop tool
 
-*htop* is a modern version of the top tool. This is many more features, interactiveness
-is the biggest among them. *htop* does not come by default in most of the Linux installations,
-means you will have to install it using the command package management tool.
+*htop* is a modern version of the top tool. It has many more features, interactiveness being the biggest amongst them. *htop* does not come by default in most of the Linux installations,
+which means you will have to install it using the system’s package management tool.
 
-The following are the ways to install it in Fedora and in Debian/Ubuntu
+These are the ways to install it in Fedora and in Debian/Ubuntu
 
 ```
 $ sudo dnf install htop -y
@@ -177,7 +176,7 @@ $ man htop
 
 ### More about Linux processes
 
-You can learn more about Linux processes in the glibc manual. Use the *info* command for the same.
+You can learn more about Linux processes in the glibc manual. Use the *info* command to find out more.
 
 ```
 $ info libc process
@@ -189,9 +188,9 @@ $ info libc process
 
 ### /proc directory
 
-*/proc* is a special directory in our filesystem. This is a virtual filesystem which contains information about all the running processes, and information about the hardware present in the system. You will find that the files in the virtual filesystem are showing *0* as the size.
+*/proc* is a special directory in our filesystem. This is a virtual filesystem which contains information about all the running processes, and information about the hardware present in the system. You will find that the files in the virtual filesystem are *0* in size.
 
-Now we will learn about a few files inside of this directory.
+Now we’ll learn about a few files inside this directory.
 
 ```eval_rst
 .. index:: cpuinfo
@@ -199,7 +198,7 @@ Now we will learn about a few files inside of this directory.
 
 ### /proc/cpuinfo
 
-*/proc/cpuinfo* file has the information about the CPU in your system.
+*/proc/cpuinfo* file has information about the CPU in your system.
 It includes the model number, and also the various flags available in
 that particular CPU model.
 
@@ -221,7 +220,7 @@ BOOT_IMAGE=/boot/vmlinuz-4.8.6-300.fc25.x86_64 root=UUID=9be70055-35f2-4a57-b120
 
 ### /proc/meminfo
 
-*/proc/meminfo* contains the information related the memory in the system. You can see the total amount RAM, and available memory and other values there.
+*/proc/meminfo* contains information related to the memory in the system. You can see the total amount RAM, the available memory and other values there.
 
 ```
 $ cat /proc/meminfo 
@@ -289,8 +288,9 @@ The first value in this file shows the number of seconds the system is up. The s
 ```
 ### /proc/sys/ & sysctl command
 
-This directory is special one for system administrators, this not only
-provides information, but also allows to quickly change (enable/disable) different kernel features.
+This directory is a special one for system administrators.  
+This not only
+provides information, but also allows you to quickly change (enable/disable) different kernel features.
 
 We use the *sysctl*  command to view or edit the values for  */proc/sys/*. If you want to see all the different settings, use
 the following command.
