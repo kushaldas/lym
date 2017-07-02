@@ -1,17 +1,18 @@
 ## Package management
 
-In the Free and Open Source Software world, most of the software is being released in source code format by the developers. This means generally if you want to install a software, you will the source code on the website of the project. As a user, you will have to find all the dependencies and then install the software. To solve this issue, all the Linux distributions have something called *package management system*. There volunteers (mostly) all across the world who helps to make binary software packages out of the source code released by the developers, in such a way that users of the Linux distribution can easily install, update or remove that software.
+In the Free and Open Source Software world, most software is released in source code format by developers. This means that generally, if you want to install a piece of software, you will find the source code on the website of the project. As a user, you will have to find and install all the other bits of software, that this particular piece depends on (the *dependencies*) and then install the software.  
+To solve this *painful* issue, all Linux distributions have something called a *package management system*. Volunteers (mostly) all across the world help make binary software packages out of source code released by the developers, in such a way that users of the Linux distribution can easily install, update or remove that software.
 
-It is generally recommended to the use the distribution provided software using the package management system for the users. If you are very much sure about what steps you are doing in the system, you can install from the source files too, but that can be dangerous.
+It’s generally recommended, we use the package management system that comes with the distribution, to install software for the users. If you are really sure about what you’re doing in the system, you can install from the source files too; but that can be dangerous.
 
 ```eval_rst
 .. index:: dnf
 ```
 ### dnf command
 
-*dnf* is the package management system in Fedora. The actual packages come in *rpm* format. *dnf* can help you to search, install or uninstall any package from the Fedora package repositories. You can also use the same command to update the packages in your system.
+*dnf* is the package management system in Fedora. The actual packages come in the *rpm* format. *dnf* helps you search, install or uninstall any package from the Fedora package repositories. You can also use the same command to update packages in your system.
 
-### Searching any package
+### Searching for a package
 
 ```
 $ dnf search pss
@@ -22,11 +23,11 @@ Last metadata expiration check: 0:00:07 ago on Sun Jun 25 04:14:22 2017.
 pss.noarch : A power-tool for searching inside source code files
 pssh.noarch : Parallel SSH tools
 ```
-First the tool downloads all the latest package information from the repository, and then gives us the result.
+First the tool, downloads all the latest package information from the repository, and then gives us the result.
 
 ### Finding more information about a package
 
-*dnf info* gives us more information about any given packages.
+*dnf info* gives us more information about any given package.
 
 ```
 $ dnf info pss
@@ -55,7 +56,7 @@ Description : pss is a power-tool for searching inside source code files.
 
 ### Installing a package
 
-*dnf install* command helps us to install any given package. We can pass more than one package name as the argument.
+The *dnf install* command helps us install any given package. We can pass more than one package name as the argument.
 
 ```
 sudo dnf install pss wget
@@ -95,7 +96,7 @@ Complete!
 
 ### apt command
 
-*apt* is the package management system for *Debian* Linux distribution. As Ubuntu is downstream of the *Debian* distribution, it also uses the same package management system.
+*apt* is the package management system for the *Debian* Linux distribution. As Ubuntu is downstream of the *Debian* distribution, it also uses the same package management system.
 
 ### apt-get update
 
@@ -104,8 +105,8 @@ $ apt-get update
 ... long output
 ```
 
-*apt-get update* command is used to update all the package information for the Debian repositories.
+The *apt-get update* command is used to update all the package information for the Debian repositories.
 
 ### apt-get install
 
-*sudo apt-get install* command is used to install any given package from the repository.
+*sudo apt-get install* is the command used to install any given package from the repository.
