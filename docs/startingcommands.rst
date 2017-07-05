@@ -190,8 +190,10 @@ it will not ask to confirm, but it will delete everything there.
 Coping a file using cp command
 -------------------------------
 
-We use *cp* command to copy a file in the Linux shell. To copy recursively
-use the *-r* flag to the *cp* command.
+We use *cp* command to copy a file in the Linux shell. To copy
+recursively use the *-r* flag to the *cp* command. We use the command
+as *cp file_to_copy new_location* format.  In the example below, we
+are copying the *hello.txt* to *hello2.txt*.
 
 ::
 
@@ -206,6 +208,15 @@ Pictures directory under my home directory to the current directory.
 ::
 
     $ cp ~/Pictures/passwordauthno.png .
+
+
+In the following example, I will be copying the *images* directory
+(and everything inside it) from the *Downloads* directory under home
+to the */tmp/* directory.
+
+::
+
+    $ cp -r ~/Downloads/images /tmp/
 
 Renaming or moving a file
 --------------------------
