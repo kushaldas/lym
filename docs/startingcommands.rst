@@ -360,7 +360,8 @@ it will add the new input to the end of the file.
     -rw-------. 1 fedora fedora 784756 Jun 23 10:49 tmp3lDEho
 
 
-### man pages
+man pages
+----------
 
 *man* shows the system's manual pages. This is the command we use to
 view the help document (manual page) for any command. The man pages are
