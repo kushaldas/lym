@@ -221,12 +221,14 @@ to the */tmp/* directory.
 Renaming or moving a file
 --------------------------
 
-*mv* command is used to rename or move a file or directory.
+*mv* command is used to rename or move a file or directory. In the
+ following example, the file *hello.txt* is renamed into
+ *nothello.txt*
 
 ::
 
     $ mv hello.txt nothello.txt
-    $ ls -l nothello.txt
+    $ ls -l
     -rw-rw-r--. 1 fedora fedora 75 Jun 25 04:33 nothello.txt
 
 tree command
