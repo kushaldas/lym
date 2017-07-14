@@ -190,9 +190,10 @@ it will not ask to confirm, but it will delete everything there.
 Coping a file using cp command
 -------------------------------
 
-We use *cp* command to copy a file in the Linux shell. To copy
-recursively use the *-r* flag to the *cp* command. We use the command
-as *cp file_to_copy new_location* format.  In the example below, we
+We use the *cp* command to copy a file in the Linux shell. To copy
+recursively use the *cp* command with the *-r* flag.  
+We use the *cp file_to_copy new_location* format.  
+In the example below, we
 are copying the *hello.txt* to *hello2.txt*.
 
 ::
@@ -203,7 +204,7 @@ are copying the *hello.txt* to *hello2.txt*.
     -rw-rw-r--. 1 fedora fedora   75 Jun 25 04:33 hello.txt
 
 In another example, I will copy the file *passwordauthno.png* from the
-Pictures directory under my home directory to the current directory.
+Pictures directory in my home directory to the current directory.
 
 ::
 
@@ -221,8 +222,8 @@ to the */tmp/* directory.
 Renaming or moving a file
 --------------------------
 
-*mv* command is used to rename or move a file or directory. In the
- following example, the file *hello.txt* is renamed into
+The *mv* command is used to rename or move a file or directory. In the
+ following example, the file *hello.txt* is renamed to
  *nothello.txt*
 
 ::
