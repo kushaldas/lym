@@ -9,6 +9,7 @@ Welcome to Linux command line for you and me!
 .. warning:: This book is under heavy development. Think alpha release.
     No editing has been done on the book yet, so there may be errors.
 
+    
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -25,6 +26,12 @@ Welcome to Linux command line for you and me!
    networking
    random
 
+Team
+=====
+
+- `Jason Braganza <https://janusworx.com/>`_ (Editor in command)
+- `Kushal Das <https://kushaldas.in>`_ (Adds typos in every form)
+  
 Indices and tables
 ==================
 
