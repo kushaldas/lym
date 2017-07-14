@@ -1,11 +1,14 @@
 ## Useful commands
 
-In  this chapter we will learn about more commands which we may have to use in daily life.
+In this chapter we will learn about more commands which we may have to
+use in daily life.
 
 
 ### Creating soft link to a file
 
-Soft link or symbolic links are the special kind of files, which actually points to some other file using either related or absolute path. We can create soft links using *ln -s* command.
+Soft link or symbolic links are the special kind of files, which
+actually points to some other file using either related or absolute
+path. We can create soft links using *ln -s* command.
 
 ```
 $ ln -s /etc/hostname name
@@ -16,10 +19,16 @@ lrwxrwxrwx. 1 fedora fedora   13 Jun 23 12:32 name -> /etc/hostname
 $ cat name
 kushal-test.novalocal
 ```
-In the above example, we created a soft link called *name* to the */etc/hostname* file. You can see the details about the soft link files by using the *ls -l* command. You can create links to any directory in the same way.
 
-If you remove the original file the soft link is pointing to, then
-the soft link will become useless, and will point to a file which does not exists. Soft links can point to file which is in a different file system.
+In the above example, we created a soft link called *name* to the
+*/etc/hostname* file. You can see the details about the soft link
+files by using the *ls -l* command. You can create links to any
+directory in the same way.
+
+If you remove the original file the soft link is pointing to, then the
+soft link will become useless, and will point to a file which does not
+exists. Soft links can point to file which is in a different file
+system.
 
 ### Creating hard links
 
@@ -49,14 +58,21 @@ total 12
 lrwxrwxrwx. 1 fedora fedora   13 Jun 23 12:32 name -> /etc/hostname
 ```
 
-If you look carefully, in the above example, we created a hard link using the *ln* command. When we made a change to the original *hello.txt* file, that also reflects in the *bye.txt* file. But, because *bye.txt* is a hard link, even if I had deleted the *hello.txt*, the hard link still exists, and also have the original content.
+If you look carefully, in the above example, we created a hard link
+using the *ln* command. When we made a change to the original
+*hello.txt* file, that also reflects in the *bye.txt* file. But,
+because *bye.txt* is a hard link, even if I had deleted the
+*hello.txt*, the hard link still exists, and also have the original
+content.
 
 ```eval_rst
 .. index:: tar
 ```
 ### Extracting a tar file
 
-*tar* is a tool to create and extract archive files. Many times we will have to download and then extract a tar file in our regular computer usage.
+*tar* is a tool to create and extract archive files. Many times we
+ will have to download and then extract a tar file in our regular
+ computer usage.
 
 ```
 $ tar -xzvf files.tar.gz 
@@ -64,8 +80,8 @@ hello.c
 bye.txt
 ```
 
-*files.tar.gz* file is compressed with gzip, if the file name ends with
-*.tar.bz2*, then it is compressed wth bzip2.
+*files.tar.gz* file is compressed with gzip, if the file name ends
+*with .tar.bz2*, then it is compressed wth bzip2.
 
 ```
 $ tar -xjvf files.tar.bz2 
@@ -91,10 +107,16 @@ bye.txt  files.tar.gz  hello.c
 ```
 ### Vim editor
 
-Text editors are the tool to edit files. This can be a configuration file, or source code, or an email, or any other kind of text file.
-Which editor to use is generally a personal choice, and a lot of good energy have been to wasted to tell which one is the best editor. In this book we will just learn about *Vim* editor. It is also known as *vi enhanced* editor. In the Fedora Linux distribution, the *vi* command is actually an alias to the the *vim* itself.
+Text editors are the tool to edit files. This can be a configuration
+file, or source code, or an email, or any other kind of text file.
+Which editor to use is generally a personal choice, and a lot of good
+energy have been to wasted to tell which one is the best editor. In
+this book we will just learn about *Vim* editor. It is also known as
+*vi enhanced* editor. In the Fedora Linux distribution, the *vi*
+command is actually an alias to the the *vim* itself.
 
-If we just type vim, and press enter, we will see the following screen.
+If we just type vim, and press enter, we will see the following
+screen.
 
 ![](/img/vim1.png)
 
@@ -106,13 +128,18 @@ Press Escape and then type *:q* to exit the vim.
 
 #### Open a new file or edit an existing file
 
-*vim filename* is the command to open an existing file, if the file is not there, it will open a new empty file for editing.
+*vim filename* is the command to open an existing file, if the file is
+ not there, it will open a new empty file for editing.
 
 #### Different modes of vim
 
-Vim editor starts with command mode, every time you open any file, this is the default mode of the editor. You can press the *Escape* key in any other mode to come to the command mode.
+Vim editor starts with command mode, every time you open any file,
+this is the default mode of the editor. You can press the *Escape* key
+in any other mode to come to the command mode.
 
-You can press *i* to go into insert mode, we edit documents in the insert mode. Here if you press *Escape* you will get back to the command mode.
+You can press *i* to go into insert mode, we edit documents in the
+insert mode. Here if you press *Escape* you will get back to the
+command mode.
 
 ![](/img/vim3.png)
 
@@ -126,11 +153,16 @@ and quit the editor, then type either *:wq* or *:x*.
 In the command typing *:q!* will allow us to quit without saving
 the current file.
 
-Vim is a powerful editor, and we learned about only a very basic steps into it. It will a complete book to explain different features of vim. But, the steps above are sufficient for this book's scope.
+Vim is a powerful editor, and we learned about only a very basic steps
+into it. It will a complete book to explain different features of
+vim. But, the steps above are sufficient for this book's scope.
 
 
-One major thing to remember for any text file is about keeping the newline character at the
-last line of the file. Because that is how [POSIX](https://en.wikipedia.org/wiki/POSIX) standard [defines](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_206) a line.
+One major thing to remember for any text file is about keeping the
+newline character at the last line of the file. Because that is how
+[POSIX](https://en.wikipedia.org/wiki/POSIX) standard
+[defines](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_206)
+a line.
 
 ```eval_rst
 .. index:: su
@@ -138,7 +170,12 @@ last line of the file. Because that is how [POSIX](https://en.wikipedia.org/wiki
 ### Becoming root user
 
 *root* is the superuser. It has power to make changes in various parts
-of a Linux system, that also means if you by mistake make any dangerous change (say deleting your user account) as root, that cause real problem. The general rule is, only when you need superuser power, use the *sudo* command to get it done, and keep using your normal user account for everything else. The *su -* command will help you to become the *root* user, use this carefully.
+of a Linux system, that also means if you by mistake make any
+dangerous change (say deleting your user account) as root, that cause
+real problem. The general rule is, only when you need superuser power,
+use the *sudo* command to get it done, and keep using your normal user
+account for everything else. The *su -* command will help you to
+become the *root* user, use this carefully.
 
 ```
 $ su -
@@ -146,8 +183,10 @@ Password:
 # 
 ``` 
 
-Notice how the command prompt changed to *#* from *$*, *#* shows that you are using the *root*, that is another visible indication to think
-about every command you give as *root*. You can press *Ctrl+d* to log out from the *root* account.
+Notice how the command prompt changed to *#* from *$*, *#* shows that
+you are using the *root*, that is another visible indication to think
+about every command you give as *root*. You can press *Ctrl+d* to log
+out from the *root* account.
 
 ```eval_rst
 .. index:: sudo
@@ -170,22 +209,29 @@ $ sudo less /var/log/secure
 ```
 ### Environment variables
 
-Environment variables are a way to pass data to the applications. We can set values of different variables, which then any of the application can access. There are various variables which decides how
-the shell will behave. To see all the variables use the *printenv* command.
+Environment variables are a way to pass data to the applications. We
+can set values of different variables, which then any of the
+application can access. There are various variables which decides how
+the shell will behave. To see all the variables use the *printenv*
+command.
 
 ```
 $ printenv
 ... long output
 ```
 
-You can execute the same command once as normal user, and once as *root*, and then check for the differences between the output. That is because the variables can be user specific.
+You can execute the same command once as normal user, and once as
+*root*, and then check for the differences between the output. That is
+because the variables can be user specific.
 
 ```eval_rst
 .. index:: export
 ```
 ### Setting up environment variable values
 
- We can use the *export* command to create a new environment variable or we can change an existing one. We can use the *echo* command to print one particular environment variable value.
+ We can use the *export* command to create a new environment variable
+ or we can change an existing one. We can use the *echo* command to
+ print one particular environment variable value.
 
 ```
 $ export NAME="Kushal Das"
@@ -196,14 +242,16 @@ $ echo $NAME
 Babai Das
 ```
 
-In the above example we first created a new variable called *name* and then we changed the value of the variable.
+In the above example we first created a new variable called *name* and
+then we changed the value of the variable.
 
 ```eval_rst
 .. index:: locate
 ```
 ### locate command
 
-*locate* is a very useful tool to find files in the system. This is part of the *mlocate* package. For example, the following command will
+*locate* is a very useful tool to find files in the system. This is
+part of the *mlocate* package. For example, the following command will
 search all the files with firewalld in the name.
 
 ```
@@ -218,7 +266,8 @@ $ locate firewalld
 ... long output
 ```
 
-You can update the search database by using *updatedb* command as root.
+You can update the search database by using *updatedb* command as
+root.
 
 ```eval_rst
 .. index:: updatedb
@@ -227,4 +276,5 @@ You can update the search database by using *updatedb* command as root.
 $ sudo updatedb
 ```
 
-This may take some time as it will index all the files in your computer.
+This may take some time as it will index all the files in your
+computer.
