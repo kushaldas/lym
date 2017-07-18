@@ -89,7 +89,7 @@ id command
 pwd command
 ------------
 
-*pwd* command will help you to find out the current directory. Let us see an example below:
+*pwd* command will help you to find out the absolute path of the current directory. Let us see an example below:
 ::
 
     [babai@kdas-laptop ~]$ pwd
@@ -170,13 +170,13 @@ We can also create directories in a recursive way using -p option.::
 rm command
 ----------
 
-*rm* command is used to remove a file, or directory. The -rf option is being
-*used to remove in a recursive way.
+*rm* command is used to remove a file, or directory. The *-rf* option is being
+used to remove in a recursive way.
 But, always double check before you use *rm -rf* command, if you by mistake
 give this command in your home directory, or any other important directory,
 it will not ask to confirm, but it will delete everything there.
 *-f* stands for force, it will just delete everything. So, please be careful
-*and read twice before pressing enter key.
+*and read twice before pressing enter key*.
 
 ::
 
