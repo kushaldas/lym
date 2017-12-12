@@ -123,7 +123,7 @@ passwd: all authentication tokens updated successfully.
 ```
 ### Modifying existing user details
 
-The *usermod* command can help to modify an existing user.
+The *usermod* command can help, modify an existing user.
 You can use the same command to lock any account in the system.
 
 ```
