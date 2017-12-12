@@ -187,7 +187,7 @@ it will not ask to confirm, but it will delete everything there.
 
     dir1/dir2/:
 
-Coping a file using cp command
+Copying a file using cp command
 -------------------------------
 
 We use the *cp* command to copy a file in the Linux shell. To copy
