@@ -51,7 +51,7 @@ Each line has seven entries separated by *:*.
 username:password:uid:gid:gecos:/home/dirname:shell
 
 |---------------|---------------------------------|
-|field          | meaning                         |
+|FIELD          | MEANING                         |
 |---------------|---------------------------------|
 | username      | the username                    |
 |---------------|---------------------------------|
