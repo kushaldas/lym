@@ -51,7 +51,7 @@ Each line has seven entries separated by *:*.
 username:password:uid:gid:gecos:/home/dirname:shell
 
 |---------------|---------------------------------|
-|field          | meaning                         |
+|FIELD          | MEANING                         |
 |---------------|---------------------------------|
 | username      | the username                    |
 |---------------|---------------------------------|
@@ -124,18 +124,23 @@ passwd: all authentication tokens updated successfully.
 ### Modifying existing user details
 
 The *usermod* command can help to modify an existing user.
-You can use the same command to lock any account in the system.
+You can use the same command to lock user account in the system.
 
 ```
 $ sudo usermod -L babai
 $ su - babai
 Password: 
 su: Authentication failure 
+$ sudo usermod -U babai
 ```
+
+The last command in the above example unlocks the user account.
+
 
 ```eval_rst
 .. index:: userdel
 ```
+
 ### Deleting a user
 
 We use the *userdel* command to delete a user from the system.
