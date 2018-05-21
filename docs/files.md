@@ -44,8 +44,7 @@ We can use this format along with the *chmod* command to change permissions of a
 ```
 ### chmod command
 
-*chmod* is the command which changes the file mode bits. A few examples
-are given below.
+*chmod* is the command which changes the file mode bits. Through chmod command one can alter the access permissions (i.e to permissions to read, write and execute) to file system objects (i.e files and directories). If we look at the command closely chmod is the abbreviation of change mode. A few examples are given below.
 
 ```
 $ echo "hello" > myfile.txt
