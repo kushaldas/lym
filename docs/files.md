@@ -75,7 +75,7 @@ hello
 ```
 
 In the first line, we created a new file called *myfile.txt* using the *echo*
-command (we redirected the output of echo into *myfile.txt*). Using the *chmod
+command (we redirected the output of echo into the file). Using the *chmod
 000 myfile.txt* command, we removed the read/write permissions of the file, and
 as you can see in the next line, even the owner of the file cannot read it.
 Setting the mode to *600* brings back read/write capability to the owner of that
