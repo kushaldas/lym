@@ -36,6 +36,27 @@ $ uptime
 ```
 
 ```eval_rst
+.. index:: time
+```
+
+### Finding CPU time of a command
+
+```time``` command will help you to find the CPU time spent for any command.
+The following example will tell us how much time ```du -sh`` took to calculate the
+disk usage.
+
+```
+$ time du -sh
+5.5G	.
+
+real	0m1.026s
+user	0m0.235s
+sys	0m0.783s
+```
+
+
+
+```eval_rst
 .. index:: dmesg
 ```
 
