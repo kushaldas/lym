@@ -47,6 +47,7 @@ file or directory.
 ```eval_rst
 .. index:: chmod
 ```
+
 ### chmod command
 
 *chmod* is the command which changes the file mode bits. Through chmod command
@@ -86,6 +87,7 @@ file you want to execute.
 ```eval_rst
 .. index:: PATH
 ```
+
 ### PATH variable
 
 The *PATH* variable is a special variable. When we type a command in the bash
@@ -105,6 +107,7 @@ command in our shell. We will see an example of this, later in the book.
 ```eval_rst
 .. index:: which
 ```
+
 ### which command
 
 We use the *which* command, to find the exact path of the executable being used
