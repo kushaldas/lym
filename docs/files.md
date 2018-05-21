@@ -4,7 +4,7 @@
 .. index:: File permission
 ```
 
-Linux follows long Unix history, and has the same kinds of permission and ownership of files and directories.   
+Linux follows long Unix history, and has the same kinds of permission and ownership of files and directories.
 In this chapter, we will learn in detail about the same.
 
 Let us look at the output of *ls -l* command.
@@ -19,7 +19,7 @@ drwxrwxr-x. 2 fedora fedora 4096 Jun 24 08:00 dir1
 lrwxrwxrwx. 1 fedora fedora   13 Jun 23 12:32 name -> /etc/hostname
 ```
 
-The first column contains the permission details of each file and directory.   
+The first column contains the permission details of each file and directory.
 The permissions are displayed using groups of three values,
 *r*  for read access, *w* for write access, and *x* for execute access.
 These 3 values are mentioned for owner, group, and other user accounts. The first - can be *d* for directories or *l* for links.
@@ -36,7 +36,7 @@ There’s another way to calculate the same file permissions, using numbers.
 |----------|-----|
 ```
 
-This means, if you want to give read and write access only to the owner and group, you mention it like this "660", where the first digit is for the owner, second digit is for the group, and the third digit is for the other users.   
+This means, if you want to give read and write access only to the owner and group, you mention it like this "660", where the first digit is for the owner, second digit is for the group, and the third digit is for the other users.
 We can use this format along with the *chmod* command to change permissions of any file or directory.
 
 ```eval_rst
@@ -48,19 +48,19 @@ We can use this format along with the *chmod* command to change permissions of a
 
 ```
 $ echo "hello" > myfile.txt
-$ cat myfile.txt 
+$ cat myfile.txt
 hello
 $ ls -l myfile.txt
 -rw-rw-r--. 1 fedora fedora 6 Jun 25 03:42 myfile.txt
-$ chmod 000 myfile.txt 
+$ chmod 000 myfile.txt
 $ ls -l myfile.txt
 ----------. 1 fedora fedora 6 Jun 25 03:42 myfile.txt
 $ cat myfile.txt 
 cat: myfile.txt: Permission denied
-$ chmod 600 myfile.txt 
+$ chmod 600 myfile.txt
 $ ls -l myfile.txt
 -rw-------. 1 fedora fedora 6 Jun 25 03:42 myfile.txt
-$ cat myfile.txt 
+$ cat myfile.txt
 hello
 ```
 
@@ -81,8 +81,8 @@ $ echo $PATH
 /usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/fedora/.local/bin:/home/fedora/bin
 ```
 
-The different directories are separated by *:*  
-You can see the */home/fedora/bin* directory is mentioned in the path.   
+The different directories are separated by *:*
+You can see the */home/fedora/bin* directory is mentioned in the path.
 This means if we have that directory, and an executable file is in there, we can use it as a normal command in our shell. We will see an example of this, later in the book.
 
 ```eval_rst
@@ -103,14 +103,15 @@ The second example shows the output in case the *which* command cannot find the 
 
 ### she-bang or sha-bang in executable files
 
-she-bang or sha-bang is the first line in scripts; which starts with *#!* and then the path of the interpreter to be used for the rest of the file.   
+she-bang or sha-bang is the first line in scripts; which starts with *#!* and then the path of the interpreter to be used for the rest of the file.
 We will create a simple bash hello world script using the same, and then execute it.
 
 ![](/img/she-bang.png)
 
 ```
 $ vim hello.sh
-$ chmod +x hello.sh 
-$ ./hello.sh 
+$ chmod +x hello.sh
+$ ./hello.sh
 Hello World!
 ```
+
