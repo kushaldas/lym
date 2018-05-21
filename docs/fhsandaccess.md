@@ -15,5 +15,5 @@ bin  boot  dev  etc  home  lib  lib64  lost+found  mc  media  mnt  opt  output  
 ```
 
 */* is the root directory of your file system.
-It’s under this directory, that all the other files and directories reside. There’s a [Filesystem Hierarchy Standard(FHS)](https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html), which talks
+It’s under this directory, that all the other files and directories reside. There’s a [Filesystem Hierarchy Standard, or FHS](https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html), which talks
 about these different directories, and what kinds of files are located in which directory.
