@@ -359,6 +359,29 @@ it will add the new input to the end of the file.
     -rwxrwxr-x. 1 fedora fedora     34 Jun 24 07:56 helol.py
     -rw-------. 1 fedora fedora 784756 Jun 23 10:49 tmp3lDEho
 
+Moving around in the command line
+----------------------------------
+
+There are key shortcuts available in Bash which will help you to move around faster.
+The following table is a good starting point.
+
++-----------------+--------------------------------------+
+| Key combination | Action                               |
++=================+======================================+
+| Ctrl + A        | Move to the beginning of the line    |
++-----------------+--------------------------------------+
+| Ctrl + E        | Move to the end of the line          |
++-----------------+--------------------------------------+
+| Alt + B         | Move to the previous word            |
++-----------------+--------------------------------------+
+| Alt + F         | Move to the next word                |
++-----------------+--------------------------------------+
+| Ctrl + U        | Erase to the beginning of the line   |
++-----------------+--------------------------------------+
+| Ctrl + K        | Erase to the end of the line         |
++-----------------+--------------------------------------+
+| Ctrl + W        | Erase the previous word              |
++-----------------+--------------------------------------+
 
 man pages
 ----------
@@ -372,8 +395,9 @@ The general syntax is *man section command*.
 
 You can know about different sections below. Press *q* to quit the program.
 
-```
-1      1   Executable programs or shell commands
+::
+
+       1   Executable programs or shell commands
        2   System calls (functions provided by the kernel)
        3   Library calls (functions within program libraries)
        4   Special files (usually found in /dev)
@@ -382,4 +406,3 @@ You can know about different sections below. Press *q* to quit the program.
        7   Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
        8   System administration commands (usually only for root)
        9   Kernel routines [Non standard]
-```
