@@ -6,7 +6,6 @@ Before we can learn anything else, we should look into how files and directories
 ```eval_rst
 .. index:: fhs
 ```
-
 ### FHS
 
 ```
