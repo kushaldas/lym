@@ -8,6 +8,8 @@ how are they mounted (as a directory) in the system.
 
 .. index:: mount
 
+::
+
     $ mount
     sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
     proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
@@ -99,4 +101,4 @@ Follow `this
 link <https://kushaldas.in/posts/encrypting-drives-with-luks.html>`_ to
 learn about how to encrypt your drives with LUKS. This is a simple way
 to make sure that even if you loose your USB drive, the data inside
-can still be safe (relatively). 
+can still be safe (relatively).
