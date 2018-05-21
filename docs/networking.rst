@@ -231,10 +231,10 @@ The **tracepath** command traces a path to a network host discovering MTU along 
 Remote login to a computer using ssh tool
 -----------------------------------------
 
-We use the *ssh* command to login to remote computers. The remote computer must
-have the *sshd* service running, and should also allow clients to connect to
+We use the **ssh** command to login to remote computers. The remote computer must
+have the **sshd** service running, and should also allow clients to connect to
 this service. Let’s try to connect to localhost itself. Remember to start the
-*sshd* service before this step.
+**sshd** service before this step.
 
 ::
 
