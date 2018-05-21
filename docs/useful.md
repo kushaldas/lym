@@ -3,7 +3,6 @@
 In this chapter, we will learn about a few more commands which we may have to
 use in daily life.
 
-
 ### Creating soft link to a file
 
 Soft link or symbolic links are a special kind of file, which
@@ -285,3 +284,18 @@ $ sudo updatedb
 
 This may take some time as it will index all the files in your
 computer.
+
+```eval_rst
+.. index:: timezones
+```
+### Finding date/time in different timezones
+
+The ```/usr/share/zoneinfo``` directory contains all the different timezone
+files. We can use these file names to get current date/time in any timezone. For
+example, the following command will show the current date/time in
+```US/Pacific``` timezone.
+
+```
+$ TZ=US/Pacific date
+Sun May 20 18:45:54 PDT 2018
+```
