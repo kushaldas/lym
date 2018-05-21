@@ -37,6 +37,14 @@ date command
     $ date
     Sun Jun 25 10:13:44 IST 2017
 
+In case you want to know the current date/time in UTC, use the following command.
+(I added this in 2018, so please do not get confused at the date).
+
+::
+
+    $ date -u
+    Mon May 21 01:43:47 UTC 2018
+
 cal command
 ------------
 
