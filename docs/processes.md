@@ -58,6 +58,15 @@ $ kill 26752
 If there is no error message, you’ll find that Firefox has disappeared. 
 
 ```eval_rst
+.. index:: lsof
+```
+
+### Finding out list of open files
+
+```lsof``` command will show list of all open files. The man page has more details
+about the different command line options available.
+
+```eval_rst
 .. index:: signal
 ```
 
