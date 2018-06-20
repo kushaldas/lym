@@ -407,7 +407,7 @@ view the help document (manual page) for any command. The man pages are
 organized based on *sections*, and if the same command is found in many
 different sections, only the first one is shown.
 
-The general syntax is *man section command*.
+The general syntax is *man section command*. Example **man 7 signal**.
 
 You can know about different sections below. Press *q* to quit the program.
 
