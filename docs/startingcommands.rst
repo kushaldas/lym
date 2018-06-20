@@ -27,6 +27,14 @@ is mentioned as *~*. This *~* is a special character in our case. It means
 the home directory of the user. In our case the home directory path is
 */home/babai/*.
 
+What is a terminal and a shell?
+--------------------------------
+
+Read the articles on Wikipedia to learn about `computer teriminals
+<https://en.wikipedia.org/wiki/Computer_terminal>`_, `terminal emulattors
+<https://en.wikipedia.org/wiki/Terminal_emulator>`_ and `shell
+<https://en.wikipedia.org/wiki/Shell_%28computing%29>`_.
+
 date command
 -------------
 
@@ -120,8 +128,8 @@ Here you can see that first we moved to */tmp* directory, and then we moved
 back to the home directory by using
 *~* character.
 
-. and ..
-----------
+. directory and .. directory
+-----------------------------
 
 *.* and *..* has special meaning in the Linux. *.* means the current
 directory and *..* means the parent directory. We can use these in various
