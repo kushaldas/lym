@@ -230,6 +230,7 @@ various variables which decide how the shell will behave. To see all the
 variables, use the **printenv** command.
 
 ::
+
     $ printenv
     ... long output
 
