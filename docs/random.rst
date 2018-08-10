@@ -60,3 +60,14 @@ tool we can learn about the messages and information from the kernel drivers
 during and after the boot up process. This can be very handy when
 troubleshooting; for e.g. when the machine fails to boot or a certain piece of
 hardware does not function correctly.
+
+
+Whats next?
+============
+
+After you are familiar with the commands in this book, we would suggest you to learn
+shell scripting.
+
+Start from `https://www.shellscript.sh <https://www.shellscript.sh>`_ and then
+you can read the `beginners bash guide
+<http://mirrors.kernel.org/LDP/LDP/Bash-Beginners-Guide/Bash-Beginners-Guide.pdf>`_.
