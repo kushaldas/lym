@@ -191,7 +191,9 @@ These are the ways to install it in Fedora and in Debian/Ubuntu
   $ sudo apt-get install htop
 
 
-TODO: add screenshot
+.. figure:: img/htop.png
+   :width: 600px
+   :align: center
 
 To know more about htop, please read the man page.
 
