@@ -84,7 +84,7 @@ Signals are a limited way to communicate to a process. You can think about them
 as notifications to a process, and depending on the signal handler in the code,
 the process does something with that signal. The *kill* command actually sends a
 signal to the given process id, the default signal is *TERM*, which says to
-terminate the process. To directly/focibly kill a process, you can send the
+terminate the process. To directly/forcibly kill a process, you can send the
 *KILL* signal.
 
 ::
@@ -191,7 +191,9 @@ These are the ways to install it in Fedora and in Debian/Ubuntu
   $ sudo apt-get install htop
 
 
-TODO: add screenshot
+.. figure:: img/htop.png
+   :width: 600px
+   :align: center
 
 To know more about htop, please read the man page.
 
