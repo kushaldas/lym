@@ -94,7 +94,7 @@ the safe side, you can execute the *sync* command, which will write any existing
 cache to the drives.  That will make sure that your chances of losing data is
 marginal.
 
-Encryptding drives with LUKS
+Encrypting drives with LUKS
 -----------------------------
 
 Follow `this
