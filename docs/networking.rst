@@ -368,3 +368,14 @@ place.
    :width: 600px
    :align: center
 
+How to find active (open) network connections from your computer?
+-----------------------------------------------------------------
+
+::
+
+    $ sudo lsof -i -n -P
+
+The *lsof* command shows open files, using *-i* we are asking to list of all
+Internet and x.25 (HP-UX) network files. To know more, read the man page of the
+*lsof* command.
+
