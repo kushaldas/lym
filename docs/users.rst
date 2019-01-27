@@ -207,3 +207,34 @@ Deleting a user
 ----------------
 
 We use the **userdel** command to delete a user from the system.
+
+
+.. index:: groupadd
+
+Adding a new group
+-------------------
+
+
+The **groupadd** command adds a new group. You can also pass the group id as
+an option. In the following example we are adding a new group called *firejumpers*.
+
+::
+
+    $ sudo groupadd -g 4001 firejumpers
+
+
+.. index:: usermod
+
+Adding new group to an user
+----------------------------
+
+We can use **usermod** command to add any extra group to any of our system user.
+In the following example, we are adding *firejumpers* group to our vagrant user.
+
+::
+
+    $ sudo usermod -aG firejumpers vagrant
+
+
+.. important:: Remember to use **-a** flag, or else it will delete all groups for the user
+and have only the new group you have mentioned in the command.
