@@ -89,6 +89,14 @@ file, with only the root user having access to this file.
     $ ls -l /etc/shadow
     ----------. 1 root root 2213 Jun 22 15:20 /etc/shadow
 
+If you want to know more about the current user, use the `id` command.
+
+::
+
+    $ id
+    uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+
+
 
 Details about groups
 ----------------------
