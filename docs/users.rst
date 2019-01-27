@@ -145,6 +145,9 @@ in the `/etc/sudoers` file. The best way to edit the file is to use *visudo* com
 as root user.
 
 
+.. important:: Read the man pages of `su` and `sudo` command.
+
+
 .. index:: useradd
 
 Adding a new user
