@@ -104,6 +104,27 @@ The different directories are separated by ```:```. You can see the
 that directory, and an executable file is in there, we can use it as a normal
 command in our shell. We will see an example of this, later in the book.
 
+.. index:: bashrc
+
+.bashrc file 
+------------
+
+The *~/.bashrc* is a special configuration file for your bash terminal. You
+can define or delete or update environment variables and many things more.
+
+For example, if want to add a new directory path to the **PATH** variable, then
+we can add the following line at the end of the *~/.bashrc* file.
+
+::
+
+    export PATH=/mnt/myproject/bin:$PATH
+
+
+Remember to logout and login again to see the change.
+
+.. important:: To know more, read the man page of *bash* command.
+
+
 .. index:: which
 
 which command
