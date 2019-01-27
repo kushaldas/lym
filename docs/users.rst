@@ -141,8 +141,8 @@ command, and provide the *root* password to the input.
 
 
 .. important:: To be able to use *sudo* command, you mush have your user mentioned
-in the `/etc/sudoers` file. The best way to edit the file is to use *visudo* command
-as root user.
+               in the `/etc/sudoers` file. The best way to edit the file is to use *visudo* command
+               as root user.
 
 
 .. important:: Read the man pages of `su` and `sudo` command.
@@ -236,5 +236,4 @@ In the following example, we are adding *firejumpers* group to our vagrant user.
     $ sudo usermod -aG firejumpers vagrant
 
 
-.. important:: Remember to use **-a** flag, or else it will delete all groups for the user
-and have only the new group you have mentioned in the command.
+.. important:: Remember to use **-a** flag, or else it will delete all groups for the user and have only the new group you have mentioned in the command.
