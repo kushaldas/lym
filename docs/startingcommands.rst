@@ -3,8 +3,8 @@ Shell commands
 
 Linux shell or the terminal is the lifeline of the developers, and of any
 power user. Things which can be done on the GUI (by clicking on different
-buttons), can be done much efficiently on the terminal by using commands. One
-can not remember all the commands, but with regular usage one can easily
+buttons), can be done much more efficiently on the terminal by using commands.
+Maybe one can not remember all the commands, but with regular usage one can easily
 remember the most useful ones.
 
 The following guide will introduce you to some basic minimal commands
@@ -31,7 +31,7 @@ What is a terminal and a shell?
 --------------------------------
 
 Read the articles on Wikipedia to learn about `computer teriminals
-<https://en.wikipedia.org/wiki/Computer_terminal>`_, `terminal emulattors
+<https://en.wikipedia.org/wiki/Computer_terminal>`_, `terminal emulators
 <https://en.wikipedia.org/wiki/Terminal_emulator>`_ and `shell
 <https://en.wikipedia.org/wiki/Shell_%28computing%29>`_.
 
@@ -56,7 +56,7 @@ In case you want to know the current date/time in UTC, use the following command
 cal command
 ------------
 
-*cal* command is used to display calendar in your shell, by default it
+*cal* command is used to display a calendar in your shell, by default it
 will display the current month
 
 ::
@@ -286,13 +286,13 @@ of a file.
     $ wc -w hello.txt
     17 hello.txt
 
-The *-l* flag finds the number of line in a file, *-w* counts the number
+The *-l* flag finds the number of lines in a file, *-w* counts the number
 of words in the file.
 
 echo command
 -------------
 
-*echo* command echos any given string to the display.
+*echo* command echoes any given string to the display.
 
 ::
 
