@@ -1,24 +1,24 @@
 Shell commands
 ===============
 
-Linux shell or the terminal is the lifeline of the developers, and of any
+In Gnu/Linux the shell (or terminal) is the lifeline of the developer, and of any
 power user. Things which can be done on the GUI (by clicking on different
 buttons), can be done much more efficiently on the terminal by using commands.
 Maybe one can not remember all the commands, but with regular usage one can easily
 remember the most useful ones.
 
-The following guide will introduce you to some basic minimal commands
+The following guide will introduce you to a minimal set of basic commands
 required to use your Linux computer efficiently.
 
-Gnome Terminal
----------------
+Terminal emulators
+------------------
 
 .. figure:: img/terminal1.png
    :width: 600px
    :align: center
 
 The above is the screenshot of the Gnome terminal application. As you can see
-the command prompt contains these following information::
+the command prompt contains the following information::
 
     [username@hostname directoryname]
 
@@ -27,8 +27,8 @@ is mentioned as *~*. This *~* is a special character in our case. It means
 the home directory of the user. In our case the home directory path is
 */home/babai/*.
 
-What is a terminal and a shell?
---------------------------------
+The Gnome terminal is one of many implementations of terminal emulators.
+Different Linux environments may come pre-installed with different terminals.
 
 Read the articles on Wikipedia to learn about `computer teriminals
 <https://en.wikipedia.org/wiki/Computer_terminal>`_, `terminal emulators
@@ -38,7 +38,7 @@ Read the articles on Wikipedia to learn about `computer teriminals
 date command
 -------------
 
-*date* command tells the current date time.
+*date* command prints the current date time.
 
 ::
 
@@ -105,7 +105,7 @@ id command
 pwd command
 ------------
 
-*pwd* command will help you to find out the absolute path of the current directory. Let us see an example below:
+*pwd* command, short for *print working directory*, will help you to find out the absolute path of the current directory. Let us see an example below:
 ::
 
     [babai@kdas-laptop ~]$ pwd
@@ -114,7 +114,7 @@ pwd command
 cd command
 ----------
 
-The next command we will learn is *cd*. This command will help you to change your current directory. We will move
+The next command we will learn is *cd*, short for *change directory*. This command will help you to change your current directory. We will move
 to */tmp* directory in our example.::
 
     [babai@kdas-laptop ~]$ cd /tmp
@@ -139,12 +139,12 @@ situations for daily activities.
 
     $ cd ..
 
-The above command moves to the parent directory.
+The above command changes the current directory to the parent directory.
 
 ls command
 ----------
 
-We use *ls* command to view the files and directories inside any given
+We use *ls* command to *list* the files and directories inside any given
 directory. If you use *ls* command without any argument, then it will work on
 the current directory. We will see few examples of the command below.::
 
@@ -161,19 +161,21 @@ the current directory. We will see few examples of the command below.::
 
 In the last two commands we provided a path as the argument to the *ls*
 command. */* is a special directory, which represents root directory in Linux
-filesystem. You will know more in the next chapter.
+filesystem. You will learn more about that in the next chapter.
 
 mkdir command
 -------------
 
 We can create new directories using *mkdir* command. For our example we will
-create a *code* directory in our home directory.::
+create a *code* directory inside our home directory.::
 
+    [babai@kdas-laptop ~]$ ls
+    Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
     [babai@kdas-laptop ~]$ mkdir code
     [babai@kdas-laptop ~]$ ls
     code  Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
 
-We can also create directories in a recursive way using -p option.::
+We can also create nested directories in a single command using the *-p* option.::
 
     [babai@kdas-laptop ~]$ mkdir -p dir1/dir2/dir3
     [babai@kdas-laptop ~]$ ls dir1/ dir1/dir2/ 
@@ -186,12 +188,12 @@ We can also create directories in a recursive way using -p option.::
 rm command
 ----------
 
-*rm* command is used to remove a file, or directory. The *-rf* option is being
-used to remove in a recursive way.
+*rm* command is used to *remove* a file, or directory. The *-r* option is being
+used to remove in a recursive way. With *-f* you *force* the removal, ignoring errors and never prompt.
+You can chain the flags, so instead of *rm -r -f* you can as well type *rm -rf*.
 But, always double check before you use *rm -rf* command, if you by mistake
 give this command in your home directory, or any other important directory,
-it will not ask to confirm, but it will delete everything there.
-*-f* stands for force, it will just delete everything. So, please be careful
+it will not ask to confirm, but it will delete everything there. So, please be careful
 *and read twice before pressing enter key*.
 
 ::
@@ -206,7 +208,7 @@ it will not ask to confirm, but it will delete everything there.
 Copying a file using cp command
 -------------------------------
 
-We use the *cp* command to copy a file in the Linux shell. To copy
+We use the *cp* command to *copy* a file in the Linux shell. To copy a folder with its contents
 recursively use the *cp* command with the *-r* flag.  
 We use the *cp file_to_copy new_location* format.  
 In the example below, we
@@ -238,7 +240,7 @@ to the */tmp/* directory.
 Renaming or moving a file
 --------------------------
 
-The *mv* command is used to rename or move a file or directory. In the
+The *mv* command is used to rename or *move* a file or directory. In the
  following example, the file *hello.txt* is renamed to
  *nothello.txt*
 
@@ -251,7 +253,9 @@ The *mv* command is used to rename or move a file or directory. In the
 tree command
 -------------
 
-*tree* command prints the directory structure in a nice visual tree design way.::
+*tree* command prints the directory structure in a nice visual tree design way.
+
+::
 
     [babai@kdas-laptop ~]$ tree
     .
@@ -272,7 +276,7 @@ tree command
 wc command
 -----------
 
-*wc* is an useful command which can help us to count newline, word and bytes
+*wc*, short for *word count*, is an useful command which can help us to count newlines, words and bytes
 of a file.
 
 ::
@@ -303,7 +307,7 @@ Redirecting the command output
 -------------------------------
 
 In Linux shells, we can redirect the command output to a file, or as input to
-another command. *|* is the most common way to do so. Using this we can now
+another command. The pipe operator *|* is the most common way to do so. Using this we can now
 count the number of directories in the root (*/*) directory very easily.
 
 ::
