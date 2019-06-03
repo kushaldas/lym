@@ -379,25 +379,32 @@ Moving around in the command line
 ----------------------------------
 
 There are key shortcuts available in Bash which will help you to move around faster.
+They are by the way very similar to the standard *emacs* keybindings, a number of key
+combinations that you will discover in many places and therefore are very handy to memorize
+and internalize.
 The following table is a good starting point.
 
-+-----------------+--------------------------------------+
-| Key combination | Action                               |
-+=================+======================================+
-| Ctrl + A        | Move to the beginning of the line    |
-+-----------------+--------------------------------------+
-| Ctrl + E        | Move to the end of the line          |
-+-----------------+--------------------------------------+
-| Alt + B         | Move to the previous word            |
-+-----------------+--------------------------------------+
-| Alt + F         | Move to the next word                |
-+-----------------+--------------------------------------+
-| Ctrl + U        | Erase to the beginning of the line   |
-+-----------------+--------------------------------------+
-| Ctrl + K        | Erase to the end of the line         |
-+-----------------+--------------------------------------+
-| Ctrl + W        | Erase the previous word              |
-+-----------------+--------------------------------------+
++-----------------+------------------------------------------------+
+| Key combination | Action                                         |
++=================+================================================+
+| Ctrl + A        | Move to the beginning of the line              |
++-----------------+------------------------------------------------+
+| Ctrl + E        | Move to the end of the line                    |
++-----------------+------------------------------------------------+
+| Alt + B         | Move to the previous word                      |
++-----------------+------------------------------------------------+
+| Alt + F         | Move to the next word                          |
++-----------------+------------------------------------------------+
+| Ctrl + U        | Erase to the beginning of the line             |
++-----------------+------------------------------------------------+
+| Ctrl + K        | Erase to the end of the line                   |
++-----------------+------------------------------------------------+
+| Ctrl + W        | Erase the previous word                        |
++-----------------+------------------------------------------------+
+| Ctrl + P        | Browse previously entered commands             |
++-----------------+------------------------------------------------+
+| Ctrl + R        | Reverse search for previously entered commands |
++-----------------+------------------------------------------------+
 
 man pages
 ----------
