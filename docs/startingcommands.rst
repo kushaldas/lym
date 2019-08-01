@@ -1,7 +1,7 @@
 Shell commands
 ===============
 
-In Gnu/Linux the shell (or terminal) is the lifeline of the developer, and of any
+In Linux the shell (or terminal) is the lifeline of the developer, and of any
 power user. Things which can be done on the GUI (by clicking on different
 buttons), can be done much more efficiently on the terminal by using commands.
 Maybe one can not remember all the commands, but with regular usage one can easily
