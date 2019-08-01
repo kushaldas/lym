@@ -313,6 +313,9 @@ count the number of directories in the root (*/*) directory very easily.
     $ ls / | wc -w
     20
 
+The **|** is known as pipe. To know more about this, watch `this
+video<https://www.youtube.com/watch?v=bKzonnwoR2I>`_.
+
 Using > to redirect output to a file
 ------------------------------------
 
