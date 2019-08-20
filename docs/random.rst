@@ -14,6 +14,7 @@ The **w** command shows all the users, logged in to the computer. If you pass
 the *-f* flag, it toggles information about where each user is logged in from.
 
 ::
+
     $ w
     17:22:41 up 24 days, 11:37,  2 users,  load average: 0.56, 0.50, 0.59
     USER     TTY        LOGIN@   IDLE   JCPU   PCPU WHAT
@@ -29,6 +30,7 @@ system is running. You can figure out the last time the system turned off or
 rebooted at a glance. For my laptop, it was 24 days ago.
 
 ::
+
     $ uptime
     17:31:30 up 24 days, 11:46,  2 users,  load average: 0.76, 0.98, 0.81
 
