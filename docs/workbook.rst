@@ -13,16 +13,19 @@ You will need latest `Vagrant <https://www.vagrantup.com/>`_ for this. Install
 Vagrant following the steps from the website. We suggest you to use the
 libvirt provider along with it.
 
-Then checkout latest workbook code from github.
+Then checkout latest workbook code from github. 
 
 ::
 
     git clone https://github.com/kushaldas/lymworkbook
     cd lymworkbook
     vagrant up
-    vagrant ssh
+    vagrant ssh workbook
     cd lymworkbook
     sudo python setup.py install
+
+
+The `vagrant up` command will create two vms.
 
 
 copy paste
