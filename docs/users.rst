@@ -119,8 +119,8 @@ user to be part of the wheel group during installation.
 Becoming superuser
 -------------------
 
-Have you noticed the silent command *sudo* in front of many commands in the
-lab before? We use that *sudo* command to become *root* user temporarily. The
+Have you noticed the silent command **sudo** in front of many commands in the
+lab before? We use that **sudo** command to become *root* user temporarily. The
 *root* user is also known as the superuser of the system, it has all the access power
 to change anything on the system. It is the administrator account of any Linux system.
 
@@ -130,7 +130,7 @@ Try the following command.
 
     $ sudo id
 
-Now, you will find the *id* command worked as root instead of your regular user.
+Now, you will find the *id** command worked as root instead of your regular user.
 
 If you want to become *root* user for more than one command, then use the following
 command, and provide the *root* password to the input.
@@ -140,8 +140,8 @@ command, and provide the *root* password to the input.
     $ su -
 
 
-.. important:: To be able to use *sudo* command, you mush have your user mentioned
-               in the `/etc/sudoers` file. The best way to edit the file is to use *visudo* command
+.. important:: To be able to use **sudo** command, you must have your user mentioned
+               in the `/etc/sudoers` file. The best way to edit the file is to use **visudo** command
                as root user.
 
 
