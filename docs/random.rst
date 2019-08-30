@@ -64,6 +64,63 @@ troubleshooting; for e.g. when the machine fails to boot or a certain piece of
 hardware does not function correctly.
 
 
+Setting up cron jobs
+---------------------
+
+One can schedule tasks using cron jobs. You can mention a certain time when a
+given task will be executed. In latest Fedora/CentOS, we use **cronie**
+package, in other systems we have **cron** or **anacron** package.
+
+
+To view any existing jobs
+
+::
+
+    crontab -l
+
+
+To add a new cronjob or edit a provious one, use the command
+
+``crontab -e``.
+
+
+Format of a crontab file
+
+::
+
+    * * * * * /path/to/command
+    + + + + +
+    | | | | |
+    | | | | |
+    | | | | |
+    | | | | |
+    | | | | |
+    | | | | +------>    Day of the week (0-7)
+    | | | |
+    | | | +-------->    Month of the year (1-12)
+    | | |
+    | | +---------->    Day of the month (1-31)
+    | |
+    | +------------>    Hour (0-23)
+    |
+    +-------------->    Minute (0,59)
+
+
+Say we want to execute a shell script everyday at midnight.
+
+::
+
+    0 0 * * * /usr/bin/myscript.sh
+
+
+Another example can be executing the same script in every 15 minutes in every hour.
+
+
+::
+
+    0,15,30,45 * * * * /usr/bin/myscript.sh
+
+
 Whats next?
 ============
 
