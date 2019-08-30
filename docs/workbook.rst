@@ -47,3 +47,107 @@ To verify
 ::
 
     sudo lymverify copypaste
+
+
+Find your user id
+------------------
+
+To setup the problem environment
+
+::
+
+    sudo lymsetup findid
+
+
+Find your user id and write it down in a file `/tmp/myuserid.txt`.
+
+
+To verify
+
+::
+
+    sudo lymverify findid
+
+
+Creating softlinks
+------------------
+
+To setup the problem environment
+
+::
+
+    sudo lymsetup softlinks
+
+
+Create a softlink called `docs` in your home directory which will point to
+`/usr/share/doc/` directory. Also create another softlink called `meomory` to
+the `/proc/meminfo` file.
+
+
+To verify
+
+::
+
+    sudo lymverify softlinks
+
+
+Basic vim usage
+------------------
+
+To setup the problem environment
+
+::
+
+    sudo lymsetup basicvim
+
+
+Read the file at `/etc/os-release` and write the value of ID_LIKE (without the
+double quotes) in a file at `/tmp/id_like.txt`.
+
+
+To verify
+
+::
+
+    sudo lymverify basicvim
+
+
+
+Adding a new user
+------------------
+
+To setup the problem environment
+
+::
+
+    sudo lymsetup newuser
+
+
+Add a new user called fatima to the system.
+
+
+To verify
+
+::
+
+    sudo lymverify newuser
+
+
+Deleing an user
+------------------
+
+To setup the problem environment
+
+::
+
+    sudo lymsetup deleteuser
+
+
+Remove the fatima user from the system
+
+
+To verify
+
+::
+
+    sudo lymverify deleteuser
