@@ -22,6 +22,7 @@ Welcome to Linux command line for you and me!
    mounting
    networking
    random
+   workbook
 
 Team
 =====
