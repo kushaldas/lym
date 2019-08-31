@@ -23,6 +23,7 @@ Welcome to Linux command line for you and me!
    networking
    random
    workbook
+   advancedsection
 
 Team
 =====
