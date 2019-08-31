@@ -24,6 +24,7 @@ Welcome to Linux command line for you and me!
    random
    workbook
    advancedsection
+   containers
 
 Team
 =====
