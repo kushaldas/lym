@@ -139,7 +139,8 @@ To verify
 Deleing an user
 ------------------
 
-To setup the problem environment
+To setup the problem environment, remember to add the user first from the
+previous problem.
 
 ::
 
