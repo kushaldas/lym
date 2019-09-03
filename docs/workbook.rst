@@ -21,8 +21,7 @@ Then checkout latest workbook code from github.
     cd lymworkbook
     vagrant up
     vagrant ssh workbook
-    cd lymworkbook
-    sudo python setup.py install
+
 
 
 The `vagrant up` command will create two vms.
