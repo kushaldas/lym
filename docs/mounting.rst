@@ -94,11 +94,23 @@ the safe side, you can execute the *sync* command, which will write any existing
 cache to the drives.  That will make sure that your chances of losing data is
 marginal.
 
-Encrypting drives with LUKS
------------------------------
+Encrypting drives with LUKS (for only Linux)
+---------------------------------------------
 
 Follow `this
 link <https://kushaldas.in/posts/encrypting-drives-with-luks.html>`_ to
 learn about how to encrypt your drives with LUKS. This is a simple way
 to make sure that even if you loose your USB drive, the data inside
 can still be safe (relatively).
+
+
+Encrypting drives for any OS using Veracrypt
+---------------------------------------------
+
+`VeraCrypt <https://www.veracrypt.fr/en/>`_ is an open source volume
+management tool compatible with macOS, Windows, and Linux systems.
+
+Here is an `excellent guide
+<https://freedom.press/training/encryption-toolkit-media-makers-veracrypt-guide/>`_
+from `Freedom of the Press Foundation <https://freedom.press>`_ on how to use
+it.
