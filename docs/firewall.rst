@@ -169,6 +169,8 @@ Here is a list of rules to allow traffic to port 22 (ssh) and port 80 and 443
     iptables -A FORWARD -j REJECT
 
 The first rules allows all incoming traffic on the `loopback` device.
+The second line allows packets related to an already established connection,
+or the cases where a packet is trying to reconnect.
 The last 3rd last line allows all outgoing packets, and the last 2 lines
 reject everything else which does not match the rules.
 If you want to view all the rules.
