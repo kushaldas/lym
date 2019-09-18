@@ -82,7 +82,7 @@ To setup the problem environment
 
 
 Create a softlink called `docs` in your home directory which will point to
-`/usr/share/doc/` directory. Also create another softlink called `meomory` to
+`/usr/share/doc/` directory. Also create another softlink called `memory` to
 the `/proc/meminfo` file.
 
 
