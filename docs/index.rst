@@ -21,6 +21,7 @@ Welcome to Linux command line for you and me!
    packages
    mounting
    networking
+   firewall
    random
    workbook
    advancedsection
