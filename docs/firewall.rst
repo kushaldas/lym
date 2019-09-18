@@ -106,15 +106,15 @@ View the existing rules
 
 .. code-block:: bash
 
-    # iptables -L
-    Chain INPUT (policy ACCEPT)
-    target     prot opt source               destination         
+    # iptables -nvL --line-numbers
+    Chain INPUT (policy ACCEPT 82 packets, 4756 bytes)
+    num   pkts bytes target     prot opt in     out     source               destination         
 
-    Chain FORWARD (policy ACCEPT)
-    target     prot opt source               destination         
+    Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+    num   pkts bytes target     prot opt in     out     source               destination         
 
-    Chain OUTPUT (policy ACCEPT)
-    target     prot opt source               destination 
+    Chain OUTPUT (policy ACCEPT 42 packets, 3192 bytes)
+    num   pkts bytes target     prot opt in     out     source               destination  
 
 
 The above command shows the default table **filter** and all chains and rules
@@ -177,25 +177,78 @@ If you want to view all the rules.
 
 ::
 
-    # iptables -nL
-    Chain INPUT (policy ACCEPT)
-    target     prot opt source               destination         
-    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
-    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            state NEW tcp dpt:22
-    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80
-    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:443
-    REJECT     all  --  0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+    # iptables -nvL --line-numbers
+    Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+    num   pkts bytes target     prot opt in     out     source               destination         
+    1        0     0 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    2      122  9641 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    3        1    52 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            state NEW tcp dpt:22
+    4        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80
+    5        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443
+    6       22  2044 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
 
-    Chain FORWARD (policy ACCEPT)
-    target     prot opt source               destination         
-    REJECT     all  --  0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+    Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+    num   pkts bytes target     prot opt in     out     source               destination         
 
-    Chain OUTPUT (policy ACCEPT)
-    target     prot opt source               destination         
-    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0  
+    Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
+    num   pkts bytes target     prot opt in     out     source               destination         
+    1      104 12085 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0 
+
+The *--line-numbers* argument shows the number of the each rule. We can use
+these line numbers to delete any rule.
 
 .. note:: For a desktop or laptop, you may want to drop all incoming connections, that will help in cases
           where someone in the local network may try to attack/scan your system.
+
+
+Delete a rule based on rule number
+-----------------------------------
+
+Let us delete the rule number 4, which allows traffic to port 80.
+
+::
+
+    # iptables -D INPUT 4
+    # iptables -nvL --line-numbers
+Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        4   376 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0           
+2      221 15445 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+3        1    52 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            state NEW tcp dpt:22
+4        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443
+5       22  2044 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1      166 17248 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0 
+
+
+Delete a rule directly
+-----------------------
+
+If you know the rule properly, you can also delete it based on the rule
+directly.
+
+::
+
+    # iptables -D INPUT -p tcp --dport 443 -j ACCEPT
+    # iptables -nvL --line-numbers
+    Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+    num   pkts bytes target     prot opt in     out     source               destination         
+    1        4   376 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    2      344 22417 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    3        1    52 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            state NEW tcp dpt:22
+    4       22  2044 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+
+    Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+    num   pkts bytes target     prot opt in     out     source               destination         
+
+    Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
+    num   pkts bytes target     prot opt in     out     source               destination         
+    1      234 22564 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
 
 Saving the rules
@@ -228,5 +281,6 @@ type of frontend for the same *netfilter* subsystem of the kernel.
 A blog post from Major Hayden
 ------------------------------
 
-Now, you should read the `following blog post <https://major.io/2010/04/12/best-practices-iptables/>`_ 
-from Major Hayden best practices.
+Now, you should read the `following blog post
+<https://major.io/2010/04/12/best-practices-iptables/>`_ from Major Hayden
+best practices.
