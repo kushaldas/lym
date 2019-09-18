@@ -201,7 +201,7 @@ If you want to view all the rules.
 Saving the rules
 ----------------
 
-Any change made via **iptables** command stays on memory. To save it (so that 
+Any change made via **iptables** command stays on memory. To save it (so that
 it autoreloads in reboot), use the following command.
 
 
@@ -224,3 +224,9 @@ For CentOS 7+
 
 The first line stops and then disables the **firewalld** service, it is a newer
 type of frontend for the same *netfilter* subsystem of the kernel.
+
+A blog post from Major Hayden
+------------------------------
+
+Now, you should read the `following blog post <https://major.io/2010/04/12/best-practices-iptables/>`_ 
+from Major Hayden best practices.
