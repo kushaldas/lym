@@ -1,6 +1,8 @@
 Linux Firewall
 ===============
 
+.. image:: img/firewall.png
+
 .. note:: This chapter is an ongoing work.
 
 A firewall is a network security system, which can monitor and control network
