@@ -216,7 +216,11 @@ For CentOS 7+
 
 ::
 
+    # systemctl stop firewalld && systemctl disable firewalld
     # iptables-save > /etc/sysconfig/iptables
     # systemctl enable iptables
     Created symlink from /etc/systemd/system/basic.target.wants/iptables.service to /usr/lib/systemd/system/iptables.service.
     # systemctl start iptables
+
+The first line stops and then disables the **firewalld** service, it is a newer
+type of frontend for the same *netfilter* subsystem of the kernel.
