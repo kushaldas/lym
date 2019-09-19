@@ -154,3 +154,40 @@ To verify
 ::
 
     sudo lymverify deleteuser
+
+
+Finding the IP address of dgplug.org
+------------------------------------
+
+Find the IP address of dgplug.org and save it to /tmp/ip_dgplug.txt file.
+
+To verify:
+
+::
+
+    sudo lymverify findip
+
+Change the local timezone of the system
+----------------------------------------
+
+Change the timezone of the system to the same of San Francisco, USA.
+
+To verify:
+
+::
+
+    sudo lymverify timezonechange
+
+
+Add sudo access to an user
+---------------------------
+
+Grant administrative(sudo) privileges to an existing normal user account
+"lym". Remeber to create the user first.
+
+
+To verify:
+
+::
+
+    sudo lymverify assignsudo
