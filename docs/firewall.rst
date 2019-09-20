@@ -286,3 +286,18 @@ A blog post from Major Hayden
 Now, you should read the `following blog post
 <https://major.io/2010/04/12/best-practices-iptables/>`_ from Major Hayden
 best practices.
+
+
+Debugging firewall rules
+-------------------------
+
+In case you want to debug the rules, and wan to see which packet matches which
+rule in the chain, you can add these two following rules. After that, do
+**tail -f /var/log/kern.log** to see the messages. Remember to use the proper
+IP address and port number.
+
+::
+
+    # iptables -t raw -A PREROUTING -p tcp --destination YOUR_IP/24 --dport PORT_NUMBER -j TRACE
+    # iptables -t raw -A OUTPUT -p tcp --destination YOUR_IP/24 --dport PORT_NUMBER -j TRACE
+
