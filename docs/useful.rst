@@ -314,3 +314,24 @@ example, the following command will show the current date/time in
 
     $ TZ=US/Pacific date
     Sun May 20 18:45:54 PDT 2018
+
+Bash history
+------------
+
+Using **history** command you can check for any command you previously used in the shell, 
+this output will not show you the commands from the current running shells. Only after
+you exit your shell, those commands will be written into `~/.bash_history` file, and history
+command tells us the details from there.
+
+The environment variable **HISTFILESIZE** determines the number of commands stored in the file.
+By default, the history command does not show timestamps. You can have another environment variable
+to set the timestamp of every command. All commands from before setting the timestamp will show the same
+time for execution.
+
+::
+
+    echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' > ~/.bashrc
+    source ~/.bashrc
+    ...
+    ...
+    history
