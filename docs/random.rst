@@ -121,6 +121,30 @@ Another example can be executing the same script in every 15 minutes in every ho
     0,15,30,45 * * * * /usr/bin/myscript.sh
 
 
+
+
+.. index:: last
+
+Finding out details about previous logins or system reboots
+------------------------------------------------------------
+
+**last** command will give you the details about all the previous logins and
+shutdown/reboots. This command actually checks */var/tmp/wtmp* file for the
+logs.
+
+The */var/log/btmp* file stores all the bad login details, and */var/log/utmp*
+file stores the details of the currently logged in users (**who** command
+reads this file).
+
+You can read the *btmp* file using **last** command.
+
+::
+
+    last -f /var/log/btmp
+
+To know more, you can read the man page of *wmtp*.
+
+
 Whats next?
 ============
 
