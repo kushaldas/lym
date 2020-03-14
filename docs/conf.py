@@ -42,13 +42,13 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-import recommonmark
-from recommonmark.parser import CommonMarkParser
-from recommonmark.transform import AutoStructify
+#import recommonmark
+#from recommonmark.parser import CommonMarkParser
+#from recommonmark.transform import AutoStructify
 
-source_parsers = {
-    '.md': CommonMarkParser,
-}
+#source_parsers = {
+#    '.md': CommonMarkParser,
+#}
 
 source_suffix = ['.rst', '.md']
 
@@ -57,7 +57,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Linux command line for you and me'
-copyright = u'2017-2019, Kushal Das'
+copyright = u'2017-2020, Kushal Das'
 author = u'Kushal Das'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -169,10 +169,10 @@ texinfo_documents = [
 
 
 # At the bottom of conf.py
-def setup(app):
-    app.add_config_value('recommonmark_config', {
-            'enable_eval_rst': True,
-            'enable_auto_doc_ref': True,
-            }, True)
-    app.add_transform(AutoStructify)
+#def setup(app):
+#    app.add_config_value('recommonmark_config', {
+#            'enable_eval_rst': True,
+#            'enable_auto_doc_ref': True,
+#            }, True)
+#    app.add_transform(AutoStructify)
 
