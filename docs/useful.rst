@@ -335,3 +335,23 @@ time for execution.
     ...
     ...
     history
+
+
+Sort files by size
+-------------------
+
+You can use **-S** or **--sort=size** option to the **ls** command.
+
+::
+
+    ls -lSh
+    total 176K
+    -rw-r--r-- 1 kdas kdas  14K Aug 27  2018 networking.rst
+    -rw-r--r-- 1 kdas kdas  13K May 21  2018 services.rst
+    -rw-r--r-- 1 kdas kdas  13K Aug 30  2019 startingcommands.rst
+    -rw-r--r-- 1 kdas kdas  13K Jan 27  2019 processes.rst
+    -rw-r--r-- 1 kdas kdas  12K Sep 20 21:35 firewall.rst
+    ...
+    ...
+
+You can reverse the sorting with passing **-r** option.
