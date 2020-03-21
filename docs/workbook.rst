@@ -135,7 +135,7 @@ To verify
     sudo lymverify newuser
 
 
-Deleing an user
+Deleting an user
 ------------------
 
 To setup the problem environment, remember to add the user first from the
@@ -179,7 +179,7 @@ To verify:
     sudo lymverify timezonechange
 
 
-Add sudo access to an user
+Add sudo access to a user
 ---------------------------
 
 Grant administrative(sudo) privileges to an existing normal user account
