@@ -135,7 +135,7 @@ To verify
     sudo lymverify newuser
 
 
-Deleing an user
+Deleting an user
 ------------------
 
 To setup the problem environment, remember to add the user first from the
@@ -179,7 +179,7 @@ To verify:
     sudo lymverify timezonechange
 
 
-Add sudo access to an user
+Add sudo access to a user
 ---------------------------
 
 Grant administrative(sudo) privileges to an existing normal user account
@@ -191,3 +191,19 @@ To verify:
 ::
 
     sudo lymverify assignsudo
+
+
+Install git-bash-prompt
+-----------------------
+
+Install bash-git-prompt, following the instructions on `this github
+repository <https://github.com/magicmonty/bash-git-prompt>`_, and then
+update the `PATH` variable in such a way so that `gitprompt.sh` is sourced.
+
+Remember to open a new `bash` shell, to assure that `.bashrc` is sourced.
+
+To verify:
+
+::
+
+    sudo lymverify gitprompt
