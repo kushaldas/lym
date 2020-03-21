@@ -191,3 +191,19 @@ To verify:
 ::
 
     sudo lymverify assignsudo
+
+
+Install git-bash-prompt
+-----------------------
+
+Install bash-git-prompt, following the instructions on `this github
+repository <https://github.com/magicmonty/bash-git-prompt>`_, and then
+update the `PATH` variable in such a way so that `gitprompt.sh` is sourced.
+
+Remember to open a new `bash` shell, to assure that `.bashrc` is sourced.
+
+To verify:
+
+::
+
+    sudo lymverify gitprompt
