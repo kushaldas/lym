@@ -64,6 +64,15 @@ for every domain name it needs to find, the client system generally connects to
 these dns servers, and finds out the IP address of the computer at that domain
 name.
 
+/etc/hosts
+-----------
+
+The system looks at this file first for any name resolution. If it can not find the DNS
+entry, then the system looks at the */etc/resolv.conf*, and connects to the DNS server.
+
+You can update */etc/hosts* file to add a domain to any particular IP address.
+
+
 /etc/resolv.conf
 -----------------
 
