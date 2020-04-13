@@ -13,7 +13,7 @@ You will need latest `Vagrant <https://www.vagrantup.com/>`_ for this. Install
 Vagrant following the steps from the website. We suggest you to use the
 libvirt provider along with it.
 
-Then checkout latest workbook code from github. 
+Then checkout latest workbook code from github.
 
 ::
 
@@ -25,6 +25,11 @@ Then checkout latest workbook code from github.
 
 
 The `vagrant up` command will create two vms.
+
+
+.. note:: In case you manged to delete some configuration inside of the VM(s), you can very easily start from scratch.
+         `vagrant destroy` will remove both the VMs, and `vagrant up` again will get them back. You can also destroy
+         one particular VM, `vagrant destroy workbook`.
 
 
 copy paste
