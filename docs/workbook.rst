@@ -10,8 +10,8 @@ How to install the workbook?
 -----------------------------
 
 You will need latest `Vagrant <https://www.vagrantup.com/>`_ for this. Install
-Vagrant following the steps from the website. We suggest you to use the
-libvirt provider along with it.
+Vagrant following the steps from the website. On Windows you can use VirtualBox
+along with Vagrant.
 
 Then checkout latest workbook code from github.
 
