@@ -140,7 +140,7 @@ To verify
     sudo lymverify newuser
 
 
-Deleing an user
+Deleting an existing user
 ------------------
 
 To setup the problem environment, remember to add the user first from the
