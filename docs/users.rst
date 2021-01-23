@@ -236,4 +236,4 @@ In the following example, we are adding *firejumpers* group to our vagrant user.
     $ sudo usermod -aG firejumpers vagrant
 
 
-.. important:: Remember to use **-a** flag, or else it will delete all groups for the user and have only the new group you have mentioned in the command.
+.. important:: It is important to use **-a** flag to the `usermod` command. Without the **-a** flag `usermod` command will delete all the existing groups of the user. With `usermod -a` we append the user to the supplemental groups. And **-G** flag specifies the new list of supplementary GROUPS. Therefore with `usermond -aG` we append the new list of supplementary groups to the user's existing group/groups.
