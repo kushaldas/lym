@@ -29,6 +29,10 @@ What is a daemon?
 Daemon is the actual term for those long-running background processes. A service
 actually consists of one or more daemons.
 
+Make sure that you don't get confused between Daemons and Demons :) Here is a
+gem from Internet:
+
+.. figure:: img/demon_hackers.png
 
 What is the init system?
 -------------------------
