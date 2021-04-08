@@ -402,15 +402,17 @@ The following table is a good starting point.
 +-----------------+------------------------------------------------+
 | Alt + F         | Move to the next word                          |
 +-----------------+------------------------------------------------+
-| Ctrl + U        | Erase to the beginning of the line             |
+| Ctrl + U        | Cuts  to the beginning of the line             |
 +-----------------+------------------------------------------------+
-| Ctrl + K        | Erase to the end of the line                   |
+| Ctrl + K        | Cuts  to the end of the line                   |
 +-----------------+------------------------------------------------+
-| Ctrl + W        | Erase the previous word                        |
+| Ctrl + W        | Cuts  the previous word                        |
 +-----------------+------------------------------------------------+
 | Ctrl + P        | Browse previously entered commands             |
 +-----------------+------------------------------------------------+
 | Ctrl + R        | Reverse search for previously entered commands |
++-----------------+------------------------------------------------+
+| Ctrl + Y        | Pastes the text in buffer                      |
 +-----------------+------------------------------------------------+
 
 man pages

@@ -173,7 +173,7 @@ vim. But, the steps above are sufficient for our book’s scope.
 
 One major thing to remember about any text file, is keeping the
 newline character as the last line of the file. Because that is how the
-` POSIX <https://en.wikipedia.org/wiki/POSIX>`_ standard
+`POSIX <https://en.wikipedia.org/wiki/POSIX>`_ standard
 `defines <http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_206>`_
 a line.
 
@@ -218,6 +218,24 @@ Add the **sudo** command in front of any other command to execute them as
     $ sudo less /var/log/secure
     [sudo] password for fedora:
     ... long output
+
+!! trick
+---------
+
+There are times when you forgot to type `sudo` in the front of the command, you can use `!!` along
+with `sudo` to type that in faster.
+
+::
+
+    $ less /var/log/secure
+    /var/log/secure: Permission denied
+    $ sudo !!
+    [sudo] password for fedora:
+    ... long output
+
+
+To know more about the ! based bash tricks, read `this blog post from Red Hat <https://www.redhat.com/sysadmin/bash-bang-commands>`_.
+
 
 .. index:: Environment variable
 
