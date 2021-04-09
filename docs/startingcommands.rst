@@ -438,3 +438,16 @@ You can know about different sections below. Press *q* to quit the program.
        7   Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
        8   System administration commands (usually only for root)
        9   Kernel routines [Non standard]
+
+Counting files in a directory
+------------------------------
+
+Normally `ls` commands shows all the files and directories in multiple column.
+But if you pipe the output to any another command, then it prints one name in a
+line. We can combanine that with `wc -l` to count the number of files in a
+directory.
+
+::
+
+        ls | wc -l
+        73
