@@ -451,3 +451,10 @@ directory.
 
         ls | wc -l
         73
+
+Editing longer commands
+------------------------
+
+If you are typing a long command or something multi-line, then you can type
+`Ctrl-x-e`, press Control button, and then `x` and then `e` key. This will open
+up a temporary editor using the `$EDITOR`.
