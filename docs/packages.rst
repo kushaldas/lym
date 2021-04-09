@@ -115,6 +115,22 @@ than one package name as the argument.
 
   Complete!
 
+To list the available updates
+-----------------------------
+
+The following command shows all the available updates for your system.
+
+::
+
+        # dnf list updates
+
+        Last metadata expiration check: 0:52:28 ago on Fri 09 Apr 2021 08:51:39 PM IST.
+        Available Upgrades
+        fedora-gpg-keys.noarch               33-4              updates
+        fedora-repos.noarch                  33-4              updates
+        fedora-repos-modular.noarch          33-4              updates
+
+
 .. index:: apt
 
 apt command
