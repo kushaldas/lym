@@ -90,19 +90,28 @@ file you want to execute.
 PATH variable
 --------------
 
-The *PATH* variable is a special variable. When we type a command in the bash
-shell, it searches for the command in the directories mentioned, in the PATH
-variable. We can see the current *PATH* value using the *echo* command.
+The PATH is a shell variable. 
+When we type a command in the bash shell, it searches for the command in the directories 
+mentioned in the succeeding/sequential order, in the PATH variable. We can see the current
+ PATH value using the echo command.
 
 ::
 
     $ echo $PATH
     /usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/fedora/.local/bin:/home/fedora/bin
 
-The different directories are separated by ```:```. You can see the
-*/home/fedora/bin* directory is mentioned in the path. This means if we have
-that directory, and an executable file is in there, we can use it as a normal
-command in our shell. We will see an example of this, later in the book.
+
+
+The different directories are separated by `:`. To a search a particular command the shell will search in the following sequential order -
+
+- `/usr/local/bin`
+- `/usr/bin`
+- `/usr/local/sbin`
+- `/usr/sbin`
+- `/home/fedora/.local/bin`
+- `/home/fedora/bin`
+
+You can see the /home/fedora/bin directory is mentioned in the path. This means if we have that directory, and an executable file is in there, we can use it as a normal command in our shell. We will see an example of this, later in the book.
 
 .. index:: bashrc
 
@@ -142,6 +151,23 @@ by a command in our shell.
 
 The second example shows the output in case the *which* command cannot find the
 executable mentioned.
+
+.. index:: Use *which* command to see how $PATH variable works
+
+Use *which* command to see how $PATH variable works
+----------------------------------------------------
+
+::
+
+    $ asakj
+    bash: asakj: command not found...
+
+    $ which asakj
+    /usr/bin/which: no asakj in (/home/adas/.local/bin:/home/adas/bin:/home/adas/.cargo/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin)
+
+There is no command as *asakj*. The shell searched for *asakj* in the directory as designated under the $PATH varible in the .bashrc file and not found it - `bash: asakj: command not found...`
+Then with the *which* command we can actually see how does that search work.
+
 
 she-bang or sha-bang in executable files
 -----------------------------------------
