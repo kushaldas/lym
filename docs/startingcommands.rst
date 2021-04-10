@@ -53,6 +53,17 @@ In case you want to know the current date/time in UTC, use the following command
     $ date -u
     Mon May 21 01:43:47 UTC 2018
 
+If you want to see yesterday's date, or a 10 days ago, you can even do that.
+
+::
+
+        $ date --date="yesterday"
+        Fri Apr  9 07:09:01 PM IST 2021
+
+        $ date --date="10 days ago"
+        Wed Mar 31 07:09:06 PM IST 2021
+
+
 cal command
 ------------
 
