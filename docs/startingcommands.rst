@@ -30,7 +30,7 @@ the home directory of the user. In our case the home directory path is
 The Gnome terminal is one of many implementations of terminal emulators.
 Different Linux environments may come pre-installed with different terminals.
 
-Read the articles on Wikipedia to learn about `computer teriminals
+Read the articles on Wikipedia to learn about `computer terminals
 <https://en.wikipedia.org/wiki/Computer_terminal>`_, `terminal emulators
 <https://en.wikipedia.org/wiki/Terminal_emulator>`_ and `shell
 <https://en.wikipedia.org/wiki/Shell_%28computing%29>`_.
@@ -455,7 +455,7 @@ Counting files in a directory
 
 Normally `ls` commands shows all the files and directories in multiple column.
 But if you pipe the output to any another command, then it prints one name in a
-line. We can combanine that with `wc -l` to count the number of files in a
+line. We can combine that with `wc -l` to count the number of files in a
 directory.
 
 ::
