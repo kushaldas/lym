@@ -70,7 +70,7 @@ Each line has seven entries separated by *:*.
 +---------------+---------------------------------+
 | gid           | Numeric group id of user        |
 +---------------+---------------------------------+
-| gecos         | arbitary field                  |
+| gecos         | arbitrary field                 |
 +---------------+---------------------------------+
 | /home/dirname | Home directory of the user      |
 +---------------+---------------------------------+
