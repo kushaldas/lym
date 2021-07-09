@@ -62,15 +62,15 @@ Each line has seven entries separated by *:*.
 +---------------+---------------------------------+
 | FIELD         | MEANING                         |
 +===============+=================================+
-| username      | the username                    |
+| username      | The username                    |
 +---------------+---------------------------------+
-| password      | the password of the user        |
+| password      | The password of the user        |
 +---------------+---------------------------------+
 | uid           | Numeric user id                 |
 +---------------+---------------------------------+
 | gid           | Numeric group id of user        |
 +---------------+---------------------------------+
-| gecos         | arbitrary field                 |
+| gecos         | Arbitrary field                 |
 +---------------+---------------------------------+
 | /home/dirname | Home directory of the user      |
 +---------------+---------------------------------+
