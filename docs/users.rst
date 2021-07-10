@@ -53,9 +53,7 @@ text file (this means you can view the information by using *cat* command.)
     tss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin
 
 
-Each line has seven entries separated by *:*. 
-
-::
+Each line has seven entries separated by::
 
     username:password:uid:gid:gecos:/home/dirname:shell
 
