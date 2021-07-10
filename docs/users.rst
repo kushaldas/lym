@@ -75,7 +75,7 @@ Each line has seven entries separated by *:*.
 | /home/dirname | Home directory of the user      |
 +---------------+---------------------------------+
 | shell         | Which shell to use for the user |
-+--------------+----------------------------------+
++---------------+---------------------------------+
 
 You’ll see accounts with */sbin/nologin* as their shell. These are generally
 accounts for various services, which are not supposed to be used by a normal
