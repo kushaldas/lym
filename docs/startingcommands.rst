@@ -46,7 +46,7 @@ date command
     Sun Jun 25 10:13:44 IST 2017
 
 In case you want to know the current date/time in UTC, use the following command.
-(I added this in 2018, so please do not get confused at the date).
+(I added this in 2018, so please do not get confused at the date.)
 
 ::
 
@@ -68,7 +68,7 @@ cal command
 ------------
 
 *cal* command is used to display a calendar in your shell, by default it
-will display the current month
+will display the current month.
 
 ::
 
@@ -252,7 +252,7 @@ Renaming or moving a file
 --------------------------
 
 The *mv* command is used to rename or *move* a file or directory. In the
-following example, the file *hello.txt* is renamed to *nothello.txt*
+following example, the file *hello.txt* is renamed to *nothello.txt*.
 
 ::
 
