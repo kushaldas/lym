@@ -252,8 +252,7 @@ Renaming or moving a file
 --------------------------
 
 The *mv* command is used to rename or *move* a file or directory. In the
- following example, the file *hello.txt* is renamed to
- *nothello.txt*
+following example, the file *hello.txt* is renamed to *nothello.txt*
 
 ::
 
