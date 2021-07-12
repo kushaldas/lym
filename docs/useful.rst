@@ -74,9 +74,8 @@ content.
 Extracting a tar file
 ----------------------
 
-**tar** is a tool to create and extract archive files. Many times we
- will have to download and then extract tar files in our regular
- day to day work.
+**tar** is a tool to create and extract archive files. Many times we will have
+to download and then extract tar files in our regular day to day work.
 
 ::
 
