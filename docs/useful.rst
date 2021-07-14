@@ -199,7 +199,7 @@ command will helps you become the *root* user; use this *extremely* carefully.
 Notice how the command prompt changed to *#* from *$*, *#* shows that
 you are using the *root* — another visible indication to think
 about every command you give as *root*. Press *Ctrl+d* to log
-out of the *root* account. (or any account, for that matter)
+out of the *root* account. (Or any account, for that matter.)
 
 
 .. index:: sudo
