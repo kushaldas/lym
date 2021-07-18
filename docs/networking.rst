@@ -95,7 +95,8 @@ hosted by Google.
 host command
 -------------
 
-The **host** command will show you the IP address of any given hostname.
+The **host** command is a simple DNS lookup utility. It will show you the IP
+address of any given hostname.
 
 ::
 
@@ -248,6 +249,14 @@ Read the man page of the command to know more about the different arguments we c
     tcp   ESTAB      0      0                                 192.168.1.101:47864                                       74.125.200.189:443                 users:(("chrome",pid=22112,fd=385))
     tcp   ESTAB      0      0                                 192.168.1.101:59524                                      209.12.123.55:22                  users:(("ssh",pid=26621,fd=3))
     ... long output
+
+You can also learn various other statistics about sockets, for example, if you
+want to know all the sockets from your computer connected to any machine at
+port *443*, you can use the following command.
+
+::
+
+    $ ss -pt dst :443
 
 .. index:: traceroute
 
