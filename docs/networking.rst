@@ -95,7 +95,8 @@ hosted by Google.
 host command
 -------------
 
-The **host** command will show you the IP address of any given hostname.
+The **host** command is a simple DNS lookup utility. It will show you the IP
+address of any given hostname.
 
 ::
 
@@ -133,6 +134,24 @@ dig command
     ;; WHEN: Sun Jun 25 11:37:00 IST 2017
     ;; MSG SIZE  rcvd: 57
 
+If you want to print only the IP address in the output, you can use *+short* as
+argument.
+
+::
+
+    $ dig +short kushaldas.in
+    208.113.152.208
+
+You can also specify any particular type of record from the DNS server.
+For example, if I want to get the `TXT` records, I can do the following command.
+
+::
+
+    $ dig +short kushaldas.in TXT
+    "google-site-verification=DPpUk-OfBLT-5PkbSR9VM2Uht3eXaksthROvS-L9iKY"
+    "kolab-verify=35f0040cd1ebb20fb7f0b3fade0e1c8e"
+
+You can use any of the following options instead of `TXT`: *A|MX|TXT|CNAME|NS*.
 
 If you want to specify a DNS server to use, you can do that with the address
 specified at the end of the command along with a @ sign.
@@ -161,6 +180,58 @@ specified at the end of the command along with a @ sign.
     ;; MSG SIZE  rcvd: 106
 
 
+If you want learn about the full path of the DNS query, you can find that out
+by *+trace* flag. For the following example where we are trying to find the IP
+address for `anweshadas.in <https://anweshadas.in>`_, `dig` first connects to
+the root name servers to find the correct DNS resolvers for the *.in* servers,
+then they tells they tell *dig* to go the servers (in this case Dreamhost name
+servers) which contain the exact IP address for the domain.
+
+::
+
+    $ dig +trace anweshadas.in @8.8.8.8
+
+    ; <<>> DiG 9.11.5-P4-5.1+deb10u5-Debian <<>> +trace anweshadas.in @8.8.8.8
+    ;; global options: +cmd
+    .			47041	IN	NS	m.root-servers.net.
+    .			47041	IN	NS	b.root-servers.net.
+    .			47041	IN	NS	c.root-servers.net.
+    .			47041	IN	NS	d.root-servers.net.
+    .			47041	IN	NS	e.root-servers.net.
+    .			47041	IN	NS	f.root-servers.net.
+    .			47041	IN	NS	g.root-servers.net.
+    .			47041	IN	NS	h.root-servers.net.
+    .			47041	IN	NS	a.root-servers.net.
+    .			47041	IN	NS	i.root-servers.net.
+    .			47041	IN	NS	j.root-servers.net.
+    .			47041	IN	NS	k.root-servers.net.
+    .			47041	IN	NS	l.root-servers.net.
+    .			47041	IN	RRSIG	NS 8 0 518400 20210730050000 20210717040000 26838 . MFT2Q71k1LZVfXyH2qKWLoS7a7j5aSVdlp4SrIptZXP0ydjav7y5sLv/ Yz76Ki+3PU0G3SagwbC61bdi6sNV5DiBpxIzny8Mavx23P6XKsbetFr1 RgkwlzyGJmd0kLA4ydgjrzRh2hhvQkBDWtzBpVLUo7tDmwodE/zi/RUA CMofG9YIkgxSX0/5qUUKXhijHocYXQU++x7RbFqTxJBEW8Fn6GDTtg1Z pTT0UYpmMX5NHiRlneYb6ChHGQLfbQ1kBblxuQlsPb46dJBKaXT3wr3/ SXUXQCZ+ADCsolK+LhGeQtByqBEXryjuT/U2WK8mqcTAs/d1bToRwrH5 nxizXg==
+    ;; Received 525 bytes from 8.8.8.8#53(8.8.8.8) in 1 ms
+
+    in.			172800	IN	NS	ns1.registry.in.
+    in.			172800	IN	NS	ns2.registry.in.
+    in.			172800	IN	NS	ns3.registry.in.
+    in.			172800	IN	NS	ns4.registry.in.
+    in.			172800	IN	NS	ns5.registry.in.
+    in.			172800	IN	NS	ns6.registry.in.
+    in.			86400	IN	DS	54739 8 1 2B5CA455A0E65769FF9DF9E75EC40EE1EC1CDCA9
+    in.			86400	IN	DS	54739 8 2 9F122CFD6604AE6DEDA0FE09F27BE340A318F06AFAC11714A73409D4 3136472C
+    in.			86400	IN	RRSIG	DS 8 1 86400 20210730170000 20210717160000 26838 . i6toEqveLqwB/W4Z/77bfGyFyYJRepGi8uYoQ0jEZM1I95qxsqeMCtdV cr3foafFJKaCkvH2eAfIUrHH8GMn/t9lVDrHwikLisoaPaSahgoQAOPm ClR/VDcAxkVwE+07Ir6ROt+qXn5jse4gnB+nezI4Q+rakearp8D9AaxJ ubWnAMfHOqKBLDMGNrm6/XRk6HA43nrMIUKNCFbhpKo5gkvy+S768uQu ySRdLTUxN0ELO9Qv7fBqQxamRyZ1N5LKTpjkKNKYwnihOVIWvktqt4p7 xoJL56z0XE9HhhI807GOBcpLBeaRKZXOA8GKU77pm9lDLHSuG4epF3zD X9Vayw==
+    ;; Received 794 bytes from 193.0.14.129#53(k.root-servers.net) in 1 ms
+
+    anweshadas.in.		86400	IN	NS	ns3.dreamhost.com.
+    anweshadas.in.		86400	IN	NS	ns2.dreamhost.com.
+    anweshadas.in.		86400	IN	NS	ns1.dreamhost.com.
+    bo801o0uciino3vfr38lrljcrv2ucohi.in. 1800 IN NSEC3 1 1 1 00763C64 BO9UQ54VB22M3J37NR3N6GRC6J4RVUTV NS SOA RRSIG DNSKEY NSEC3PARAM
+    bo801o0uciino3vfr38lrljcrv2ucohi.in. 1800 IN RRSIG NSEC3 8 2 1800 20210813034112 20210714030559 65169 in. gZ3NODrbaP6/GV1McvgHTD4wn9w2w5CCqjoI+JyjRpNVweGuDex5A/ls OznLptg/nmmJlx3835suy9I79h0tOjDjWNXxLQ9scKCtYZJSFqIdnRS9 QP5egjVJnZ3zOLN0lO//hQa/gIhKCSqYpLCWLS1RoFn3B5uvF96VopKU YYfjXFbqYCjyx4T8oZi72xFUChr/yi/dVkHbM0OvwLCJRg==
+    8679tah9aq7s760bquasj6clf332vb3e.in. 1800 IN NSEC3 1 1 1 00763C64 869E0HEFFMPE89PM1VHLGQHH72K7IGRM NS DS RRSIG
+    8679tah9aq7s760bquasj6clf332vb3e.in. 1800 IN RRSIG NSEC3 8 2 1800 20210815211611 20210716202452 65169 in. GahrJsYIVpR5+eaykB/DuaIPSUeR+rX3DxR7yR3mMN/7pVSekbZ/Fw4I q5NZLKhBp2WKq0aiwxYX4+VfKjdLyQLKeGoXYeFpwps6KiCf8gLjDJwO Hx1PCgg5CnUEYw+iXd3GGx46ZlyHHbuSNa4YbVBEHevcmo/3oc3ubiMf VKTcuR+upzBQmLzNId6LB9qZBpFfe6GPCy/sMMaCKB0OwQ==
+    ;; Received 664 bytes from 37.209.196.12#53(ns3.registry.in) in 2 ms
+
+    anweshadas.in.		14400	IN	A	159.89.209.77
+    ;; Received 58 bytes from 162.159.26.14#53(ns1.dreamhost.com) in 160 ms
+
 
 .. index:: ss
 
@@ -178,6 +249,14 @@ Read the man page of the command to know more about the different arguments we c
     tcp   ESTAB      0      0                                 192.168.1.101:47864                                       74.125.200.189:443                 users:(("chrome",pid=22112,fd=385))
     tcp   ESTAB      0      0                                 192.168.1.101:59524                                      209.12.123.55:22                  users:(("ssh",pid=26621,fd=3))
     ... long output
+
+You can also learn various other statistics about sockets, for example, if you
+want to know all the sockets from your computer connected to any machine at
+port *443*, you can use the following command.
+
+::
+
+    $ ss -pt dst :443
 
 .. index:: traceroute
 
