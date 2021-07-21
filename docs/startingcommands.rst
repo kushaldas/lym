@@ -46,7 +46,7 @@ date command
     Sun Jun 25 10:13:44 IST 2017
 
 In case you want to know the current date/time in UTC, use the following command.
-(I added this in 2018, so please do not get confused at the date).
+(I added this in 2018, so please do not get confused at the date.)
 
 ::
 
@@ -68,7 +68,7 @@ cal command
 ------------
 
 *cal* command is used to display a calendar in your shell, by default it
-will display the current month
+will display the current month.
 
 ::
 
@@ -126,7 +126,9 @@ cd command
 ----------
 
 The next command we will learn is *cd*, short for *change directory*. This command will help you to change your current directory. We will move
-to */tmp* directory in our example.::
+to */tmp* directory in our example.
+
+::
 
     [babai@kdas-laptop ~]$ cd /tmp
     [babai@kdas-laptop tmp]$ pwd
@@ -157,7 +159,9 @@ ls command
 
 We use *ls* command to *list* the files and directories inside any given
 directory. If you use *ls* command without any argument, then it will work on
-the current directory. We will see few examples of the command below.::
+the current directory. We will see few examples of the command below.
+
+::
 
     [babai@kdas-laptop ~]$ ls
     Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
@@ -178,7 +182,9 @@ mkdir command
 -------------
 
 We can create new directories using *mkdir* command. For our example we will
-create a *code* directory inside our home directory.::
+create a *code* directory inside our home directory.
+
+::
 
     [babai@kdas-laptop ~]$ ls
     Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
@@ -186,7 +192,9 @@ create a *code* directory inside our home directory.::
     [babai@kdas-laptop ~]$ ls
     code  Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
 
-We can also create nested directories in a single command using the *-p* option.::
+We can also create nested directories in a single command using the *-p* option.
+
+::
 
     [babai@kdas-laptop ~]$ mkdir -p dir1/dir2/dir3
     [babai@kdas-laptop ~]$ ls dir1/ dir1/dir2/ 
@@ -252,8 +260,7 @@ Renaming or moving a file
 --------------------------
 
 The *mv* command is used to rename or *move* a file or directory. In the
- following example, the file *hello.txt* is renamed to
- *nothello.txt*
+following example, the file *hello.txt* is renamed to *nothello.txt*.
 
 ::
 
