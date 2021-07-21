@@ -1,19 +1,28 @@
 Workbook
 =========
 
-The `Lym Workbook <https://github.com/kushaldas/lymworkbook>`_ is  an effort
+The `Lym Workbook <https://github.com/kushaldas/lymworkbook>`_ is an effort
 to create a small lab environment for the students to learn various commands
-from book. We will slowly add more problems to it.
+from book. It uses `Vagrant <https://www.vagrantup.com/>`_ to create a new
+Virtual Machine (VM) on which you can practice commands, try out different
+solutions and solve these problem without having to worry about messing up your
+computer. We will slowly add more problems to it.
 
 
-How to install the workbook?
------------------------------
+How to use this workbook?
+-------------------------
+
+Installation
+~~~~~~~~~~~~
 
 You will need latest `Vagrant <https://www.vagrantup.com/>`_ for this. Install
 Vagrant following the steps from the website. On Windows you can use VirtualBox
 along with Vagrant.
 
-Then checkout latest workbook code from github.
+Getting the code
+~~~~~~~~~~~~~~~~
+
+Checkout latest workbook code from github.
 
 ::
 
@@ -31,49 +40,55 @@ The `vagrant up` command will create two vms.
          `vagrant destroy` will remove both the VMs, and `vagrant up` again will get them back. You can also destroy
          one particular VM, `vagrant destroy workbook`.
 
+Setting up environment
+~~~~~~~~~~~~~~~~~~~~~~
+
+Each problem here has a unique "string" which can be used to setup this new
+machine's environment according to that problem's specification, e.g., for
+setting up environment for a problem with string `unicorn`, you should do:
+
+::
+
+   sudo lymsetup unicorn
+
+After running the commands and making the changes mentioned in the problem
+statement, you should run the following to verify that the changes are as per
+the problem requirements:
+
+::
+
+   sudo lymverify unicorn
+
 
 copy paste
 -----------
 
-To setup the problem environment
+ID string: `copypaste`
 
-::
+- Create a directory called `work` in your home directory.
+- Copy the file `/tmp/problem1/work/files/hello.txt` into this newly created
+  diretory.
+- Remember to remove the `/tmp/problem1/work/files/hello.txt` file afterwards.
+- Create a file named `/tmp/chapter1/allusers` and add all of the directory
+  names under your home directory into that file.
 
-    sudo lymsetup copypaste
+.. note:: To setup the problem environment, run:
 
+  ::
 
-Create a directory called `work` in your home directory, and copy the file
-from `/tmp/problem1/work/files/hello.txt` into the newly created diretory.
-Remember to remove the `/tmp/problem1/work/files/hello.txt` file afterwards.
-Create a file called `/tmp/chapter1/allusers` and add all of the directory
-names under your home directory into that file.
+      sudo lymsetup copypaste
 
+  After performing the steps, verify the result using:
 
-To verify
+  ::
 
-::
-
-    sudo lymverify copypaste
+      sudo lymverify copypaste
 
 
 Find your user id
 ------------------
 
-To setup the problem environment
-
-::
-
-    sudo lymsetup findid
-
-
 Find your user id and write it down in a file `/tmp/myuserid.txt`.
-
-
-To verify
-
-::
-
-    sudo lymverify findid
 
 
 Creating softlinks
@@ -141,7 +156,7 @@ To verify
 
 
 Deleting an existing user
-------------------
+-------------------------
 
 To setup the problem environment, remember to add the user first from the
 previous problem.
