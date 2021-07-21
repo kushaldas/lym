@@ -74,9 +74,8 @@ content.
 Extracting a tar file
 ----------------------
 
-**tar** is a tool to create and extract archive files. Many times we
- will have to download and then extract tar files in our regular
- day to day work.
+**tar** is a tool to create and extract archive files. Many times we will have
+to download and then extract tar files in our regular day to day work.
 
 ::
 
@@ -86,7 +85,7 @@ Extracting a tar file
 
 
 *files.tar.gz* file is compressed with gzip, if the file name ends
-*with .tar.bz2*, then it is compressed wth bzip2.
+*with .tar.bz2*, then it is compressed with bzip2.
 
 ::
 
@@ -118,7 +117,7 @@ Vim editor
 Text editors are tools to edit files. This could be a configuration
 file, or source code, or an email, or any other kind of text file.
 Which editor to use, is generally a personal choice, and a lot of good
-energy has been wasted in the telling of which one, is the one, truem best editor. In
+energy has been wasted in the telling of which one, is the one, true best editor. In
 this book we will just learn about **Vim** editor. It’s also known as
 *vi improved* editor. In the Fedora Linux distribution, the *vi*
 command is actually an alias to **vim** itself.
@@ -200,7 +199,7 @@ command will helps you become the *root* user; use this *extremely* carefully.
 Notice how the command prompt changed to *#* from *$*, *#* shows that
 you are using the *root* — another visible indication to think
 about every command you give as *root*. Press *Ctrl+d* to log
-out of the *root* account. (or any account, for that matter)
+out of the *root* account. (Or any account, for that matter.)
 
 
 .. index:: sudo
