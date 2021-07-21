@@ -167,6 +167,15 @@ to see the change.
 .. important:: To know more, read the man page of *bash* command.
 
 
+.. index:: /etc/profile
+
+/etc/profile file
+------------------
+
+This file is used to configure whenever a new login shell is created. This
+configures system wide, means if you add any variable here, that will be
+available for all users who can login to the system.
+
 .. index:: which
 
 which command
