@@ -113,13 +113,45 @@ The different directories are separated by `:`. To a search a particular command
 
 You can see the /home/fedora/bin directory is mentioned in the path. This means if we have that directory, and an executable file is in there, we can use it as a normal command in our shell. We will see an example of this, later in the book.
 
+.. index:: bash_profile
+
+
+~/.bash_profile file
+----------------------
+
+`~/.bash_profile` is the configuration file for bash for the users who are allowed to login (via GUI or via ssh).
+On Fedora systems this file also read configuration from the `~/.bashrc` file.
+
+::
+
+    # Get the aliases and functions
+    if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+    fi
+
+
+One can set environment variables, update **$PATH** or any other important
+variables, or commands to execute after login using this file. But, remember to
+relogin or source the file (`source ~/.bash_profile`) after making the change.
+
 .. index:: bashrc
 
 .bashrc file 
 ------------
 
-The *~/.bashrc* is a special configuration file for your bash terminal. You
-can define or delete or update environment variables and many things more.
+The *~/.bashrc* is a special configuration file for your bash terminal used for
+the users who can not login via the standard methods. These accounts will have
+*nologin* marked in the `/etc/passwd` file. For example:
+
+::
+
+    mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+    operator:x:11:0:operator:/root:/sbin/nologin
+    games:x:12:100:games:/usr/games:/sbin/nologin
+    ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+
+You can define or delete or update environment variables and add commands to
+execute when a new interactive shell opens up for the users who can not login.
 
 For example, if want to add a new directory path to the **PATH** variable, then
 we can add the following line at the end of the *~/.bashrc* file.
@@ -128,8 +160,9 @@ we can add the following line at the end of the *~/.bashrc* file.
 
     export PATH=/mnt/myproject/bin:$PATH
 
+After modifying the `.bashrc` file you will have to source it, or open a new tab in your terminal
+to see the change.
 
-Remember to logout and login again to see the change.
 
 .. important:: To know more, read the man page of *bash* command.
 
