@@ -38,6 +38,7 @@ ping command
 *ping* is simple way to find if you are connected to Internet or not.   
 We can also ping any particular computer to find if the computer is connected to the network or not. Press *Ctrl+c* to stop the loop.
 
+::
 
     $ ping google.com
     PING google.com (216.58.201.142) 56(84) bytes of data.
