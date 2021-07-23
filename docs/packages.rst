@@ -140,20 +140,117 @@ apt command
 Ubuntu is downstream of the *Debian* distribution, it also uses the same package
 management system.
 
-apt-get update
----------------
+apt update
+-----------
 
 ::
 
-  $ apt-get update
+  # apt update
   ... long output
 
 
-The **apt-get update** command is used to update all the package information for
+The **apt update** command is used to update all the package information for
 the Debian repositories.
 
-apt-get install
-----------------
+apt-cache search
+-----------------
 
-**sudo apt-get install** is the command used to install any given package from
+After you updated the cache, you can search for any package. Say, we want to search
+the packge `neomutt`.
+
+::
+
+    # apt-cache search neomutt
+    neomutt - command line mail reader based on Mutt, with added features
+
+To know the exact policy (from where it will installed/upgrade or which version etc),
+you can use the following command.
+
+::
+
+    # apt-cache policy libudev1
+    libudev1:
+      Installed: 241-7~deb10u7
+      Candidate: 241-7~deb10u8
+      Version table:
+         241-7~deb10u8 500
+            500 http://security.debian.org/debian-security buster/updates/main amd64 Packages
+     *** 241-7~deb10u7 500
+            500 http://deb.debian.org/debian buster/main amd64 Packages
+            100 /var/lib/dpkg/status
+
+
+Listing upgrades
+-----------------
+
+You can use `apt list --upgradable` to list all the packages that have updates in the repositories.
+
+::
+
+    # apt list --upgradable
+    Listing... Done
+    libsystemd0/stable 241-7~deb10u8 amd64 [upgradable from: 241-7~deb10u7]
+    libudev1/stable 241-7~deb10u8 amd64 [upgradable from: 241-7~deb10u7]
+
+
+Upgrading packages
+------------------
+
+Use `apt dist-upgrade` to upgrade all the packages to the latest from the repositories.
+
+::
+
+    # apt dist-upgrade 
+    Reading package lists... Done
+    Building dependency tree       
+    Reading state information... Done
+    Calculating upgrade... Done
+    The following packages will be upgraded:
+      libsystemd0 libudev1
+    2 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 483 kB of archives.
+    After this operation, 0 B of additional disk space will be used.
+    Do you want to continue? [Y/n] Y
+    Get:1 http://security.debian.org/debian-security buster/updates/main amd64 libsystemd0 amd64 241-7~deb10u8 [331 kB]
+    Get:2 http://security.debian.org/debian-security buster/updates/main amd64 libudev1 amd64 241-7~deb10u8 [151 kB]
+    Fetched 483 kB in 1s (379 kB/s)  
+    debconf: delaying package configuration, since apt-utils is not installed
+    (Reading database ... 6677 files and directories currently installed.)
+    Preparing to unpack .../libsystemd0_241-7~deb10u8_amd64.deb ...
+    Unpacking libsystemd0:amd64 (241-7~deb10u8) over (241-7~deb10u7) ...
+    Setting up libsystemd0:amd64 (241-7~deb10u8) ...
+    (Reading database ... 6677 files and directories currently installed.)
+    Preparing to unpack .../libudev1_241-7~deb10u8_amd64.deb ...
+    Unpacking libudev1:amd64 (241-7~deb10u8) over (241-7~deb10u7) ...
+    Setting up libudev1:amd64 (241-7~deb10u8) ...
+    Processing triggers for libc-bin (2.28-10) ...
+
+
+apt install
+--------------
+
+`apt install packagename` is the command used to install any given package from
 the repository.
+
+::
+
+    # apt install htop
+    Reading package lists... Done
+    Building dependency tree       
+    Reading state information... Done
+    Suggested packages:
+      lsof strace
+    The following NEW packages will be installed:
+      htop
+    0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 92.8 kB of archives.
+    After this operation, 230 kB of additional disk space will be used.
+    Get:1 http://deb.debian.org/debian buster/main amd64 htop amd64 2.2.0-1+b1 [92.8 kB]
+    Fetched 92.8 kB in 1s (113 kB/s)
+    debconf: delaying package configuration, since apt-utils is not installed
+    Selecting previously unselected package htop.
+    (Reading database ... 6677 files and directories currently installed.)
+    Preparing to unpack .../htop_2.2.0-1+b1_amd64.deb ...
+    Unpacking htop (2.2.0-1+b1) ...
+    Setting up htop (2.2.0-1+b1) ...
+
