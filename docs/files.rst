@@ -93,7 +93,7 @@ PATH variable
 The PATH is a shell variable. 
 When we type a command in the bash shell, it searches for the command in the directories 
 mentioned in the succeeding/sequential order, in the PATH variable. We can see the current
- PATH value using the echo command.
+`PATH` value using the echo command.
 
 ::
 
