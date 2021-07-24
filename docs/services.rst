@@ -157,7 +157,7 @@ service did not start at the time of boot up. To do so, you will have to enable
 the service, or to stop a service from starting at boot, you will have to
 disable the service.
 
-::
+.. code-block:: Bash
 
   $ sudo systemctl enable sshd.service
   Created symlink /etc/systemd/system/multi-user.target.wants/sshd.service → /usr/lib/systemd/system/sshd.service.
@@ -170,12 +170,26 @@ Shutdown or reboot the system using systemctl
 
 We can also reboot or shutdown the system using the systemctl command.
 
-::
+.. code-block:: Bash
 
   $ sudo systemctl reboot
   $ sudo systemctl shutdown
 
 .. index:: journalctl
+
+journalctl
+-----------
+
+`systemd` runs the **systemd-journald.service**, which stores logs in the journal
+from the different services maintained by `systemd`. We use `journalctl`
+command to read these log entries from the journal. If you execute the command
+without any arguments, it will show you all the log entries starting from the
+oldest in the journal. One needs to be `root` to be able to use the
+`journalctl` command. Remember that `systemd-journald` stores all the logs in
+binary format, means you can not just `less` the files and read them.
+
+If you want any normal user to execute `journalctl` command, then add them into
+**systemd-journal** group.
 
 Finding the logs of a service
 ------------------------------
@@ -184,7 +198,7 @@ We can use the **journalctl** command to find the log of a given service. The
 general format is *journalctl -u servicename". Like below is the log for *sshd*
 service.
 
-::
+.. code-block:: Bash
 
   $ sudo journalctl -u sshd
   -- Logs begin at Thu 2017-06-22 14:16:45 UTC, end at Fri 2017-06-23 05:21:29 UTC. --
@@ -208,13 +222,24 @@ service.
   Jun 22 15:15:29 kushal-test.novalocal sshd[13541]: Did not receive identification string from 5.153.62.226 port 48677
 
 
+To view only the last N entries
+--------------------------------
+
+You can use the `-n` argument to the `journalctl` command to view only the last
+N number of entries. For example, to view the last 10 entries.
+
+.. code-block:: Bash
+
+    # journalctl -n 10
+
+
 Continuous stream of logs
 --------------------------
 
 In case you want to monitor the logs of any service, that is keep reading the
 logs in real time, you can use *-f* flag with the *journalctl* command.
 
-::
+.. code-block:: Bash
 
   $ sudo journalctl -f -u sshd
   -- Logs begin at Thu 2017-06-22 14:16:45 UTC. --
@@ -239,7 +264,7 @@ Listing of previous boots
 In systems like Fedora, **journalctl** by default keeps history from past boots.
 To know about all available boot history, type the following command.
 
-::
+.. code-block:: Bash
 
   $ sudo journalctl --list-boots
   [sudo] password for fedora: 
@@ -254,7 +279,7 @@ To know about all available boot history, type the following command.
 To know about any particular boot log, you can use the hash along with *-b* flag
 to the **journalctl** command.
 
-::
+.. code-block:: Bash
 
   $ sudo journalctl -b 7a88e13a76434a1199f82ad90441ae7f
   -- Logs begin at Tue 2014-12-09 03:41:08 IST, end at Sat 2017-06-24 13:40:49 IST. --
@@ -272,7 +297,7 @@ We can also use **journalctl** to view logs for a certain time period. For
 example, if we want to see all the logs since yesterday, we can use the
 following command.
 
-::
+.. code-block:: Bash
 
   $ sudo journalctl --since yesterday
   [sudo] password for fedora: 
@@ -284,7 +309,7 @@ following command.
 
 You can also use date time following *YYYY-MM-DD HH:MM:SS* format.
 
-::
+.. code-block:: Bash
 
   $ sudo journalctl --since "2015-11-10 14:00:00"
   -- Logs begin at Tue 2014-12-09 03:41:08 IST, end at Sat 2017-06-24 15:25:30 IST. --
@@ -295,3 +320,14 @@ You can also use date time following *YYYY-MM-DD HH:MM:SS* format.
   Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Reached target Sockets.
   Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Reached target Basic System.
   Jun 05 01:51:05 kushal-test.novalocal systemd[5674]: Reached target Default.
+
+Total size of the journal logs
+-------------------------------
+
+Use the `--disk-usage` flag to find out total amount entries and archive can be
+stored. The following is the output from an Ubuntu Focal (20.04) system.
+
+.. code-block:: Bash
+
+    # journalctl --disk-usage
+    Archived and active journals take up 56.0M in the file system.
