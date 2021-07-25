@@ -462,3 +462,33 @@ to install it via `apt` first. In the following example, we are checking system
     systemd-sysv
     udev
 
+Unattended upgrades in Debian systems
+---------------------------------------
+
+We can also setup the Debian systems for automatic upgrades. But, first install
+the **unattended-upgrades** and reconfigure it to download and apply the
+updates.
+
+::
+
+    $ sudo apt install unattended-upgrades apt-listchanges && sudo dpkg-reconfigure -plow unattended-upgrades
+
+    Creating config file /etc/apt/apt.conf.d/20auto-upgrades with new version
+
+The configuration screen will look like below.
+
+.. image:: img/unattended_upgrades_debian_buster.png
+
+You can do a dry run afterward. By default `unattended-upgrade` will only
+install the **security** updates.
+
+::
+
+    $ sudo unattended-upgrades --dry-run
+    /usr/bin/dpkg --status-fd 11 --no-triggers --unpack --auto-deconfigure --recursive /tmp/apt-dpkg-install-xKmNdN
+    /usr/bin/dpkg --status-fd 11 --configure --pending
+    /usr/bin/dpkg --status-fd 11 --no-triggers --unpack --auto-deconfigure /var/cache/apt/archives/libimobiledevice6_1.2.1~git20181030.92c5462-2+deb10u1_amd64.deb
+
+
+For more details on this topic, please read the `Debian wiki page <https://wiki.debian.org/UnattendedUpgrades>`_ on this topic.
+
