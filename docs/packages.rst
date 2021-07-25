@@ -281,6 +281,33 @@ Below is the output from a Fedora 34 desktop system.
     4714 : /usr/libexec/flatpak-system-helper 
 
 
+Automatic updates in dnf systems
+---------------------------------
+
+We can use **dnf-automatic** package to enable automatic installation of the
+updates. After you install the package, updated the configuration file
+`/etc/dnf/automatic.conf` to mark **apply_updates = yes**, by default it is set
+as `no`.
+
+After that you can enable the timer, so that the packages get automatic updates
+installed.
+
+::
+
+    $ sudo systemctl enable --now dnf-automatic.timer
+    Created symlink /etc/systemd/system/timers.target.wants/dnf-automatic.timer → /usr/lib/systemd/system/dnf-automatic.timer.
+
+In case if you want to only download the available updates, but not install
+them, you can enable the following timer.
+
+::
+
+    $ sudo systemctl enable --now dnf-automatic-download.timer
+    Created symlink /etc/systemd/system/timers.target.wants/dnf-automatic-download.timer → /usr/lib/systemd/system/dnf-automatic-download.timer.
+
+In the configuration file, if you set **upgrade_type = security**, then the
+tool will only install security updates.
+
 .. index:: apt
 
 apt command
