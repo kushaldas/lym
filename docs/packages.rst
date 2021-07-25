@@ -130,6 +130,32 @@ The following command shows all the available updates for your system.
         fedora-repos.noarch                  33-4              updates
         fedora-repos-modular.noarch          33-4              updates
 
+To list all security updates
+-----------------------------
+
+`dnf` can also tell you about all the updates which are marked as security updates.
+
+::
+
+    # dnf updateinfo list --security
+    Last metadata expiration check: 2:06:38 ago on Sun 25 Jul 2021 03:44:47 AM UTC.
+    FEDORA-2021-83fdddca0f Moderate/Sec.  curl-7.76.1-7.fc34.x86_64
+    FEDORA-2021-08cdb4dc34 Important/Sec. dhcp-client-12:4.4.2-11.b1.fc34.x86_64
+    FEDORA-2021-08cdb4dc34 Important/Sec. dhcp-common-12:4.4.2-11.b1.fc34.noarch
+    FEDORA-2021-e14e86e40e Moderate/Sec.  glibc-2.33-20.fc34.x86_64
+    FEDORA-2021-e14e86e40e Moderate/Sec.  glibc-common-2.33-20.fc34.x86_64
+    FEDORA-2021-e14e86e40e Moderate/Sec.  glibc-doc-2.33-20.fc34.noarch
+    FEDORA-2021-e14e86e40e Moderate/Sec.  glibc-langpack-en-2.33-20.fc34.x86_64
+    FEDORA-2021-07dc0b3eb1 Critical/Sec.  kernel-core-5.13.4-200.fc34.x86_64
+    FEDORA-2021-8b25e4642f Low/Sec.       krb5-libs-1.19.1-14.fc34.x86_64
+    FEDORA-2021-83fdddca0f Moderate/Sec.  libcurl-7.76.1-7.fc34.x86_64
+    FEDORA-2021-31fdc84207 Moderate/Sec.  libgcrypt-1.9.3-3.fc34.x86_64
+    FEDORA-2021-2443b22fa0 Moderate/Sec.  linux-firmware-20210716-121.fc34.noarch
+    FEDORA-2021-2443b22fa0 Moderate/Sec.  linux-firmware-whence-20210716-121.fc34.noarch
+    FEDORA-2021-d1fc0b9d32 Moderate/Sec.  nettle-3.7.3-1.fc34.x86_64
+    FEDORA-2021-0ec5a8a74b Important/Sec. polkit-libs-0.117-3.fc34.1.x86_64
+    FEDORA-2021-a6bde7ab18 Moderate/Sec.  python3-urllib3-1.25.10-5.fc34.noarch
+
 
 .. index:: apt
 
@@ -151,6 +177,34 @@ apt update
 
 The **apt update** command is used to update all the package information for
 the Debian repositories.
+
+Installing a package via apt
+-----------------------------
+
+`apt install packagename` is the command used to install any given package from
+the repository.
+
+::
+
+    # apt install htop
+    Reading package lists... Done
+    Building dependency tree       
+    Reading state information... Done
+    Suggested packages:
+      lsof strace
+    The following NEW packages will be installed:
+      htop
+    0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 92.8 kB of archives.
+    After this operation, 230 kB of additional disk space will be used.
+    Get:1 http://deb.debian.org/debian buster/main amd64 htop amd64 2.2.0-1+b1 [92.8 kB]
+    Fetched 92.8 kB in 1s (113 kB/s)
+    debconf: delaying package configuration, since apt-utils is not installed
+    Selecting previously unselected package htop.
+    (Reading database ... 6677 files and directories currently installed.)
+    Preparing to unpack .../htop_2.2.0-1+b1_amd64.deb ...
+    Unpacking htop (2.2.0-1+b1) ...
+    Setting up htop (2.2.0-1+b1) ...
 
 apt-cache search
 -----------------
@@ -225,32 +279,26 @@ Use `apt dist-upgrade` to upgrade all the packages to the latest from the reposi
     Setting up libudev1:amd64 (241-7~deb10u8) ...
     Processing triggers for libc-bin (2.28-10) ...
 
+Listing available security updates in Debian systems
+-----------------------------------------------------
 
-apt install
---------------
-
-`apt install packagename` is the command used to install any given package from
-the repository.
+We can use the Debian Security Analyzer, **debsecan** tool for this. You have
+to install it via `apt` first. In the following example, we are checking system
+(running Debian Buster) against the available updates for security updates.
 
 ::
 
-    # apt install htop
-    Reading package lists... Done
-    Building dependency tree       
-    Reading state information... Done
-    Suggested packages:
-      lsof strace
-    The following NEW packages will be installed:
-      htop
-    0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
-    Need to get 92.8 kB of archives.
-    After this operation, 230 kB of additional disk space will be used.
-    Get:1 http://deb.debian.org/debian buster/main amd64 htop amd64 2.2.0-1+b1 [92.8 kB]
-    Fetched 92.8 kB in 1s (113 kB/s)
-    debconf: delaying package configuration, since apt-utils is not installed
-    Selecting previously unselected package htop.
-    (Reading database ... 6677 files and directories currently installed.)
-    Preparing to unpack .../htop_2.2.0-1+b1_amd64.deb ...
-    Unpacking htop (2.2.0-1+b1) ...
-    Setting up htop (2.2.0-1+b1) ...
+    # apt install debsecan
+    # debsecan --suite buster --format packages --only-fixed
+    apache2-bin
+    firefox-esr
+    libnss-myhostname
+    libnss-systemd
+    libpam-systemd
+    libsystemd0
+    libudev1
+    linux-libc-dev
+    systemd
+    systemd-sysv
+    udev
 
