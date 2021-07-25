@@ -504,7 +504,7 @@ this service. Let’s try to connect to localhost itself. Remember to start the
 
 As you can see, the command syntax is ssh followed by user@hostname. If your
 remote system's user name is same as your current one, then you can omit the
-username and just use the hostname(IP address or domain name).
+username and just use the hostname (IP address or domain name).
 
 ::
 
