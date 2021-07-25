@@ -130,6 +130,183 @@ The following command shows all the available updates for your system.
         fedora-repos.noarch                  33-4              updates
         fedora-repos-modular.noarch          33-4              updates
 
+To list all security updates
+-----------------------------
+
+`dnf` can also tell you about all the updates which are marked as security updates.
+
+::
+
+    # dnf updateinfo list --security
+    Last metadata expiration check: 2:06:38 ago on Sun 25 Jul 2021 03:44:47 AM UTC.
+    FEDORA-2021-83fdddca0f Moderate/Sec.  curl-7.76.1-7.fc34.x86_64
+    FEDORA-2021-08cdb4dc34 Important/Sec. dhcp-client-12:4.4.2-11.b1.fc34.x86_64
+    FEDORA-2021-08cdb4dc34 Important/Sec. dhcp-common-12:4.4.2-11.b1.fc34.noarch
+    FEDORA-2021-e14e86e40e Moderate/Sec.  glibc-2.33-20.fc34.x86_64
+    FEDORA-2021-e14e86e40e Moderate/Sec.  glibc-common-2.33-20.fc34.x86_64
+    FEDORA-2021-e14e86e40e Moderate/Sec.  glibc-doc-2.33-20.fc34.noarch
+    FEDORA-2021-e14e86e40e Moderate/Sec.  glibc-langpack-en-2.33-20.fc34.x86_64
+    FEDORA-2021-07dc0b3eb1 Critical/Sec.  kernel-core-5.13.4-200.fc34.x86_64
+    FEDORA-2021-8b25e4642f Low/Sec.       krb5-libs-1.19.1-14.fc34.x86_64
+    FEDORA-2021-83fdddca0f Moderate/Sec.  libcurl-7.76.1-7.fc34.x86_64
+    FEDORA-2021-31fdc84207 Moderate/Sec.  libgcrypt-1.9.3-3.fc34.x86_64
+    FEDORA-2021-2443b22fa0 Moderate/Sec.  linux-firmware-20210716-121.fc34.noarch
+    FEDORA-2021-2443b22fa0 Moderate/Sec.  linux-firmware-whence-20210716-121.fc34.noarch
+    FEDORA-2021-d1fc0b9d32 Moderate/Sec.  nettle-3.7.3-1.fc34.x86_64
+    FEDORA-2021-0ec5a8a74b Important/Sec. polkit-libs-0.117-3.fc34.1.x86_64
+    FEDORA-2021-a6bde7ab18 Moderate/Sec.  python3-urllib3-1.25.10-5.fc34.noarch
+
+Update the packages via dnf
+----------------------------
+
+Use **dnf update** command to install all the available updates. You can also
+pass the `-y` flag to it.
+
+
+Find out the services & applications need restart after update in Fedora/CentOS/RHEL
+-------------------------------------------------------------------------------------
+
+The **dnf-utils** package contains a special command, **needs-restarting**.
+After you do a `dnf update`, when different libraries get updated, there may be
+running processes/services which needs restart. One way of doing this is
+restarting the system, but that may not be the right choice (may be you are
+running critical services) all the time. So, you can find out which ones you
+should restart.
+
+Below is the output from a Fedora 34 desktop system.
+
+::
+
+    # needs-restarting 
+    1 : /usr/lib/systemd/systemd --system --deserialize 62 
+    1616 : /usr/lib/systemd/systemd-resolved 
+    1617 : /sbin/auditd 
+    1638 : /usr/sbin/ModemManager 
+    1639 : avahi-daemon: running [linux-2.local] 
+    1640 : /usr/libexec/bluetooth/bluetoothd 
+    1641 : /usr/libexec/boltd 
+    1642 : /usr/bin/python3 -s /usr/sbin/firewalld --nofork --nopid 
+    1643 : /usr/local/bin/ivpn-service 
+    1646 : /usr/sbin/mcelog --daemon --foreground 
+    1650 : /usr/sbin/rngd -f 
+    1651 : /usr/libexec/rtkit-daemon 
+    1657 : /usr/libexec/switcheroo-control 
+    1659 : /usr/lib/systemd/systemd-machined 
+    1662 : /usr/libexec/udisks2/udisksd 
+    1664 : /usr/libexec/upowerd 
+    1669 : avahi-daemon: chroot helper 
+    1688 : /usr/bin/dbus-broker-launch --scope system --audit 
+    1695 : /usr/sbin/abrtd -d -s 
+    1699 : /usr/sbin/chronyd 
+    1723 : /usr/bin/abrt-dump-journal-core -D -T -f -e 
+    1724 : /usr/bin/abrt-dump-journal-oops -fxtD 
+    1725 : /usr/bin/abrt-dump-journal-xorg -fxtD 
+    1728 : /usr/lib/polkit-1/polkitd --no-debug 
+    1744 : /usr/libexec/accounts-daemon 
+    1745 : /usr/lib/systemd/systemd-logind 
+    1776 : /usr/sbin/NetworkManager --no-daemon 
+    1788 : /usr/sbin/cupsd -l 
+    1877 : /usr/sbin/pcscd --foreground --auto-exit 
+    1898 : /usr/sbin/atd -f 
+    1899 : /usr/sbin/crond -n 
+    1900 : /usr/sbin/gdm 
+    1920 : /usr/libexec/uresourced 
+    2034 : /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper 
+    2035 : /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper 
+    2162 : /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -u -s 
+    2164 : /usr/libexec/packagekitd 
+    2393 : /usr/libexec/colord 
+    2714 : /usr/sbin/abrt-dbus -t133 
+    2730 : gdm-session-worker [pam/gdm-password] 
+    2750 : /usr/lib/systemd/systemd --user 
+    2756 : (sd-pam) 
+    2780 : /usr/libexec/gdm-x-session --run-script /usr/bin/gnome-session 
+    2784 : /usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3 
+    2838 : /usr/bin/dbus-broker-launch --scope user 
+    2843 : /usr/libexec/gnome-session-binary 
+    2907 : /usr/libexec/at-spi-bus-launcher 
+    2912 : /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user 
+    2923 : /usr/libexec/gnome-session-ctl --monitor 
+    2924 : /usr/libexec/uresourced --user 
+    2926 : /usr/libexec/gnome-session-binary --systemd-service --session=gnome 
+    2953 : /usr/bin/gnome-shell 
+    2978 : ibus-daemon --panel disable --xim 
+    2989 : /usr/libexec/ibus-extension-gtk3 
+    3004 : /usr/libexec/ibus-x11 --kill-daemon 
+    3015 : /usr/libexec/at-spi2-registryd --use-gnome-session 
+    3023 : /usr/libexec/evolution-source-registry 
+    3030 : /usr/libexec/goa-daemon 
+    3031 : /usr/bin/pipewire 
+    3032 : /usr/bin/pipewire-pulse 
+    3038 : /usr/bin/pipewire-media-session 
+    3044 : /usr/libexec/evolution-calendar-factory 
+    3075 : /usr/libexec/gvfs-udisks2-volume-monitor 
+    3092 : /usr/libexec/gvfs-mtp-volume-monitor 
+    3116 : /usr/libexec/gvfs-gphoto2-volume-monitor 
+    3130 : /usr/bin/gjs /usr/share/gnome-shell/org.gnome.Shell.Notifications 
+    3147 : /usr/libexec/gsd-color 
+    3150 : /usr/libexec/gsd-datetime 
+    3153 : /usr/libexec/gsd-keyboard 
+    3155 : /usr/libexec/gsd-media-keys 
+    3157 : /usr/libexec/gsd-power 
+    3160 : /usr/libexec/gsd-print-notifications 
+    3161 : /usr/libexec/gsd-rfkill 
+    3164 : /usr/libexec/gsd-sharing 
+    3169 : /usr/libexec/gsd-sound 
+    3175 : /usr/libexec/gsd-wacom 
+    3176 : /usr/libexec/gsd-xsettings 
+    3213 : /usr/libexec/evolution-data-server/evolution-alarm-notify 
+    3219 : /usr/bin/gnome-software --gapplication-service 
+    3272 : /usr/bin/abrt-applet --gapplication-service 
+    3273 : /usr/bin/gjs /usr/share/gnome-shell/org.gnome.ScreenSaver 
+    3366 : /usr/libexec/gsd-printer 
+    3524 : /usr/libexec/fwupd/fwupd 
+    3611 : /usr/bin/gnome-calendar --gapplication-service 
+    3623 : /usr/libexec/gnome-terminal-server 
+    3682 : /usr/libexec/bluetooth/obexd 
+    3701 : /usr/libexec/tracker-miner-fs-3 
+    3734 : bash 
+    3833 : /usr/libexec/gvfsd-metadata 
+    4345 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/tor-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4357 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-free-updates-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4382 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/code-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4483 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-nonfree-updates-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4495 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/updates-modular-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4529 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/copr:copr.fedorainfracloud.org:dawid:xcape-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4543 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-nonfree-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4556 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-free-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4568 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/fedora-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4581 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/updates-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4610 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/google-chrome-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
+    4714 : /usr/libexec/flatpak-system-helper 
+
+
+Automatic updates in dnf systems
+---------------------------------
+
+We can use **dnf-automatic** package to enable automatic installation of the
+updates. After you install the package, updated the configuration file
+`/etc/dnf/automatic.conf` to mark **apply_updates = yes**, by default it is set
+as `no`.
+
+After that you can enable the timer, so that the packages get automatic updates
+installed.
+
+::
+
+    $ sudo systemctl enable --now dnf-automatic.timer
+    Created symlink /etc/systemd/system/timers.target.wants/dnf-automatic.timer → /usr/lib/systemd/system/dnf-automatic.timer.
+
+In case if you want to only download the available updates, but not install
+them, you can enable the following timer.
+
+::
+
+    $ sudo systemctl enable --now dnf-automatic-download.timer
+    Created symlink /etc/systemd/system/timers.target.wants/dnf-automatic-download.timer → /usr/lib/systemd/system/dnf-automatic-download.timer.
+
+In the configuration file, if you set **upgrade_type = security**, then the
+tool will only install security updates.
 
 .. index:: apt
 
@@ -151,6 +328,34 @@ apt update
 
 The **apt update** command is used to update all the package information for
 the Debian repositories.
+
+Installing a package via apt
+-----------------------------
+
+`apt install packagename` is the command used to install any given package from
+the repository.
+
+::
+
+    # apt install htop
+    Reading package lists... Done
+    Building dependency tree       
+    Reading state information... Done
+    Suggested packages:
+      lsof strace
+    The following NEW packages will be installed:
+      htop
+    0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 92.8 kB of archives.
+    After this operation, 230 kB of additional disk space will be used.
+    Get:1 http://deb.debian.org/debian buster/main amd64 htop amd64 2.2.0-1+b1 [92.8 kB]
+    Fetched 92.8 kB in 1s (113 kB/s)
+    debconf: delaying package configuration, since apt-utils is not installed
+    Selecting previously unselected package htop.
+    (Reading database ... 6677 files and directories currently installed.)
+    Preparing to unpack .../htop_2.2.0-1+b1_amd64.deb ...
+    Unpacking htop (2.2.0-1+b1) ...
+    Setting up htop (2.2.0-1+b1) ...
 
 apt-cache search
 -----------------
@@ -225,32 +430,65 @@ Use `apt dist-upgrade` to upgrade all the packages to the latest from the reposi
     Setting up libudev1:amd64 (241-7~deb10u8) ...
     Processing triggers for libc-bin (2.28-10) ...
 
+Figuring out which services/processes need restart after package upgrade in Debian
+-----------------------------------------------------------------------------------
 
-apt install
---------------
+Just like Fedora systems, you can find the similar information in Debian too.
+You will need the **needrestart** package. The following is the output from the
+`needrestart` command.
 
-`apt install packagename` is the command used to install any given package from
-the repository.
+.. image:: img/needsrestart_debian.png
+
+Listing available security updates in Debian systems
+-----------------------------------------------------
+
+We can use the Debian Security Analyzer, **debsecan** tool for this. You have
+to install it via `apt` first. In the following example, we are checking system
+(running Debian Buster) against the available updates for security updates.
 
 ::
 
-    # apt install htop
-    Reading package lists... Done
-    Building dependency tree       
-    Reading state information... Done
-    Suggested packages:
-      lsof strace
-    The following NEW packages will be installed:
-      htop
-    0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
-    Need to get 92.8 kB of archives.
-    After this operation, 230 kB of additional disk space will be used.
-    Get:1 http://deb.debian.org/debian buster/main amd64 htop amd64 2.2.0-1+b1 [92.8 kB]
-    Fetched 92.8 kB in 1s (113 kB/s)
-    debconf: delaying package configuration, since apt-utils is not installed
-    Selecting previously unselected package htop.
-    (Reading database ... 6677 files and directories currently installed.)
-    Preparing to unpack .../htop_2.2.0-1+b1_amd64.deb ...
-    Unpacking htop (2.2.0-1+b1) ...
-    Setting up htop (2.2.0-1+b1) ...
+    # apt install debsecan
+    # debsecan --suite buster --format packages --only-fixed
+    apache2-bin
+    firefox-esr
+    libnss-myhostname
+    libnss-systemd
+    libpam-systemd
+    libsystemd0
+    libudev1
+    linux-libc-dev
+    systemd
+    systemd-sysv
+    udev
+
+Unattended upgrades in Debian systems
+---------------------------------------
+
+We can also setup the Debian systems for automatic upgrades. But, first install
+the **unattended-upgrades** and reconfigure it to download and apply the
+updates.
+
+::
+
+    $ sudo apt install unattended-upgrades apt-listchanges && sudo dpkg-reconfigure -plow unattended-upgrades
+
+    Creating config file /etc/apt/apt.conf.d/20auto-upgrades with new version
+
+The configuration screen will look like below.
+
+.. image:: img/unattended_upgrades_debian_buster.png
+
+You can do a dry run afterward. By default `unattended-upgrade` will only
+install the **security** updates.
+
+::
+
+    $ sudo unattended-upgrades --dry-run
+    /usr/bin/dpkg --status-fd 11 --no-triggers --unpack --auto-deconfigure --recursive /tmp/apt-dpkg-install-xKmNdN
+    /usr/bin/dpkg --status-fd 11 --configure --pending
+    /usr/bin/dpkg --status-fd 11 --no-triggers --unpack --auto-deconfigure /var/cache/apt/archives/libimobiledevice6_1.2.1~git20181030.92c5462-2+deb10u1_amd64.deb
+
+
+For more details on this topic, please read the `Debian wiki page <https://wiki.debian.org/UnattendedUpgrades>`_ on this topic.
 
