@@ -70,13 +70,19 @@ name.
 The system looks at this file first for any name resolution. If it can not find the DNS
 entry, then the system looks at the */etc/resolv.conf*, and connects to the DNS server.
 
-You can update */etc/hosts* file to add a domain to any particular IP address.
+You can update */etc/hosts* file to add a domain to any particular IP address. Say, you want
+to be able to reach a server at IP address `x.x.x.x` with the name `datastore`, so you add an
+entry like the following to the file.
+
+::
+
+    x.x.x.x    datastore
 
 
 /etc/resolv.conf
 -----------------
 
-*/etc/resolv.conf* is the configuration file for DNS. It contains the DNS server address to use for DNS queries.
+*/etc/resolv.conf* is the configuration file whcih contains the DNS server address to use for DNS queries.
 
 ::
 
@@ -86,9 +92,168 @@ You can update */etc/hosts* file to add a domain to any particular IP address.
     nameserver 8.8.8.8
 
 
-The *1.1.1.1* is the DNS server from Cloudflare, and *8.8.8.8* is the DNS server
-hosted by Google.
+Here you can see that `1.1.1.1` & `8.8.8.8` are two DNS servers are being in
+this machine. The *1.1.1.1* is the DNS server from Cloudflare, and *8.8.8.8* is
+the DNS server hosted by Google.
 
+.. index:: systemd-resolved
+
+systemd-resolved controlled name resolution
+--------------------------------------------
+
+In most of the modern systems you will find the `/etc/resolv.conf` looks a bit different and actually a symbolic link.
+The example below is from `Ubuntu 20.04`.
+
+::
+
+    $ ls -l /etc/resolv.conf
+    lrwxrwxrwx 1 root root 39 Jul 31  2020 /etc/resolv.conf -> ../run/systemd/resolve/stub-resolv.conf
+
+    $ cat /etc/resolv.conf
+    # This file is managed by man:systemd-resolved(8). Do not edit.
+    #
+    # This is a dynamic resolv.conf file for connecting local clients to the
+    # internal DNS stub resolver of systemd-resolved. This file lists all
+    # configured search domains.
+    #
+    # Run "resolvectl status" to see details about the uplink DNS servers
+    # currently in use.
+    #
+    # Third party programs must not access this file directly, but only through the
+    # symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+    # replace this symlink by a static file or a different symlink.
+    #
+    # See man:systemd-resolved.service(8) for details about the supported modes of
+    # operation for /etc/resolv.conf.
+
+    nameserver 127.0.0.53
+    options edns0 trust-ad
+    search localdomain
+
+That strange IP address, **127.0.0.53** is a special one managed by
+**systemd-resolved** service, where it listens for DNS queries. By default it picks up the DNS server addresses provided by the `DHCP` service, in case
+you want to manually set that up, you can configure them at the `/etc/systemd/resolved.conf` file.
+Here we are setting `1.1.1.1` as the primary DNS server, `8.8.8.8` as the fallback server, and also enabling `DNS over TLS`.
+
+::
+
+
+    #  This file is part of systemd.
+    #
+    #  systemd is free software; you can redistribute it and/or modify it
+    #  under the terms of the GNU Lesser General Public License as published by
+    #  the Free Software Foundation; either version 2.1 of the License, or
+    #  (at your option) any later version.
+    #
+    # Entries in this file show the compile time defaults.
+    # You can change settings by editing this file.
+    # Defaults can be restored by simply deleting this file.
+    #
+    # See resolved.conf(5) for details
+
+    [Resolve]
+    DNS= 1.1.1.1
+    FallbackDNS= 8.8.8.8
+    #Domains=
+    #LLMNR=no
+    #MulticastDNS=no
+    #DNSSEC=no
+    DNSOverTLS=yes
+    #Cache=no-negative
+    #DNSStubListener=yes
+    #ReadEtcHosts=yes
+
+You can learn about all the settings from the man page, `man resolved.conf`.
+
+.. index:: resolvectl
+
+resolvectl command
+-------------------
+
+The `resolvectl` command helps us to query via the `systemd-resolved` service.
+To check the current settings, use the `status` flag.
+
+::
+
+    $ resolvectl status
+    Global
+           LLMNR setting: no                  
+    MulticastDNS setting: no                  
+      DNSOverTLS setting: yes                 
+          DNSSEC setting: no                  
+        DNSSEC supported: no                  
+             DNS Servers: 1.1.1.1             
+    Fallback DNS Servers: 8.8.8.8             
+              DNSSEC NTA: 10.in-addr.arpa     
+                          16.172.in-addr.arpa 
+                          168.192.in-addr.arpa
+                          17.172.in-addr.arpa 
+                          18.172.in-addr.arpa 
+                          19.172.in-addr.arpa 
+                          20.172.in-addr.arpa 
+                          21.172.in-addr.arpa 
+                          22.172.in-addr.arpa 
+                          23.172.in-addr.arpa 
+                          24.172.in-addr.arpa 
+                          25.172.in-addr.arpa 
+                          26.172.in-addr.arpa 
+                          27.172.in-addr.arpa 
+                          28.172.in-addr.arpa 
+                          29.172.in-addr.arpa 
+                          30.172.in-addr.arpa 
+                          31.172.in-addr.arpa 
+                          corp                
+                          d.f.ip6.arpa        
+                          home                
+                          internal            
+                          intranet            
+                          lan                 
+                          local               
+                          private             
+                          test                
+
+    Link 2 (ens33)
+          Current Scopes: DNS          
+    DefaultRoute setting: yes          
+           LLMNR setting: yes          
+    MulticastDNS setting: no           
+      DNSOverTLS setting: yes          
+          DNSSEC setting: no           
+        DNSSEC supported: no           
+             DNS Servers: 192.168.195.1
+              DNS Domain: ~.           
+                          localdomain
+
+To query the IP address of a domain:
+
+::
+
+    resolvectl query fedoraproject.org
+    fedoraproject.org: 140.211.169.196             -- link: ens33
+                       140.211.169.206             -- link: ens33
+                       152.19.134.198              -- link: ens33
+                       38.145.60.21                -- link: ens33
+                       8.43.85.67                  -- link: ens33
+                       152.19.134.142              -- link: ens33
+                       209.132.190.2               -- link: ens33
+                       38.145.60.20                -- link: ens33
+                       67.219.144.68               -- link: ens33
+                       8.43.85.73                  -- link: ens33
+
+    -- Information acquired via protocol DNS in 1.4ms.
+    -- Data is authenticated: no
+
+To view the `TXT` record:
+
+::
+
+    $ resolvectl query -t TXT fedoraproject.org
+    fedoraproject.org IN TXT "v=spf1 a a:mailers.fedoraproject.org ip4:38.145.60.11 ip4:38.145.60.12 ?all" -- link: ens33
+
+    -- Information acquired via protocol DNS in 289.7ms.
+    -- Data is authenticated: no
+
+`resolvectl` command can do many more things. Please have a look at the man page for more examples.
 
 .. index:: host
 
