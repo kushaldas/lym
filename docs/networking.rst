@@ -165,6 +165,10 @@ Here we are setting `1.1.1.1` as the primary DNS server, `8.8.8.8` as the fallba
 
 You can learn about all the settings from the man page, `man resolved.conf`.
 
+If want to go back to the simple `/etc/resolv.conf` file, you can remove the
+symlink and put in a new file at `/etc/resolv.conf`.
+
+
 .. index:: resolvectl
 
 resolvectl command
