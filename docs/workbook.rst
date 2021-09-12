@@ -67,7 +67,7 @@ ID string: `copypaste`
 
 - Create a directory called `work` in your home directory.
 - Copy the file `/tmp/problem1/work/files/hello.txt` into this newly created
-  diretory.
+  directory.
 - Remember to remove the `/tmp/problem1/work/files/hello.txt` file afterwards.
 - Create a file named `/tmp/chapter1/allusers` and add all of the directory
   names under your home directory into that file.
@@ -203,7 +203,7 @@ Add sudo access to an user
 ---------------------------
 
 Grant administrative(sudo) privileges to an existing normal user account
-"lym". Remeber to create the user first.
+"lym". Remember to create the user first.
 
 
 To verify:
