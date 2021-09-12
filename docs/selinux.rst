@@ -45,7 +45,7 @@ The *getenforce* command will tell you the current SELinux mode.
 
 ::
 
-    $ getenforce 
+    $ getenforce
     Enforcing
 
 
@@ -59,13 +59,13 @@ Using *setenforce* command you can change the mode till the system reboots.
 
 ::
 
-    # setenforce 
+    # setenforce
     usage:  setenforce [ Enforcing | Permissive | 1 | 0 ]
     # setenforce Permissive
     # getenforce
     Permissive
     # setenforce 1
-    # getenforce 
+    # getenforce
     Enforcing
 
 

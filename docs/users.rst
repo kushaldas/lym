@@ -53,7 +53,7 @@ text file (this means you can view the information by using *cat* command.)
     tss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin
 
 
-Each line has seven entries separated by *:*. 
+Each line has seven entries separated by *:*.
 
 ::
 
@@ -103,7 +103,7 @@ If you want to know more about the current user, use the `id` command.
 Details about groups
 ----------------------
 
-Group details are stored inside the */etc/group* file.  
+Group details are stored inside the */etc/group* file.
 Each user has one primary group, and zero or more supplementary groups.
 
 wheel group
@@ -177,8 +177,8 @@ The **passwd** command helps to change any user password.
 
     $ sudo passwd babai
     Changing password for user babai.
-    New password: 
-    Retype new password: 
+    New password:
+    Retype new password:
     passwd: all authentication tokens updated successfully.
 
 
@@ -194,8 +194,8 @@ You can use the same command to lock user account in the system.
 
     $ sudo usermod -L babai
     $ su - babai
-    Password: 
-    su: Authentication failure 
+    Password:
+    su: Authentication failure
     $ sudo usermod -U babai
 
 

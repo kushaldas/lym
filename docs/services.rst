@@ -267,7 +267,7 @@ To know about all available boot history, type the following command.
 .. code-block:: Bash
 
   $ sudo journalctl --list-boots
-  [sudo] password for fedora: 
+  [sudo] password for fedora:
   -112 7a88e13a76434a1199f82ad90441ae7f Tue 2014-12-09 03:41:08 IST—Tue 2014-12-09 03:41:08 IST
   -111 b86086ed59b84b228e74f91ab08a66b3 Sun 2015-06-28 23:54:26 IST—Sun 2015-07-12 07:27:48 IST
   -110 71d3f6024f514653bfd2574243d096d1 Sun 2016-06-05 01:51:05 IST—Sun 2016-06-05 01:51:16 IST
@@ -300,7 +300,7 @@ following command.
 .. code-block:: Bash
 
   $ sudo journalctl --since yesterday
-  [sudo] password for fedora: 
+  [sudo] password for fedora:
   -- Logs begin at Tue 2014-12-09 03:41:08 IST, end at Sat 2017-06-24 15:21:54 IST. --
   Jun 23 00:00:00 kushal-test.novalocal /usr/libexec/gdm-x-session[28622]: (evolution-alarm-notify:11609): evolution-alarm-notify-WARNING **: alarm.c:253: Reques
   Jun 23 00:01:01 kushal-test.novalocal CROND[22327]: (root) CMD (run-parts /etc/cron.hourly)

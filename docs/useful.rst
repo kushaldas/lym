@@ -42,17 +42,17 @@ Creating hard links
     -rw-rw-r--. 2 fedora fedora   13 Jun 23 11:14 bye.txt
     -rw-rw-r--. 2 fedora fedora   13 Jun 23 11:14 hello.txt
     lrwxrwxrwx. 1 fedora fedora   13 Jun 23 12:32 name -> /etc/hostname
-    $ cat hello.txt 
+    $ cat hello.txt
     Hello World!
-    $ cat bye.txt 
+    $ cat bye.txt
     Hello World!
-    $ echo "1234" > hello.txt 
-    $ cat bye.txt 
+    $ echo "1234" > hello.txt
+    $ cat bye.txt
     1234
-    $ cat hello.txt 
+    $ cat hello.txt
     1234
-    $ rm hello.txt 
-    $ cat bye.txt 
+    $ rm hello.txt
+    $ cat bye.txt
     1234
     $ ls -l
     total 12
@@ -79,7 +79,7 @@ to download and then extract tar files in our regular day to day work.
 
 ::
 
-    $ tar -xzvf files.tar.gz 
+    $ tar -xzvf files.tar.gz
     hello.c
     bye.txt
 
@@ -89,7 +89,7 @@ to download and then extract tar files in our regular day to day work.
 
 ::
 
-    $ tar -xjvf files.tar.bz2 
+    $ tar -xjvf files.tar.bz2
     hello.c
     bye.txt
 
@@ -100,7 +100,7 @@ We can use the same **tar** command to create a tar file.
 
 ::
 
-    $ tar -czvf files.tar.gz hello.c bye.txt 
+    $ tar -czvf files.tar.gz hello.c bye.txt
     hello.c
     bye.txt
     $ ls
@@ -156,7 +156,7 @@ command mode.
 :w to save a file
 ------------------
 
-In command mode, typing *:w* saves a file.  
+In command mode, typing *:w* saves a file.
 If you want to save and quit the editor, then type either *:wq* or *:x*.
 
 :q! to quit without saving
@@ -194,7 +194,7 @@ command will helps you become the *root* user; use this *extremely* carefully.
 
     $ su -
     Password:
-    # 
+    #
 
 Notice how the command prompt changed to *#* from *$*, *#* shows that
 you are using the *root* — another visible indication to think
@@ -254,7 +254,7 @@ variables, use the **printenv** command.
 
 You can execute the same command once as normal user, and once as
 *root*, and then check for the differences between the output.
-You will mostly see they are same, with some (or more) unique ones. 
+You will mostly see they are same, with some (or more) unique ones.
 That’s because, variables are user specific.
 
 .. index:: export
@@ -263,7 +263,7 @@ Setting up environment variable values
 ---------------------------------------
 
 We can use the **export** command to create a new environment variable
-or change an existing one.  
+or change an existing one.
 We use the **echo** command to
 print a particular environment variable’s value.
 
@@ -335,7 +335,7 @@ example, the following command will show the current date/time in
 Bash history
 ------------
 
-Using **history** command you can check for any command you previously used in the shell, 
+Using **history** command you can check for any command you previously used in the shell,
 this output will not show you the commands from the current running shells. Only after
 you exit your shell, those commands will be written into `~/.bash_history` file, and history
 command tells us the details from there.

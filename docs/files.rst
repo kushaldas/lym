@@ -66,7 +66,7 @@ given below.
     $ chmod 000 myfile.txt
     $ ls -l myfile.txt
     ----------. 1 fedora fedora 6 Jun 25 03:42 myfile.txt
-    $ cat myfile.txt 
+    $ cat myfile.txt
     cat: myfile.txt: Permission denied
     $ chmod 600 myfile.txt
     $ ls -l myfile.txt
@@ -90,8 +90,8 @@ file you want to execute.
 PATH variable
 --------------
 
-The PATH is a shell variable. 
-When we type a command in the bash shell, it searches for the command in the directories 
+The PATH is a shell variable.
+When we type a command in the bash shell, it searches for the command in the directories
 mentioned in the succeeding/sequential order, in the PATH variable. We can see the current
 `PATH` value using the echo command.
 
@@ -136,7 +136,7 @@ relogin or source the file (`source ~/.bash_profile`) after making the change.
 
 .. index:: bashrc
 
-.bashrc file 
+.bashrc file
 ------------
 
 The *~/.bashrc* is a special configuration file for your bash terminal used for

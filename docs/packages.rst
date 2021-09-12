@@ -33,8 +33,8 @@ Searching for a package
 ::
 
   $ dnf search pss
-  Fedora 25 - x86_64                                                        34 MB/s |  50 MB     00:01    
-  Fedora 25 - x86_64 - Updates                                              41 MB/s |  23 MB     00:00    
+  Fedora 25 - x86_64                                                        34 MB/s |  50 MB     00:01
+  Fedora 25 - x86_64 - Updates                                              41 MB/s |  23 MB     00:00
   Last metadata expiration check: 0:00:07 ago on Sun Jun 25 04:14:22 2017.
   =========================================== N/S Matched: pss ============================================
   pss.noarch : A power-tool for searching inside source code files
@@ -99,19 +99,19 @@ than one package name as the argument.
   Installed size: 196 k
   Is this ok [y/N]: y
   Downloading Packages:
-  pss-1.40-6.fc25.noarch.rpm                                                                                           969 kB/s |  58 kB     00:00    
+  pss-1.40-6.fc25.noarch.rpm                                                                                           969 kB/s |  58 kB     00:00
   -----------------------------------------------------------------------------------------------------------------------------------------------------
-  Total                                                                                                                118 kB/s |  58 kB     00:00     
+  Total                                                                                                                118 kB/s |  58 kB     00:00
   Running transaction check
   Transaction check succeeded.
   Running transaction test
   Transaction test succeeded.
   Running transaction
-    Installing  : pss-1.40-6.fc25.noarch                                                                                                           1/1 
-    Verifying   : pss-1.40-6.fc25.noarch                                                                                                           1/1 
+    Installing  : pss-1.40-6.fc25.noarch                                                                                                           1/1
+    Verifying   : pss-1.40-6.fc25.noarch                                                                                                           1/1
 
   Installed:
-    pss.noarch 1.40-6.fc25                                                                                                                             
+    pss.noarch 1.40-6.fc25
 
   Complete!
 
@@ -177,108 +177,108 @@ Below is the output from a Fedora 34 desktop system.
 
 ::
 
-    # needs-restarting 
-    1 : /usr/lib/systemd/systemd --system --deserialize 62 
-    1616 : /usr/lib/systemd/systemd-resolved 
-    1617 : /sbin/auditd 
-    1638 : /usr/sbin/ModemManager 
-    1639 : avahi-daemon: running [linux-2.local] 
-    1640 : /usr/libexec/bluetooth/bluetoothd 
-    1641 : /usr/libexec/boltd 
-    1642 : /usr/bin/python3 -s /usr/sbin/firewalld --nofork --nopid 
-    1643 : /usr/local/bin/ivpn-service 
-    1646 : /usr/sbin/mcelog --daemon --foreground 
-    1650 : /usr/sbin/rngd -f 
-    1651 : /usr/libexec/rtkit-daemon 
-    1657 : /usr/libexec/switcheroo-control 
-    1659 : /usr/lib/systemd/systemd-machined 
-    1662 : /usr/libexec/udisks2/udisksd 
-    1664 : /usr/libexec/upowerd 
-    1669 : avahi-daemon: chroot helper 
-    1688 : /usr/bin/dbus-broker-launch --scope system --audit 
-    1695 : /usr/sbin/abrtd -d -s 
-    1699 : /usr/sbin/chronyd 
-    1723 : /usr/bin/abrt-dump-journal-core -D -T -f -e 
-    1724 : /usr/bin/abrt-dump-journal-oops -fxtD 
-    1725 : /usr/bin/abrt-dump-journal-xorg -fxtD 
-    1728 : /usr/lib/polkit-1/polkitd --no-debug 
-    1744 : /usr/libexec/accounts-daemon 
-    1745 : /usr/lib/systemd/systemd-logind 
-    1776 : /usr/sbin/NetworkManager --no-daemon 
-    1788 : /usr/sbin/cupsd -l 
-    1877 : /usr/sbin/pcscd --foreground --auto-exit 
-    1898 : /usr/sbin/atd -f 
-    1899 : /usr/sbin/crond -n 
-    1900 : /usr/sbin/gdm 
-    1920 : /usr/libexec/uresourced 
-    2034 : /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper 
-    2035 : /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper 
-    2162 : /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -u -s 
-    2164 : /usr/libexec/packagekitd 
-    2393 : /usr/libexec/colord 
-    2714 : /usr/sbin/abrt-dbus -t133 
-    2730 : gdm-session-worker [pam/gdm-password] 
-    2750 : /usr/lib/systemd/systemd --user 
-    2756 : (sd-pam) 
-    2780 : /usr/libexec/gdm-x-session --run-script /usr/bin/gnome-session 
-    2784 : /usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3 
-    2838 : /usr/bin/dbus-broker-launch --scope user 
-    2843 : /usr/libexec/gnome-session-binary 
-    2907 : /usr/libexec/at-spi-bus-launcher 
-    2912 : /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user 
-    2923 : /usr/libexec/gnome-session-ctl --monitor 
-    2924 : /usr/libexec/uresourced --user 
-    2926 : /usr/libexec/gnome-session-binary --systemd-service --session=gnome 
-    2953 : /usr/bin/gnome-shell 
-    2978 : ibus-daemon --panel disable --xim 
-    2989 : /usr/libexec/ibus-extension-gtk3 
-    3004 : /usr/libexec/ibus-x11 --kill-daemon 
-    3015 : /usr/libexec/at-spi2-registryd --use-gnome-session 
-    3023 : /usr/libexec/evolution-source-registry 
-    3030 : /usr/libexec/goa-daemon 
-    3031 : /usr/bin/pipewire 
-    3032 : /usr/bin/pipewire-pulse 
-    3038 : /usr/bin/pipewire-media-session 
-    3044 : /usr/libexec/evolution-calendar-factory 
-    3075 : /usr/libexec/gvfs-udisks2-volume-monitor 
-    3092 : /usr/libexec/gvfs-mtp-volume-monitor 
-    3116 : /usr/libexec/gvfs-gphoto2-volume-monitor 
-    3130 : /usr/bin/gjs /usr/share/gnome-shell/org.gnome.Shell.Notifications 
-    3147 : /usr/libexec/gsd-color 
-    3150 : /usr/libexec/gsd-datetime 
-    3153 : /usr/libexec/gsd-keyboard 
-    3155 : /usr/libexec/gsd-media-keys 
-    3157 : /usr/libexec/gsd-power 
-    3160 : /usr/libexec/gsd-print-notifications 
-    3161 : /usr/libexec/gsd-rfkill 
-    3164 : /usr/libexec/gsd-sharing 
-    3169 : /usr/libexec/gsd-sound 
-    3175 : /usr/libexec/gsd-wacom 
-    3176 : /usr/libexec/gsd-xsettings 
-    3213 : /usr/libexec/evolution-data-server/evolution-alarm-notify 
-    3219 : /usr/bin/gnome-software --gapplication-service 
-    3272 : /usr/bin/abrt-applet --gapplication-service 
-    3273 : /usr/bin/gjs /usr/share/gnome-shell/org.gnome.ScreenSaver 
-    3366 : /usr/libexec/gsd-printer 
-    3524 : /usr/libexec/fwupd/fwupd 
-    3611 : /usr/bin/gnome-calendar --gapplication-service 
-    3623 : /usr/libexec/gnome-terminal-server 
-    3682 : /usr/libexec/bluetooth/obexd 
-    3701 : /usr/libexec/tracker-miner-fs-3 
-    3734 : bash 
-    3833 : /usr/libexec/gvfsd-metadata 
-    4345 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/tor-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4357 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-free-updates-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4382 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/code-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4483 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-nonfree-updates-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4495 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/updates-modular-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4529 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/copr:copr.fedorainfracloud.org:dawid:xcape-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4543 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-nonfree-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4556 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-free-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4568 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/fedora-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4581 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/updates-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4610 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/google-chrome-34-x86_64.tmp/gpgdir --use-standard-socket --daemon 
-    4714 : /usr/libexec/flatpak-system-helper 
+    # needs-restarting
+    1 : /usr/lib/systemd/systemd --system --deserialize 62
+    1616 : /usr/lib/systemd/systemd-resolved
+    1617 : /sbin/auditd
+    1638 : /usr/sbin/ModemManager
+    1639 : avahi-daemon: running [linux-2.local]
+    1640 : /usr/libexec/bluetooth/bluetoothd
+    1641 : /usr/libexec/boltd
+    1642 : /usr/bin/python3 -s /usr/sbin/firewalld --nofork --nopid
+    1643 : /usr/local/bin/ivpn-service
+    1646 : /usr/sbin/mcelog --daemon --foreground
+    1650 : /usr/sbin/rngd -f
+    1651 : /usr/libexec/rtkit-daemon
+    1657 : /usr/libexec/switcheroo-control
+    1659 : /usr/lib/systemd/systemd-machined
+    1662 : /usr/libexec/udisks2/udisksd
+    1664 : /usr/libexec/upowerd
+    1669 : avahi-daemon: chroot helper
+    1688 : /usr/bin/dbus-broker-launch --scope system --audit
+    1695 : /usr/sbin/abrtd -d -s
+    1699 : /usr/sbin/chronyd
+    1723 : /usr/bin/abrt-dump-journal-core -D -T -f -e
+    1724 : /usr/bin/abrt-dump-journal-oops -fxtD
+    1725 : /usr/bin/abrt-dump-journal-xorg -fxtD
+    1728 : /usr/lib/polkit-1/polkitd --no-debug
+    1744 : /usr/libexec/accounts-daemon
+    1745 : /usr/lib/systemd/systemd-logind
+    1776 : /usr/sbin/NetworkManager --no-daemon
+    1788 : /usr/sbin/cupsd -l
+    1877 : /usr/sbin/pcscd --foreground --auto-exit
+    1898 : /usr/sbin/atd -f
+    1899 : /usr/sbin/crond -n
+    1900 : /usr/sbin/gdm
+    1920 : /usr/libexec/uresourced
+    2034 : /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper
+    2035 : /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper
+    2162 : /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -u -s
+    2164 : /usr/libexec/packagekitd
+    2393 : /usr/libexec/colord
+    2714 : /usr/sbin/abrt-dbus -t133
+    2730 : gdm-session-worker [pam/gdm-password]
+    2750 : /usr/lib/systemd/systemd --user
+    2756 : (sd-pam)
+    2780 : /usr/libexec/gdm-x-session --run-script /usr/bin/gnome-session
+    2784 : /usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3
+    2838 : /usr/bin/dbus-broker-launch --scope user
+    2843 : /usr/libexec/gnome-session-binary
+    2907 : /usr/libexec/at-spi-bus-launcher
+    2912 : /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user
+    2923 : /usr/libexec/gnome-session-ctl --monitor
+    2924 : /usr/libexec/uresourced --user
+    2926 : /usr/libexec/gnome-session-binary --systemd-service --session=gnome
+    2953 : /usr/bin/gnome-shell
+    2978 : ibus-daemon --panel disable --xim
+    2989 : /usr/libexec/ibus-extension-gtk3
+    3004 : /usr/libexec/ibus-x11 --kill-daemon
+    3015 : /usr/libexec/at-spi2-registryd --use-gnome-session
+    3023 : /usr/libexec/evolution-source-registry
+    3030 : /usr/libexec/goa-daemon
+    3031 : /usr/bin/pipewire
+    3032 : /usr/bin/pipewire-pulse
+    3038 : /usr/bin/pipewire-media-session
+    3044 : /usr/libexec/evolution-calendar-factory
+    3075 : /usr/libexec/gvfs-udisks2-volume-monitor
+    3092 : /usr/libexec/gvfs-mtp-volume-monitor
+    3116 : /usr/libexec/gvfs-gphoto2-volume-monitor
+    3130 : /usr/bin/gjs /usr/share/gnome-shell/org.gnome.Shell.Notifications
+    3147 : /usr/libexec/gsd-color
+    3150 : /usr/libexec/gsd-datetime
+    3153 : /usr/libexec/gsd-keyboard
+    3155 : /usr/libexec/gsd-media-keys
+    3157 : /usr/libexec/gsd-power
+    3160 : /usr/libexec/gsd-print-notifications
+    3161 : /usr/libexec/gsd-rfkill
+    3164 : /usr/libexec/gsd-sharing
+    3169 : /usr/libexec/gsd-sound
+    3175 : /usr/libexec/gsd-wacom
+    3176 : /usr/libexec/gsd-xsettings
+    3213 : /usr/libexec/evolution-data-server/evolution-alarm-notify
+    3219 : /usr/bin/gnome-software --gapplication-service
+    3272 : /usr/bin/abrt-applet --gapplication-service
+    3273 : /usr/bin/gjs /usr/share/gnome-shell/org.gnome.ScreenSaver
+    3366 : /usr/libexec/gsd-printer
+    3524 : /usr/libexec/fwupd/fwupd
+    3611 : /usr/bin/gnome-calendar --gapplication-service
+    3623 : /usr/libexec/gnome-terminal-server
+    3682 : /usr/libexec/bluetooth/obexd
+    3701 : /usr/libexec/tracker-miner-fs-3
+    3734 : bash
+    3833 : /usr/libexec/gvfsd-metadata
+    4345 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/tor-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4357 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-free-updates-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4382 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/code-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4483 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-nonfree-updates-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4495 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/updates-modular-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4529 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/copr:copr.fedorainfracloud.org:dawid:xcape-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4543 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-nonfree-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4556 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/rpmfusion-free-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4568 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/fedora-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4581 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/updates-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4610 : gpg-agent --homedir /var/cache/PackageKit/34/metadata/google-chrome-34-x86_64.tmp/gpgdir --use-standard-socket --daemon
+    4714 : /usr/libexec/flatpak-system-helper
 
 
 Automatic updates in dnf systems
@@ -339,7 +339,7 @@ the repository.
 
     # apt install htop
     Reading package lists... Done
-    Building dependency tree       
+    Building dependency tree
     Reading state information... Done
     Suggested packages:
       lsof strace
@@ -405,9 +405,9 @@ Use `apt dist-upgrade` to upgrade all the packages to the latest from the reposi
 
 ::
 
-    # apt dist-upgrade 
+    # apt dist-upgrade
     Reading package lists... Done
-    Building dependency tree       
+    Building dependency tree
     Reading state information... Done
     Calculating upgrade... Done
     The following packages will be upgraded:
@@ -418,7 +418,7 @@ Use `apt dist-upgrade` to upgrade all the packages to the latest from the reposi
     Do you want to continue? [Y/n] Y
     Get:1 http://security.debian.org/debian-security buster/updates/main amd64 libsystemd0 amd64 241-7~deb10u8 [331 kB]
     Get:2 http://security.debian.org/debian-security buster/updates/main amd64 libudev1 amd64 241-7~deb10u8 [151 kB]
-    Fetched 483 kB in 1s (379 kB/s)  
+    Fetched 483 kB in 1s (379 kB/s)
     debconf: delaying package configuration, since apt-utils is not installed
     (Reading database ... 6677 files and directories currently installed.)
     Preparing to unpack .../libsystemd0_241-7~deb10u8_amd64.deb ...
