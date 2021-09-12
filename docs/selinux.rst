@@ -31,7 +31,7 @@ There are 3 different modes.
 - permissive
 - disabled
 
-By default you system will come with *enforcing* mode. In this mode the
+By default your system will come with *enforcing* mode. In this mode the
 policies will be enforced in the system, and this should be used in every
 production system. In the *permissive* mode the policies will not be enforced
 but any denial is logged. The *disabled* mode completely disable the SELinux.
@@ -122,7 +122,7 @@ For example if you execute **ls -lZ** in your home directory.
     drwxrwxr-x.  3 vagrant vagrant unconfined_u:object_r:user_home_t:s0  21 Mar 29 11:55 Video
 
 You can see the *unconfined_u:object_r:user_home_t:s0* and if you execute the
-same command against */tmp* then you will see the following
+same command against */tmp* then you will see the following:
 
 ::
 
