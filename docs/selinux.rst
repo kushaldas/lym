@@ -115,6 +115,7 @@ You can use the *-Z* flag along with standard *ls* or *ps* command to see the SE
 
 For example if you execute **ls -lZ** in your home directory.
 
+::
 
     $ ls -lZ
     total 0
