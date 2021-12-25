@@ -67,7 +67,7 @@ ID string: `copypaste`
 
 - Create a directory called `work` in your home directory.
 - Copy the file `/tmp/problem1/work/files/hello.txt` into this newly created
-  diretory.
+  directory.
 - Remember to remove the `/tmp/problem1/work/files/hello.txt` file afterwards.
 - Create a file named `/tmp/chapter1/allusers` and add all of the directory
   names under your home directory into that file.
@@ -94,7 +94,7 @@ Find your user id and write it down in a file `/tmp/myuserid.txt`.
 Creating softlinks
 ------------------
 
-To setup the problem environment
+To setup the problem environment:
 
 ::
 
@@ -106,7 +106,7 @@ Create a softlink called `docs` in your home directory which will point to
 the `/proc/meminfo` file.
 
 
-To verify
+To verify:
 
 ::
 
@@ -116,7 +116,7 @@ To verify
 Basic vim usage
 ------------------
 
-To setup the problem environment
+To setup the problem environment:
 
 ::
 
@@ -127,7 +127,7 @@ Read the file at `/etc/os-release` and write the value of ID_LIKE (without the
 double quotes) in a file at `/tmp/id_like.txt`.
 
 
-To verify
+To verify:
 
 ::
 
@@ -138,7 +138,7 @@ To verify
 Adding a new user
 ------------------
 
-To setup the problem environment
+To setup the problem environment:
 
 ::
 
@@ -148,7 +148,7 @@ To setup the problem environment
 Add a new user called fatima to the system.
 
 
-To verify
+To verify:
 
 ::
 
@@ -166,10 +166,10 @@ previous problem.
     sudo lymsetup deleteuser
 
 
-Remove the fatima user from the system
+Remove the fatima user from the system.
 
 
-To verify
+To verify:
 
 ::
 
@@ -203,7 +203,7 @@ Add sudo access to an user
 ---------------------------
 
 Grant administrative(sudo) privileges to an existing normal user account
-"lym". Remeber to create the user first.
+"lym". Remember to create the user first.
 
 
 To verify:

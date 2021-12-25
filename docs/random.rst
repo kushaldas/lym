@@ -40,7 +40,7 @@ Finding CPU time of a command
 ------------------------------
 
 The **time** command will help you to find the CPU time spent for any command.
-The following example will tell us how much time ```du -sh`` took to calculate the
+The following example will tell us how much time ``du -sh`` took to calculate the
 disk usage.
 
 ::
