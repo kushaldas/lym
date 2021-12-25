@@ -38,6 +38,7 @@ ping command
 *ping* is simple way to find if you are connected to Internet or not.   
 We can also ping any particular computer to find if the computer is connected to the network or not. Press *Ctrl+c* to stop the loop.
 
+::
 
     $ ping google.com
     PING google.com (216.58.201.142) 56(84) bytes of data.
@@ -82,7 +83,7 @@ entry like the following to the file.
 /etc/resolv.conf
 -----------------
 
-*/etc/resolv.conf* is the configuration file whcih contains the DNS server address to use for DNS queries.
+*/etc/resolv.conf* is the configuration file which contains the DNS server address to use for DNS queries.
 
 ::
 
@@ -353,8 +354,8 @@ If you want learn about the full path of the DNS query, you can find that out
 by *+trace* flag. For the following example where we are trying to find the IP
 address for `anweshadas.in <https://anweshadas.in>`_, `dig` first connects to
 the root name servers to find the correct DNS resolvers for the *.in* servers,
-then they tells they tell *dig* to go the servers (in this case Dreamhost name
-servers) which contain the exact IP address for the domain.
+then they tell *dig* to go those servers (in this case Dreamhost name servers)
+which contain the exact IP address for the domain.
 
 ::
 
@@ -503,7 +504,7 @@ this service. Let’s try to connect to localhost itself. Remember to start the
 
 As you can see, the command syntax is ssh followed by user@hostname. If your
 remote system's user name is same as your current one, then you can omit the
-username and just use the hostname(IP address or domain name).
+username and just use the hostname (IP address or domain name).
 
 ::
 
