@@ -347,7 +347,7 @@ time for execution.
 
 ::
 
-    echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' > ~/.bashrc
+    echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bashrc
     source ~/.bashrc
     ...
     ...
