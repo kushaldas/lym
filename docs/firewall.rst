@@ -110,13 +110,13 @@ View the existing rules
 
     # iptables -nvL --line-numbers
     Chain INPUT (policy ACCEPT 82 packets, 4756 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
+    num   pkts bytes target     prot opt in     out     source               destination
 
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
+    num   pkts bytes target     prot opt in     out     source               destination
 
     Chain OUTPUT (policy ACCEPT 42 packets, 3192 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination  
+    num   pkts bytes target     prot opt in     out     source               destination
 
 
 The above command shows the default table **filter** and all chains and rules
@@ -181,8 +181,8 @@ If you want to view all the rules.
 
     # iptables -nvL --line-numbers
     Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
-    1        0     0 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    num   pkts bytes target     prot opt in     out     source               destination
+    1        0     0 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0
     2      122  9641 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
     3        1    52 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            state NEW tcp dpt:22
     4        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80
@@ -190,11 +190,11 @@ If you want to view all the rules.
     6       22  2044 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
 
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
+    num   pkts bytes target     prot opt in     out     source               destination
 
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
-    1      104 12085 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0 
+    num   pkts bytes target     prot opt in     out     source               destination
+    1      104 12085 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
 The *--line-numbers* argument shows the number of the each rule. We can use
 these line numbers to delete any rule.
@@ -213,19 +213,19 @@ Let us delete the rule number 4, which allows traffic to port 80.
     # iptables -D INPUT 4
     # iptables -nvL --line-numbers
     Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
-    1        4   376 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    num   pkts bytes target     prot opt in     out     source               destination
+    1        4   376 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0
     2      221 15445 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
     3        1    52 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            state NEW tcp dpt:22
     4        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443
     5       22  2044 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
 
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
+    num   pkts bytes target     prot opt in     out     source               destination
 
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
-    1      166 17248 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0 
+    num   pkts bytes target     prot opt in     out     source               destination
+    1      166 17248 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
 
 Delete a rule directly
@@ -239,17 +239,17 @@ directly.
     # iptables -D INPUT -p tcp --dport 443 -j ACCEPT
     # iptables -nvL --line-numbers
     Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
-    1        4   376 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    num   pkts bytes target     prot opt in     out     source               destination
+    1        4   376 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0
     2      344 22417 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
     3        1    52 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            state NEW tcp dpt:22
     4       22  2044 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
 
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
+    num   pkts bytes target     prot opt in     out     source               destination
 
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
-    num   pkts bytes target     prot opt in     out     source               destination         
+    num   pkts bytes target     prot opt in     out     source               destination
     1      234 22564 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
 

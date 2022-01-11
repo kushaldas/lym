@@ -6,7 +6,7 @@
 Welcome to Linux command line for you and me!
 ==============================================
 
-    
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -33,7 +33,7 @@ Team
 
 - `Jason Braganza <https://janusworx.com/>`_ (Editor in command)
 - `Kushal Das <https://kushaldas.in>`_ (Adds typos in every form)
-  
+
 Indices and tables
 ==================
 

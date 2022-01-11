@@ -36,7 +36,7 @@ has PID 1, which means it is the first process to start in the system.
 How to find a particular process?
 ----------------------------------
 
-Let’s say, I want to know the process id of the Firefox browser in my system.  
+Let’s say, I want to know the process id of the Firefox browser in my system.
 I can use the following command to find that information.
 
 ::
@@ -64,7 +64,7 @@ that id to kill it.
 
   $ kill 26752
 
-If there is no error message, you’ll find that Firefox has disappeared. 
+If there is no error message, you’ll find that Firefox has disappeared.
 
 
 .. index:: lsof
@@ -104,7 +104,7 @@ numbers on the screen.
 
 ::
 
-  $ kill -l
+  $ kill -l
   1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP
   6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1
   11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM
@@ -117,7 +117,7 @@ numbers on the screen.
   48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
   53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
   58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
-  63) SIGRTMAX-1	64) SIGRTMAX	
+  63) SIGRTMAX-1	64) SIGRTMAX
 
 .. index:: top
 
@@ -134,19 +134,19 @@ about CPU and memory usage in general. To get out of top, press the key *q*.
   Tasks: 372 total,   2 running, 370 sleeping,   0 stopped,   0 zombie
   %Cpu(s): 11.6 us,  2.6 sy,  0.0 ni, 84.9 id,  0.1 wa,  0.3 hi,  0.5 si,  0.0 st
   KiB Mem :  7858752 total,  1701052 free,  4444136 used,  1713564 buff/cache
-  KiB Swap:  3268604 total,  1558396 free,  1710208 used.  2431656 avail Mem 
+  KiB Swap:  3268604 total,  1558396 free,  1710208 used.  2431656 avail Mem
 
-    PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                          
-  28300 kdas      20   0 1502016 287340  44396 R  25.0  3.7 290:56.60 chrome                                                                           
-  2668 kdas       9 -11 2067292   9756   7164 S   6.2  0.1 166:06.48 pulseaudio                                                                       
-  15122 kdas      20   0  771844  33104  11352 S   6.2  0.4  39:24.60 gnome-terminal-                                                                  
-  24760 kdas      20   0 1945840 209128  76952 S   6.2  2.7   1:41.15 code                                                                             
-  27526 kdas      20   0  156076   4268   3516 R   6.2  0.1   0:00.01 top                                                                              
-      1 root      20   0  215356   4880   3108 S   0.0  0.1   0:28.25 systemd                                                                          
-      2 root      20   0       0      0      0 S   0.0  0.0   0:00.66 kthreadd                                                                         
-      4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:0H                                                                     
-      6 root      20   0       0      0      0 S   0.0  0.0   0:11.79 ksoftirqd/0                                                                      
-      7 root      20   0       0      0      0 S   0.0  0.0   8:28.06 rcu_sched 
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+  28300 kdas      20   0 1502016 287340  44396 R  25.0  3.7 290:56.60 chrome
+  2668 kdas       9 -11 2067292   9756   7164 S   6.2  0.1 166:06.48 pulseaudio
+  15122 kdas      20   0  771844  33104  11352 S   6.2  0.4  39:24.60 gnome-terminal-
+  24760 kdas      20   0 1945840 209128  76952 S   6.2  2.7   1:41.15 code
+  27526 kdas      20   0  156076   4268   3516 R   6.2  0.1   0:00.01 top
+      1 root      20   0  215356   4880   3108 S   0.0  0.1   0:28.25 systemd
+      2 root      20   0       0      0      0 S   0.0  0.0   0:00.66 kthreadd
+      4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:0H
+      6 root      20   0       0      0      0 S   0.0  0.0   0:11.79 ksoftirqd/0
+      7 root      20   0       0      0      0 S   0.0  0.0   8:28.06 rcu_sched
   ... long output
 
 By the way, feel free to press *1* and see if anything changes in the top
@@ -245,7 +245,7 @@ time. The following is a cloud-based virtual machine.
 
 ::
 
-  $ cat /proc/cmdline 
+  $ cat /proc/cmdline
   BOOT_IMAGE=/boot/vmlinuz-4.8.6-300.fc25.x86_64 root=UUID=9be70055-35f2-4a57-b120-5a003dfdb504 ro no_timer_check console=tty1 console=ttyS0,115200n8 rhgb quiet console=ttyS1 LANG=en_US.UTF-8 initrd=/boot/initramfs-4.8.6-300.fc25.x86_64.img
 
 .. index:: meminfo
@@ -257,7 +257,7 @@ time. The following is a cloud-based virtual machine.
 
 ::
 
-  $ cat /proc/meminfo 
+  $ cat /proc/meminfo
   MemTotal:        4046820 kB
   MemFree:         2960568 kB
   MemAvailable:    3696216 kB
@@ -312,7 +312,7 @@ time. The following is a cloud-based virtual machine.
 
 ::
 
-  $ cat /proc/uptime 
+  $ cat /proc/uptime
   52820.32 104802.84
 
 
@@ -336,7 +336,7 @@ you want to see all the different settings, use the following command.
 ::
 
   $ sudo sysctl -a
-  [sudo] password for kdas: 
+  [sudo] password for kdas:
   abi.vsyscall32 = 1
   crypto.fips_enabled = 0
   debug.exception-trace = 1

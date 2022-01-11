@@ -42,7 +42,7 @@ date command
 
 ::
 
-    $ date
+    $ date
     Sun Jun 25 10:13:44 IST 2017
 
 In case you want to know the current date/time in UTC, use the following command.
@@ -73,23 +73,23 @@ will display the current month.
 ::
 
     $ cal
-          June 2017     
+          June 2017
     Su Mo Tu We Th Fr Sa
-                1  2  3 
-    4  5  6  7  8  9 10 
-    11 12 13 14 15 16 17 
-    18 19 20 21 22 23 24 
-    25 26 27 28 29 30    
+                1  2  3
+    4  5  6  7  8  9 10
+    11 12 13 14 15 16 17
+    18 19 20 21 22 23 24
+    25 26 27 28 29 30
 
     $ cal 07 2017
-        July 2017     
+        July 2017
     Su Mo Tu We Th Fr Sa
-                    1 
-    2  3  4  5  6  7  8 
-    9 10 11 12 13 14 15 
-    16 17 18 19 20 21 22 
-    23 24 25 26 27 28 29 
-    30 31                
+                    1
+    2  3  4  5  6  7  8
+    9 10 11 12 13 14 15
+    16 17 18 19 20 21 22
+    23 24 25 26 27 28 29
+    30 31
 
 
 
@@ -197,7 +197,7 @@ We can also create nested directories in a single command using the *-p* option.
 ::
 
     [babai@kdas-laptop ~]$ mkdir -p dir1/dir2/dir3
-    [babai@kdas-laptop ~]$ ls dir1/ dir1/dir2/ 
+    [babai@kdas-laptop ~]$ ls dir1/ dir1/dir2/
     dir1/:
     dir2
 
@@ -218,7 +218,7 @@ it will not ask to confirm, but it will delete everything there. So, please be c
 ::
 
     [babai@kdas-laptop ~]$ rm -rf dir1/dir2/dir3
-    [babai@kdas-laptop ~]$ ls dir1/ dir1/dir2/ 
+    [babai@kdas-laptop ~]$ ls dir1/ dir1/dir2/
     dir1/:
     dir2
 
@@ -228,8 +228,8 @@ Copying a file using cp command
 -------------------------------
 
 We use the *cp* command to *copy* a file in the Linux shell. To copy a folder with its contents
-recursively use the *cp* command with the *-r* flag.  
-We use the *cp file_to_copy new_location* format.  
+recursively use the *cp* command with the *-r* flag.
+We use the *cp file_to_copy new_location* format.
 In the example below, we
 are copying the *hello.txt* to *hello2.txt*.
 
@@ -349,7 +349,7 @@ it will add the new input to the end of the file.
 ::
 
     $ ls / > details.txt
-    $ cat details.txt 
+    $ cat details.txt
     bin
     boot
     dev
@@ -370,8 +370,8 @@ it will add the new input to the end of the file.
     tmp
     usr
     var
-    $ ls /usr/ > details.txt 
-    $ cat details.txt 
+    $ ls /usr/ > details.txt
+    $ cat details.txt
     bin
     games
     include
@@ -383,8 +383,8 @@ it will add the new input to the end of the file.
     share
     src
     tmp
-    $ ls -l /tmp/ >> details.txt 
-    $ cat details.txt 
+    $ ls -l /tmp/ >> details.txt
+    $ cat details.txt
     bin
     games
     include
