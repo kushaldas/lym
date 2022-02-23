@@ -637,3 +637,8 @@ The *lsof* command shows open files, using *-i* we are asking to list of all
 Internet and x.25 (HP-UX) network files. To know more, read the man page of the
 *lsof* command.
 
+To know about ports
+--------------------
+
+If you want to know more about popular ports used by the applications/protocols,
+you should look into */etc/services* file on your computer.
