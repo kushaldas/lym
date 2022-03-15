@@ -431,6 +431,6 @@ We can verify that our new webservice is running properly via `curl`.
 
 ::
 
-    $ curl http://lcoalhost/
+    $ curl http://localhost/
     Hello from Python.
 
