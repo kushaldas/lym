@@ -331,3 +331,106 @@ stored. The following is the output from an Ubuntu Focal (20.04) system.
 
     # journalctl --disk-usage
     Archived and active journals take up 56.0M in the file system.
+
+
+Writing your own service file
+------------------------------
+
+In case you are developing a new service, or you want to run some script as a
+systemd service, you will have to write a service file for the same.
+
+For this example, we will add a new executable under `/usr/sbin` called
+`myserver`. We will use Python3's builtin `http.server` module to expose the
+current directory as a simple server.
+
+.. code-block:: bash
+
+    #!/usr/bin/sh
+    python3 -m http.server 80
+
+
+.. note:: Remember to use `chmod` command to mark the file as executable.
+
+
+Next, we will create the actual service file, which is configuration file written in `INI format <https://en.wikipedia.org/wiki/INI_file>`_.
+
+
+Add the following to the `/etc/systemd/system/myserver.service` file.
+
+.. code-block:: ini
+
+    [Unit]
+    Description=My Web Server
+    After=network.target
+
+    [Service]
+    Type=simple
+    WorkingDirectory=/web/amazing
+    ExecStart=/usr/sbin/myserver
+    Restart=always
+
+    [Install]
+    WantedBy=multi-user.target
+
+Using `ExecStart` we are specifying which executable to use, we can even pass
+any command line argument to that. We are also mentioning the directory this
+service will start. We are also saying in case of a failure, or unclean exit
+code, or or on signal `always` restart the service.  The service will also start
+after the `network` is up. We are also mentioning that the service will have
+`/web/amazing` as the working directory. So, we should also create that.
+We also add an `index.html` to the same directory for testing.
+
+.. code-block:: bash
+
+    # mkdir -p /web/amazing
+    # echo "Hello from Python." > /web/amazing/index.html
+
+
+To understand the other options you will have to read two man pages,
+
+- `man systemd.service <https://www.freedesktop.org/software/systemd/man/systemd.service.html>`_
+- `man systemd.unit <https://www.freedesktop.org/software/systemd/man/systemd.unit.html>`_.
+
+After adding the service file, reload the daemons.
+
+.. code-block:: bash
+
+    # systemctl daemon-reload
+
+Unless you do this, `systemd` will complain to you that something changed, and
+you did not reloadl. Always remember to reload after you make any changes to any
+systemd service files.
+
+
+Now we can start and enable the service.
+
+.. code-block:: bash
+
+
+    # systemctl enable myserver
+    # systemctl start myserver
+    # systemctl status myserver
+    ● myserver.service - My Web Server
+      Loaded: loaded (/etc/systemd/system/myserver.service; enabled; vendor preset: disabled)
+      Active: active (running) since Sat 2022-03-12 10:03:25 UTC; 1 day 3h ago
+    Main PID: 21019 (myserver)
+        Tasks: 2 (limit: 50586)
+      Memory: 9.6M
+      CGroup: /system.slice/myserver.service
+              ├─21019 /usr/bin/sh /usr/sbin/myserver
+              └─21020 python3 -m http.server 80
+
+    Mar 12 10:03:25 selinux systemd[1]: Started My Web Server.
+
+
+Verifying the service
+~~~~~~~~~~~~~~~~~~~~~
+
+We can verify that our new webservice is running properly via `curl`.
+
+
+::
+
+    $ curl http://lcoalhost/
+    Hello from Python.
+
