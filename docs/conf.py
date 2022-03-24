@@ -57,7 +57,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Linux command line for you and me'
-copyright = u'2017-2021, Kushal Das'
+copyright = u'2017-2022, Kushal Das'
 author = u'Kushal Das'
 
 # The version info for the project you're documenting, acts as replacement for
