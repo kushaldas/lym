@@ -434,3 +434,80 @@ We can verify that our new webservice is running properly via `curl`.
     $ curl http://localhost/
     Hello from Python.
 
+
+Securing a service using systemd
+=================================
+
+systemd provides multiple features which can allow anyone to lock down a
+particular service. These features help to migiate multiple security issues for
+any service. We will learn about a few of those in this section.
+
+
+Now, we will use an web application I developed to learn.  It is called `verybad
+<https://github.com/kushaldas/verybad>`_.  This has multiple security issues, so
+do not run it in your laptop or main system. If you want try it out and follow
+along the steps, please do it in a VM.
+
+.. note:: All of the following steps are done in a `AlmaLinux <https://almalinux.org/>`_ 8 virtual machine.
+
+
+Installing verybad service
+---------------------------
+
+We will first install latest `Rust <https://www.rust-lang.org/>`_ and compile from source.
+
+::
+
+    $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    ...
+    Rust is installed now. Great!
+
+    To get started you may need to restart your current shell.
+    This would reload your PATH environment variable to include
+    Cargo's bin directory ($HOME/.cargo/bin).
+
+    To configure your current shell, run:
+    source $HOME/.cargo/env
+    To get started you may need to restart your current shell.
+    This would reload your PATH environment variable to include
+    Cargo's bin directory ($HOME/.cargo/bin).
+
+    To configure your current shell, run:
+    source $HOME/.cargo/env
+
+Press enter for the default configuration. You can logout and log back in to
+make sure that correct environment varibles are being used.
+
+
+Next, installing `gcc` and then clone the git repository and compile.
+
+::
+
+    $ sudo dnf install gcc -y
+    $ git clone https://github.com/kushaldas/verybad
+    $ cd verybad
+    $ cargo build --release
+    ...
+    $ ls -l target/release/verybad
+    -rwxrwxr-x. 2 almalinux almalinux 8193040 Mar 16 04:21 target/release/verybad
+
+
+Now, we will copy the executable to `/usr/sbin` and also copy the service file and then start & enable the service.
+
+
+::
+
+    $ sudo cp ./target/release/verybad /usr/sbin/
+    $ sudo cp verybad.service /etc/systemd/system/
+    $ sudo mkdir -p /web/amazing
+    $ sudo systemctl enable verybad
+    $ sudo systemctl start verybad
+
+
+Now, in one terminal you can run `journalctl` to see the logs from the service,
+and then from another terminal we can use `curl` to do various operations on the
+web service.
+
+::
+
+    $ sudo journalctl -u verybad -f
