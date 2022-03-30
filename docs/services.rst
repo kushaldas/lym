@@ -956,4 +956,4 @@ Then `daemon-reload` & `restart` the service. & we will try the `curl` command o
   </body>
   </html>
 
-To learn more read the man page via **man systemd.exec**.
+To learn more read the man page via `man systemd.exec <https://www.freedesktop.org/software/systemd/man/systemd.exec.html>`_.
