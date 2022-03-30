@@ -448,7 +448,7 @@ Now, we will use an web application I developed to learn.  It is called `verybad
 do not run it in your laptop or main system. If you want try it out and follow
 along the steps, please do it in a VM.
 
-.. note:: All of the following steps are done in a `AlmaLinux <https://almalinux.org/>`_ 8 virtual machine.
+.. note:: All of the following steps are done in a `Fedora 35 <https://getfedora.org>`_  virtual machine.
 
 
 Installing verybad service
@@ -662,11 +662,74 @@ running the service as `root` by default.
 
 ::
 
-  $ curl  http://localhost:8000/exec/id
+  $ curl http://localhost:8000/exec/id
   uid=0(root) gid=0(root) groups=0(root) context=system_u:system_r:unconfined_service_t:s0
   $ curl  http://localhost:8000/exec/ls%20%2Froot
   anaconda-ks.cfg
   original-ks.cfg
 
-Through out rest of the chapter, we will learn how to migiate these 3 kinds of vulnerabilities using systemd's builtin
-features.
+Through out rest of the chapter, we will learn how to migiate these 3 kinds of
+vulnerabilities using systemd's builtin features.
+
+Remove access to system's tmp directory
+----------------------------------------
+
+One of the very initial thing we can do is to provide a private temporary
+directory structure only to the service. If we set `PrivateTmp=yes`, it will
+create a new file system namespace for the service & will mount private `/tmp` &
+`/var/tmp` inside of it. This option is only available for system services.
+
+Only using `PrivateTmp` does not provide special security, but it stops the
+chances where the service can write to a temporary file/socket created by
+another service.
+
+Protecting home dirctories
+---------------------------
+
+We can also use `ProtectHome=` to secure home directories in the system. It is
+set to true like `ProtectHome=yes`, then `/root`, `/home` & `/run/user` are
+empty & inaccessible. We can also set them as read only by doing
+`ProtectHome=read-only`. The third available option is `tmpfs`, which mounts
+temporary filesytem to those directories. For any long running service, we must
+enable this feature.
+
+
+Let us see how this affects our service. First we update the service file.
+
+.. code-block:: ini
+
+  [Unit]
+  Description=Very Bad Web Application
+  After=network.target
+
+  [Service]
+  Type=simple
+  WorkingDirectory=/web/amazing
+  ExecStart=/usr/sbin/verybad
+  Restart=always
+  ProtectHome=yes
+  PrivateTmp=yes
+
+  [Install]
+  WantedBy=multi-user.target
+
+
+We will have to reload the daemon & restart the service for the changes in effect.
+
+::
+
+  # systemctl daemon-reload
+  # systemctl restart verybad
+
+
+Now we will try to execute `ls` command against `/root`, `/home/fedora` & `/tmp` directory.
+You will notice that the tool can not see any file in those directories.
+
+
+::
+
+  $ curl  http://localhost:8000/exec/ls%20%2Froot
+  $ curl  http://localhost:8000/exec/ls%20%2Fhome%2Ffedora
+  $ curl  http://localhost:8000/exec/ls%20%2Ftmp
+
+
