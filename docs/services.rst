@@ -558,11 +558,11 @@ internally returning us the content of the `/etc/os-release` file.
   VARIANT_ID=cloud
 
 
-Directory traversal vulnerability
-----------------------------------
+Directory traversal vulnerability/ LFI
+---------------------------------------
 
 `Directory traversal
-<https://portswigger.net/web-security/file-path-traversal>`_ is first
+<https://portswigger.net/web-security/file-path-traversal>`_ or Local File inclusion is the first
 vulnerability we are going to look into. A **GET** request to `/filename` will give us the file. Let us read the `/etc/shadow`
 file using this.
 
