@@ -956,4 +956,60 @@ Then `daemon-reload` & `restart` the service. & we will try the `curl` command o
   </body>
   </html>
 
-To learn more read the man page via `man systemd.exec <https://www.freedesktop.org/software/systemd/man/systemd.exec.html>`_.
+To learn more read the man page via `man systemd.exec
+<https://www.freedesktop.org/software/systemd/man/systemd.exec.html>`_.
+
+What is next?
+-------------
+
+If you read the man page linked above, you will find more options from `systemd` which you can enable to sandbox the service.
+
+For example, one can still read some important files from the server using the service. Say files under the `/etc`. You
+can try this yourself.
+
+::
+
+  $ curl http://localhost:8000/%2Fetc%2Fsystemd%2Fsystem%2Fverybad.service
+  [Unit]
+  Description=Very Bad Web Application
+  After=network.target
+
+  [Service]
+  Type=simple
+  ExecStart=/usr/sbin/verybad
+  Restart=always
+  DynamicUser=yes
+  StateDirectory=verybad
+  WorkingDirectory=/var/lib/verybad
+  NoExecPaths=/
+  ExecPaths=/usr/sbin/verybad /usr/lib/systemd/systemd /lib64/ld-linux-x86-64.so.2 /lib64/libgcc_s.so.1 /lib64/libm.so.6 /lib64/libc.so.6 /usr/bin/date
+
+  [Install]
+  WantedBy=multi-user.target
+
+We can block that by using `InaccessiblePaths=/etc` in the service file. This
+option also takes a list of paths, so you can block access to any other
+directories/file paths too.
+
+The full service file is given below.
+
+.. code-block:: ini
+
+  [Unit]
+  Description=Very Bad Web Application
+  After=network.target
+
+  [Service]
+  Type=simple
+  ExecStart=/usr/sbin/verybad
+  Restart=always
+  DynamicUser=yes
+  StateDirectory=verybad
+  WorkingDirectory=/var/lib/verybad
+  InaccessiblePaths=/etc
+  NoExecPaths=/
+  ExecPaths=/usr/sbin/verybad /usr/lib/systemd/systemd /lib64/ld-linux-x86-64.so.2 /lib64/libgcc_s.so.1 /lib64/libm.so.6 /lib64/libc.so.6 /usr/bin/date
+
+  [Install]
+  WantedBy=multi-user.target
+
