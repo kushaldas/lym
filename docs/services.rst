@@ -987,9 +987,10 @@ can try this yourself.
   [Install]
   WantedBy=multi-user.target
 
-We can block that by using `InaccessiblePaths=/etc` in the service file. This
-option also takes a list of paths, so you can block access to any other
-directories/file paths too.
+
+We can block this via mounting a Temporary filesytem in `/etc`, and then binding
+the files we need for the service as read only, using `TemporaryFileSystem=` &
+`BindReadOnlyPaths=` options.
 
 The full service file is given below.
 
@@ -1006,9 +1007,10 @@ The full service file is given below.
   DynamicUser=yes
   StateDirectory=verybad
   WorkingDirectory=/var/lib/verybad
-  InaccessiblePaths=/etc
   NoExecPaths=/
   ExecPaths=/usr/sbin/verybad /usr/lib/systemd/systemd /lib64/ld-linux-x86-64.so.2 /lib64/libgcc_s.so.1 /lib64/libm.so.6 /lib64/libc.so.6 /usr/bin/date
+  TemporaryFileSystem=/etc:ro
+  BindReadOnlyPaths=/etc/os-release /etc/localtime
 
   [Install]
   WantedBy=multi-user.target
