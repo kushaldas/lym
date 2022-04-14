@@ -32,8 +32,25 @@ You can use `-o` flag to download a file and save it with the given filename.
 
 ::
 
-    $ curl https://kushaldas.in/test.html -o /tmp/test.html
+    $ curl https://kushaldas.in/test.html -o /tmp/download.html
       % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                      Dload  Upload   Total   Spent    Left  Speed
     100   125  100   125    0     0    295      0 --:--:-- --:--:-- --:--:--   296
+
+
+Download with the same name
+----------------------------
+
+Use `-O` flag to download the save the file with the same basename from the given URL.
+
+::
+
+    $ curl -O https://kushaldas.in/test.html
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100   125  100   125    0     0    295      0 --:--:-- --:--:-- --:--:--   296
+    $ ls -l test.html
+    .rw-r--r--@ 125 kdas 14 Apr 20:45 test.htm
+
+Here the file is saved in the current directory as `test.html`.
 
