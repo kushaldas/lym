@@ -24,3 +24,16 @@ Viewing a file
         </body>
     </html>
 
+
+Downloading the file
+---------------------
+
+You can use `-o` flag to download a file and save it with the given filename.
+
+::
+
+    $ curl https://kushaldas.in/test.html -o /tmp/test.html
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100   125  100   125    0     0    295      0 --:--:-- --:--:-- --:--:--   296
+
