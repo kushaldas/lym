@@ -54,3 +54,48 @@ Use `-O` flag to download the save the file with the same basename from the give
 
 Here the file is saved in the current directory as `test.html`.
 
+Inspecting HTTP headers
+-----------------------
+
+You can use `-v` flag to inspect the HTTP headers in a request/response.
+
+::
+
+    $ curl -v http://httpbin.org/get
+    *   Trying 54.91.120.77:80...
+    * Connected to httpbin.org (54.91.120.77) port 80 (#0)
+    > GET /get HTTP/1.1
+    > Host: httpbin.org
+    > User-Agent: curl/7.79.1
+    > Accept: */*
+    > 
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 200 OK
+    < Date: Fri, 15 Apr 2022 10:03:05 GMT
+    < Content-Type: application/json
+    < Content-Length: 256
+    < Connection: keep-alive
+    < Server: gunicorn/19.9.0
+    < Access-Control-Allow-Origin: *
+    < Access-Control-Allow-Credentials: true
+    < 
+    {
+      "args": {}, 
+      "headers": {
+        "Accept": "*/*", 
+        "Host": "httpbin.org", 
+        "User-Agent": "curl/7.79.1", 
+        "X-Amzn-Trace-Id": "Root=1-625942d9-163a40480c9aea0470fd9c2e"
+      }, 
+      "origin": "185.195.233.166", 
+      "url": "http://httpbin.org/get"
+    }
+    * Connection #0 to host httpbin.org left intact
+
+
+Here the lines with `>` at starting showing the headers in the request, and `<`
+shows the headers in the response.
+
+For the rest of the chapter we will keep using `httpbin.org <https://httpbin.org>_`,
+which is a service run by `Kenneth Reitz <https://twitter.com/kennethreitz42>_`.
+
