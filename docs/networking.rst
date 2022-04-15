@@ -30,6 +30,21 @@ Here *lo* is a special device which points to the same system (also known as *lo
 *eth0* is our ethernet device which connects to the network.
 
 
+.. index:: arp
+
+Finding ARP table
+------------------
+
+ARP stands for Address Resolution Protocol, it is used to find the hardware
+addresses (MAC address) of the computers in the local network. Every operating
+system keeps a local cache (as a table) of this information. You can see the
+details using the following command.
+
+::
+
+    $ ip neighbour
+
+
 .. index:: ping
 
 ping command
