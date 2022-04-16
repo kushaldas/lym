@@ -103,6 +103,34 @@ For the rest of the chapter we will keep using `httpbin.org <https://httpbin.org
 which is a service run by `Kenneth Reitz <https://twitter.com/kennethreitz42>`_.
 The service returns JSON as output.
 
+Say you want to only view the headers, and don't want to see the actual
+file/URL content, you can use `-s` and `-o /dev/null` as flags.
+
+::
+
+
+    $ curl -s -v http://httpbin.org/get -o /dev/null
+    *   Trying 52.7.224.181:80...
+    * Connected to httpbin.org (52.7.224.181) port 80 (#0)
+    > GET /get HTTP/1.1
+    > Host: httpbin.org
+    > User-Agent: curl/7.79.1
+    > Accept: */*
+    > 
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 200 OK
+    < Date: Sat, 16 Apr 2022 09:18:46 GMT
+    < Content-Type: application/json
+    < Content-Length: 256
+    < Connection: keep-alive
+    < Server: gunicorn/19.9.0
+    < Access-Control-Allow-Origin: *
+    < Access-Control-Allow-Credentials: true
+    < 
+    { [256 bytes data]
+    * Connection #0 to host httpbin.org left intact
+
+
 Doing POST request using curl
 -----------------------------
 
