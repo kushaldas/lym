@@ -195,3 +195,66 @@ Above we had to pass both the form fields using `--form` twice.
    about the difference.
 
 
+Following redirection
+----------------------
+
+One can use `-L` option to tell curl to follow any **3xx** redirect form the
+server. To see this, first we will call with `-I` to `http://kushaldas.in`,
+this will return a *302* redirection to the `https://kushaldas.in` site. In the
+second run, we will also provide `-L`, so that curl will follow the
+redirection. `-I` allows curl to do a `HEAD` request to the server.
+
+::
+
+    $ curl -I http://kushaldas.in
+    HTTP/1.1 302 Moved Temporarily
+    Server: nginx/1.18.0
+    Date: Sat, 16 Apr 2022 15:03:02 GMT
+    Content-Type: text/html
+    Content-Length: 145
+    Connection: keep-alive
+    Location: https://kushaldas.in/
+
+
+    $ curl -LI http://kushaldas.in
+    HTTP/1.1 302 Moved Temporarily
+    Server: nginx/1.18.0
+    Date: Sat, 16 Apr 2022 15:03:06 GMT
+    Content-Type: text/html
+    Content-Length: 145
+    Connection: keep-alive
+    Location: https://kushaldas.in/
+
+    HTTP/2 200 
+    server: nginx/1.18.0
+    date: Sat, 16 Apr 2022 15:03:06 GMT
+    content-type: text/html; charset=utf-8
+    content-length: 27890
+    last-modified: Fri, 01 Apr 2022 13:35:38 GMT
+    etag: "6246ffaa-6cf2"
+    strict-transport-security: max-age=31536000
+    onion-location: https://kushal76uaid62oup5774umh654scnu5dwzh4u2534qxhcbi4wbab3ad.onion
+    permissions-policy: interest-cohort=()
+    x-frame-options: DENY
+    x-content-type-options: nosniff
+    referrer-policy: strict-origin
+    accept-ranges: bytes
+
+
+Viewing more details about the transfer
+---------------------------------------
+
+We can use `--write-out` flag to get more details about the transfer. It prints
+them after the main output, based on the variable we pass. For example we can
+check the `HTTP status code` in both the calls.
+
+::
+
+    $ curl -s --write-out '%{http_code}' http://kushaldas.in -o /dev/null
+    302
+    $ curl -s --write-out '%{http_code}' https://kushaldas.in -o /dev/null
+    200
+
+You can pass `--write-out '%{json}'` to see the all the different details as
+JSON. Read the man page of curl for more details.
+
