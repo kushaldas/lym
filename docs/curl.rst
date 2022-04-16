@@ -3,7 +3,7 @@ Curl for all your web
 
 In this chapter we will learn about a very special command, `curl`. It is used
 to trasfer data over network, it is written by `Daniel Stenberg
-<https://daniel.haxx.se/>_`. It is most probably one of the highest used
+<https://daniel.haxx.se/>`_. It is most probably one of the highest used
 software in the world, you can find it in your servers, cars and also in
 television sets.
 
@@ -99,7 +99,71 @@ You can use `-v` flag to inspect the HTTP headers in a request/response.
 Here the lines with `>` at starting showing the headers in the request, and `<`
 shows the headers in the response.
 
-For the rest of the chapter we will keep using `httpbin.org
-<https://httpbin.org>_`, which is a service run by `Kenneth Reitz
-<https://twitter.com/kennethreitz42>_`. The service returns JSON as output.
+For the rest of the chapter we will keep using `httpbin.org <https://httpbin.org>`_,
+which is a service run by `Kenneth Reitz <https://twitter.com/kennethreitz42>`_.
+The service returns JSON as output.
+
+Doing POST request using curl
+-----------------------------
+
+We can do `HTTP POST <https://en.wikipedia.org/wiki/POST_(HTTP)>`_ requests
+using curl in two different ways. Using `-d` flag for simple form submission
+style using `application/x-www-form-urlencoded` where each form names & values
+are marked with  `=` and separate by `&`.
+
+You can also use `--form/-F` for `multipart/form-data` where we can upload
+files or send in large amount of binary data.
+
+::
+
+    $ curl -d "name=kushal&lang=Python" https://httpbin.org/post
+    {
+      "args": {}, 
+      "data": "", 
+      "files": {}, 
+      "form": {
+        "lang": "Python", 
+        "name": "kushal"
+      }, 
+      "headers": {
+        "Accept": "*/*", 
+        "Content-Length": "23", 
+        "Content-Type": "application/x-www-form-urlencoded", 
+        "Host": "httpbin.org", 
+        "User-Agent": "curl/7.79.1", 
+        "X-Amzn-Trace-Id": "Root=1-625a7542-3994f1a24d276db65e59c88f"
+      }, 
+      "json": null, 
+      "origin": "193.138.218.212", 
+      "url": "https://httpbin.org/post"
+    }
+
+    $ curl --form name=kushal --form lang=Python https://httpbin.org/post
+    {
+      "args": {}, 
+      "data": "", 
+      "files": {}, 
+      "form": {
+        "lang": "Python", 
+        "name": "kushal"
+      }, 
+      "headers": {
+        "Accept": "*/*", 
+        "Content-Length": "244", 
+        "Content-Type": "multipart/form-data; boundary=------------------------870c3eede45c997d", 
+        "Host": "httpbin.org", 
+        "User-Agent": "curl/7.79.1", 
+        "X-Amzn-Trace-Id": "Root=1-625a755e-2b91ece7042683285bd91332"
+      }, 
+      "json": null, 
+      "origin": "193.138.218.212", 
+      "url": "https://httpbin.org/post"
+    }
+
+Above we had to pass both the form fields using `--form` twice.
+
+.. note:: You can read the `SPEC
+   <https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4>`_ to learn
+   about the difference.
+
 
