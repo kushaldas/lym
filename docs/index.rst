@@ -14,6 +14,7 @@ Welcome to Linux command line for you and me!
    startingcommands
    fhsandaccess
    useful
+   curl
    users
    files
    processes
