@@ -25,6 +25,9 @@ Viewing a file
     </html>
 
 
+Here we are reading the content of the file located at URL
+`https://kushaldas.in/test.html`, by default curl shows the output on STDOUT.
+
 Downloading the file
 ---------------------
 
@@ -96,6 +99,7 @@ You can use `-v` flag to inspect the HTTP headers in a request/response.
 Here the lines with `>` at starting showing the headers in the request, and `<`
 shows the headers in the response.
 
-For the rest of the chapter we will keep using `httpbin.org <https://httpbin.org>_`,
-which is a service run by `Kenneth Reitz <https://twitter.com/kennethreitz42>_`.
+For the rest of the chapter we will keep using `httpbin.org
+<https://httpbin.org>_`, which is a service run by `Kenneth Reitz
+<https://twitter.com/kennethreitz42>_`. The service returns JSON as output.
 
