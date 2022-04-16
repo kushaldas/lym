@@ -258,3 +258,41 @@ check the `HTTP status code` in both the calls.
 You can pass `--write-out '%{json}'` to see the all the different details as
 JSON. Read the man page of curl for more details.
 
+
+Doing multiple requests at once
+--------------------------------
+
+We can use `--next` flag to do multiple requests one after (as totally separate
+operations). It resets all of the settings/command line options used before.
+
+
+::
+
+    $ curl --user-agent "ACAB/1.0" http://httpbin.org/get --next  https://httpbin.org/get
+    {
+      "args": {}, 
+      "headers": {
+        "Accept": "*/*", 
+        "Host": "httpbin.org", 
+        "User-Agent": "ACAB/1.0", 
+        "X-Amzn-Trace-Id": "Root=1-625b0986-39eae16e7144c2ec7601b697"
+      }, 
+      "origin": "193.138.218.212", 
+      "url": "http://httpbin.org/get"
+    }
+    {
+      "args": {}, 
+      "headers": {
+        "Accept": "*/*", 
+        "Host": "httpbin.org", 
+        "User-Agent": "curl/7.79.1", 
+        "X-Amzn-Trace-Id": "Root=1-625b0987-6bc8f2a30c2fef0037c7d629"
+      }, 
+      "origin": "193.138.218.212", 
+      "url": "https://httpbin.org/get"
+    }
+
+
+In the above example you can see the different `User-Agent` value only in the
+first operation, but not on the second one.
+
