@@ -57,80 +57,6 @@ Use `-O` flag to download the save the file with the same basename from the give
 
 Here the file is saved in the current directory as `test.html`.
 
-Inspecting HTTP headers
------------------------
-
-You can use `-v` flag to inspect the HTTP headers in a request/response.
-
-::
-
-    $ curl -v http://httpbin.org/get
-    *   Trying 54.91.120.77:80...
-    * Connected to httpbin.org (54.91.120.77) port 80 (#0)
-    > GET /get HTTP/1.1
-    > Host: httpbin.org
-    > User-Agent: curl/7.79.1
-    > Accept: */*
-    > 
-    * Mark bundle as not supporting multiuse
-    < HTTP/1.1 200 OK
-    < Date: Fri, 15 Apr 2022 10:03:05 GMT
-    < Content-Type: application/json
-    < Content-Length: 256
-    < Connection: keep-alive
-    < Server: gunicorn/19.9.0
-    < Access-Control-Allow-Origin: *
-    < Access-Control-Allow-Credentials: true
-    < 
-    {
-      "args": {}, 
-      "headers": {
-        "Accept": "*/*", 
-        "Host": "httpbin.org", 
-        "User-Agent": "curl/7.79.1", 
-        "X-Amzn-Trace-Id": "Root=1-625942d9-163a40480c9aea0470fd9c2e"
-      }, 
-      "origin": "185.195.233.166", 
-      "url": "http://httpbin.org/get"
-    }
-    * Connection #0 to host httpbin.org left intact
-
-
-Here the lines with `>` at starting showing the headers in the request, and `<`
-shows the headers in the response.
-
-For the rest of the chapter we will keep using `httpbin.org <https://httpbin.org>`_,
-which is a service run by `Kenneth Reitz <https://twitter.com/kennethreitz42>`_.
-The service returns JSON as output.
-
-Say you want to only view the headers, and don't want to see the actual
-file/URL content, you can use `-s` and `-o /dev/null` as flags.
-
-::
-
-
-    $ curl -s -v http://httpbin.org/get -o /dev/null
-    *   Trying 52.7.224.181:80...
-    * Connected to httpbin.org (52.7.224.181) port 80 (#0)
-    > GET /get HTTP/1.1
-    > Host: httpbin.org
-    > User-Agent: curl/7.79.1
-    > Accept: */*
-    > 
-    * Mark bundle as not supporting multiuse
-    < HTTP/1.1 200 OK
-    < Date: Sat, 16 Apr 2022 09:18:46 GMT
-    < Content-Type: application/json
-    < Content-Length: 256
-    < Connection: keep-alive
-    < Server: gunicorn/19.9.0
-    < Access-Control-Allow-Origin: *
-    < Access-Control-Allow-Credentials: true
-    < 
-    { [256 bytes data]
-    * Connection #0 to host httpbin.org left intact
-
-
 Doing POST request using curl
 -----------------------------
 
@@ -241,6 +167,34 @@ redirection. `-I` allows curl to do a `HEAD` request to the server.
     accept-ranges: bytes
 
 
+Example: to view github's pull request patch
+---------------------------------------------
+
+We can use the options we already learned to get any patch from github. When I
+started writing this chapter, I did an `initial PR
+<https://github.com/kushaldas/lym/pull/58>`_. Let us first see what happens
+when we just try to get the page.
+
+::
+
+    $ curl https://github.com/kushaldas/lym/pull/58 | less
+
+You will notice a lot of HTML/JS, but we want to see the actual code diff, we
+can try to do that by adding `.diff` to the end of the URL.
+
+::
+
+    $ curl https://github.com/kushaldas/lym/pull/58.diff
+    <html><body>You are being <a href="https://patch-diff.githubusercontent.com/raw/kushaldas/lym/pull/58.diff">redirected</a>.</body></html>
+
+We can see that it is a redirect, now we can use `-LO` flag to follow the
+redirect, and also save the patch in `58.diff`.
+
+::
+
+    $ curl -LO https://github.com/kushaldas/lym/pull/58.diff
+
+
 Viewing more details about the transfer
 ---------------------------------------
 
@@ -257,4 +211,177 @@ check the `HTTP status code` in both the calls.
 
 You can pass `--write-out '%{json}'` to see the all the different details as
 JSON. Read the man page of curl for more details.
+
+
+Doing multiple requests at once
+--------------------------------
+
+We can use `--next` flag to do multiple requests one after (as totally separate
+operations). It resets all of the settings/command line options used before.
+
+
+::
+
+    $ curl --user-agent "ACAB/1.0" http://httpbin.org/get --next  https://httpbin.org/get
+    {
+      "args": {}, 
+      "headers": {
+        "Accept": "*/*", 
+        "Host": "httpbin.org", 
+        "User-Agent": "ACAB/1.0", 
+        "X-Amzn-Trace-Id": "Root=1-625b0986-39eae16e7144c2ec7601b697"
+      }, 
+      "origin": "193.138.218.212", 
+      "url": "http://httpbin.org/get"
+    }
+    {
+      "args": {}, 
+      "headers": {
+        "Accept": "*/*", 
+        "Host": "httpbin.org", 
+        "User-Agent": "curl/7.79.1", 
+        "X-Amzn-Trace-Id": "Root=1-625b0987-6bc8f2a30c2fef0037c7d629"
+      }, 
+      "origin": "193.138.218.212", 
+      "url": "https://httpbin.org/get"
+    }
+
+
+In the above example you can see the different `User-Agent` value only in the
+first operation, but not on the second one.
+
+Inspecting HTTP headers
+-----------------------
+
+You can use `-v` flag to inspect the HTTP headers in a request/response.
+
+::
+
+    $ curl -v http://httpbin.org/get
+    *   Trying 54.91.120.77:80...
+    * Connected to httpbin.org (54.91.120.77) port 80 (#0)
+    > GET /get HTTP/1.1
+    > Host: httpbin.org
+    > User-Agent: curl/7.79.1
+    > Accept: */*
+    > 
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 200 OK
+    < Date: Fri, 15 Apr 2022 10:03:05 GMT
+    < Content-Type: application/json
+    < Content-Length: 256
+    < Connection: keep-alive
+    < Server: gunicorn/19.9.0
+    < Access-Control-Allow-Origin: *
+    < Access-Control-Allow-Credentials: true
+    < 
+    {
+      "args": {}, 
+      "headers": {
+        "Accept": "*/*", 
+        "Host": "httpbin.org", 
+        "User-Agent": "curl/7.79.1", 
+        "X-Amzn-Trace-Id": "Root=1-625942d9-163a40480c9aea0470fd9c2e"
+      }, 
+      "origin": "185.195.233.166", 
+      "url": "http://httpbin.org/get"
+    }
+    * Connection #0 to host httpbin.org left intact
+
+
+Here the lines with `>` at starting showing the headers in the request, and `<`
+shows the headers in the response.
+
+For the rest of the chapter we will keep using `httpbin.org <https://httpbin.org>`_,
+which is a service run by `Kenneth Reitz <https://twitter.com/kennethreitz42>`_.
+The service returns JSON as output.
+
+Say you want to only view the headers, and don't want to see the actual
+file/URL content, you can use `-s` and `-o /dev/null` as flags.
+
+::
+
+
+    $ curl -s -v http://httpbin.org/get -o /dev/null
+    *   Trying 52.7.224.181:80...
+    * Connected to httpbin.org (52.7.224.181) port 80 (#0)
+    > GET /get HTTP/1.1
+    > Host: httpbin.org
+    > User-Agent: curl/7.79.1
+    > Accept: */*
+    > 
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 200 OK
+    < Date: Sat, 16 Apr 2022 09:18:46 GMT
+    < Content-Type: application/json
+    < Content-Length: 256
+    < Connection: keep-alive
+    < Server: gunicorn/19.9.0
+    < Access-Control-Allow-Origin: *
+    < Access-Control-Allow-Credentials: true
+    < 
+    { [256 bytes data]
+    * Connection #0 to host httpbin.org left intact
+
+
+Adding new HTTP headers
+-----------------------
+
+To learn about this feature of `curl` first we will try to access one URL with a `GET` request. We will inspect the status code returned by the server,
+and also the headers.
+
+::
+
+    $ curl -s -v http://httpbin.org/bearer -o /dev/null
+    *   Trying 54.90.70.44:80...
+    * Connected to httpbin.org (54.90.70.44) port 80 (#0)
+    > GET /bearer HTTP/1.1
+    > Host: httpbin.org
+    > User-Agent: curl/7.79.1
+    > Accept: */*
+    > 
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 401 UNAUTHORIZED
+    < Date: Wed, 20 Apr 2022 07:41:25 GMT
+    < Content-Type: text/html; charset=utf-8
+    < Content-Length: 0
+    < Connection: keep-alive
+    < Server: gunicorn/19.9.0
+    < WWW-Authenticate: Bearer
+    < Access-Control-Allow-Origin: *
+    < Access-Control-Allow-Credentials: true
+    < 
+    * Connection #0 to host httpbin.org left intact
+
+It says `401 UNAUTHORIZED`. Now, if check `the documentation
+<http://httpbin.org/#/Auth/get_bearer>`_, it says to send in `Authorization`
+header with a bearer token. Which is generally a random value depending on the
+server implementation (random, but only for actual authenticated users). We
+will try to send in `123456` as token using the `-H` flag. You can pass
+multiple such headers by using the `-H` multiple times.
+
+::
+
+    $ curl -H "Authorization: Bearer 123456" -s -v http://httpbin.org/bearer -o /dev/null
+    *   Trying 35.169.55.235:80...
+    * Connected to httpbin.org (35.169.55.235) port 80 (#0)
+    > GET /bearer HTTP/1.1
+    > Host: httpbin.org
+    > User-Agent: curl/7.79.1
+    > Accept: */*
+    > Authorization: Bearer 123456
+    > 
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 200 OK
+    < Date: Wed, 20 Apr 2022 07:46:09 GMT
+    < Content-Type: application/json
+    < Content-Length: 50
+    < Connection: keep-alive
+    < Server: gunicorn/19.9.0
+    < Access-Control-Allow-Origin: *
+    < Access-Control-Allow-Credentials: true
+    < 
+    { [50 bytes data]
+    * Connection #0 to host httpbin.org left intact
+
 
