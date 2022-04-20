@@ -167,6 +167,34 @@ redirection. `-I` allows curl to do a `HEAD` request to the server.
     accept-ranges: bytes
 
 
+Example: to view github's pull request patch
+---------------------------------------------
+
+We can use the options we already learned to get any patch from github. When I
+started writing this chapter, I did an `initial PR
+<https://github.com/kushaldas/lym/pull/58>`_. Let us first see what happens
+when we just try to get the page.
+
+::
+
+    $ curl https://github.com/kushaldas/lym/pull/58 | less
+
+You will notice a lot of HTML/JS, but we want to see the actual code diff, we
+can try to do that by adding `.diff` to the end of the URL.
+
+::
+
+    $ curl https://github.com/kushaldas/lym/pull/58.diff
+    <html><body>You are being <a href="https://patch-diff.githubusercontent.com/raw/kushaldas/lym/pull/58.diff">redirected</a>.</body></html>
+
+We can see that it is a redirect, now we can use `-LO` flag to follow the
+redirect, and also save the patch in `58.diff`.
+
+::
+
+    $ curl -LO https://github.com/kushaldas/lym/pull/58.diff
+
+
 Viewing more details about the transfer
 ---------------------------------------
 
