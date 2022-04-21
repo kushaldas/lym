@@ -384,4 +384,8 @@ multiple such headers by using the `-H` multiple times.
     { [50 bytes data]
     * Connection #0 to host httpbin.org left intact
 
+Curl book
+----------
+
+If you want to know more, there is an `amazing online book <https://everything.curl.dev/project>`_ to read.
 
