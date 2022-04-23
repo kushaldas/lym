@@ -387,5 +387,7 @@ multiple such headers by using the `-H` multiple times.
 Curl book
 ----------
 
-If you want to know more, there is an `amazing online book <https://everything.curl.dev/project>`_ to read.
+If you want to know more, there is an `amazing online book
+<https://everything.curl.dev/project>`_ to read. The man page of `curl` also
+has a lot of details.
 
