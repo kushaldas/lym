@@ -418,6 +418,48 @@ which contain the exact IP address for the domain.
     ;; Received 58 bytes from 162.159.26.14#53(ns1.dreamhost.com) in 160 ms
 
 
+You can even print the response in `YAML` format.
+
+::
+
+    $ dig +yaml kushaldas.in
+    -
+    type: MESSAGE
+    message:
+    type: RECURSIVE_RESPONSE
+    query_time: !!timestamp 2022-04-23T18:52:23.844Z
+    response_time: !!timestamp 2022-04-23T18:52:24.046Z
+    message_size: 124b
+    socket_family: INET
+    socket_protocol: UDP
+    response_address: 127.0.0.53
+    response_port: 53
+    query_address: 0.0.0.0
+    query_port: 56777
+    response_message_data:
+      opcode: QUERY
+      status: NOERROR
+      id: 12591
+      flags: qr rd ra
+      QUESTION: 1
+      ANSWER: 1
+      AUTHORITY: 3
+      ADDITIONAL: 1
+      OPT_PSEUDOSECTION:
+        EDNS:
+          version: 0
+          flags:
+          udp: 65494
+      QUESTION_SECTION:
+        - kushaldas.in. IN A
+      ANSWER_SECTION:
+        - kushaldas.in. 300 IN A 51.159.23.159
+      AUTHORITY_SECTION:
+        - kushaldas.in. 2876 IN NS ns3.dreamhost.com.
+        - kushaldas.in. 2876 IN NS ns2.dreamhost.com.
+        - kushaldas.in. 2876 IN NS ns1.dreamhost.com.
+
+
 .. index:: ss
 
 ss command
