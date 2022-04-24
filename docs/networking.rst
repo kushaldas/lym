@@ -294,7 +294,9 @@ address of any given hostname.
 dig command
 ------------
 
-**dig** command can tell us DNS records, MX details (used to send emails) and other information for a given domain name.
+**dig** command can tell us DNS records, MX details (used to send emails) and
+other information for a given domain name. It is one of the primary command
+people use to query DNS records.
 
 ::
 
@@ -416,6 +418,54 @@ which contain the exact IP address for the domain.
 
     anweshadas.in.		14400	IN	A	159.89.209.77
     ;; Received 58 bytes from 162.159.26.14#53(ns1.dreamhost.com) in 160 ms
+
+
+You can even print the response in `YAML` format.
+
+::
+
+    $ dig +yaml kushaldas.in
+    -
+    type: MESSAGE
+    message:
+    type: RECURSIVE_RESPONSE
+    query_time: !!timestamp 2022-04-23T18:52:23.844Z
+    response_time: !!timestamp 2022-04-23T18:52:24.046Z
+    message_size: 124b
+    socket_family: INET
+    socket_protocol: UDP
+    response_address: 127.0.0.53
+    response_port: 53
+    query_address: 0.0.0.0
+    query_port: 56777
+    response_message_data:
+      opcode: QUERY
+      status: NOERROR
+      id: 12591
+      flags: qr rd ra
+      QUESTION: 1
+      ANSWER: 1
+      AUTHORITY: 3
+      ADDITIONAL: 1
+      OPT_PSEUDOSECTION:
+        EDNS:
+          version: 0
+          flags:
+          udp: 65494
+      QUESTION_SECTION:
+        - kushaldas.in. IN A
+      ANSWER_SECTION:
+        - kushaldas.in. 300 IN A 51.159.23.159
+      AUTHORITY_SECTION:
+        - kushaldas.in. 2876 IN NS ns3.dreamhost.com.
+        - kushaldas.in. 2876 IN NS ns2.dreamhost.com.
+        - kushaldas.in. 2876 IN NS ns1.dreamhost.com.
+
+
+.. hint:: Please remember that *dig* returns `0` as exit code even if it can
+   not find any information for the domain (`NXDOMAIN`). This will save you
+   some time for your scripts.`1` is for usage error, `9` is used for server
+   error & `10` as an internal error for itself.
 
 
 .. index:: ss
