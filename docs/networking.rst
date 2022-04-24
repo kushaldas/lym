@@ -294,7 +294,9 @@ address of any given hostname.
 dig command
 ------------
 
-**dig** command can tell us DNS records, MX details (used to send emails) and other information for a given domain name.
+**dig** command can tell us DNS records, MX details (used to send emails) and
+other information for a given domain name. It is one of the primary command
+people use to query DNS records.
 
 ::
 
@@ -458,6 +460,12 @@ You can even print the response in `YAML` format.
         - kushaldas.in. 2876 IN NS ns3.dreamhost.com.
         - kushaldas.in. 2876 IN NS ns2.dreamhost.com.
         - kushaldas.in. 2876 IN NS ns1.dreamhost.com.
+
+
+.. hint:: Please remember that *dig* returns `0` as exit code even if it can
+   not find any information for the domain (`NXDOMAIN`). This will save you
+   some time for your scripts.`1` is for usage error, `9` is used for server
+   error & `10` as an internal error for itself.
 
 
 .. index:: ss
