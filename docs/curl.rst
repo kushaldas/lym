@@ -7,7 +7,9 @@ to trasfer data over network, it is written by `Daniel Stenberg
 software in the world, you can find it in your servers, cars and also in
 television sets.
 
-In this chapter we will learn a few example use cases.
+In this chapter we will learn a few example use cases. In case you are new to
+HTTP land, you can watch `this video
+<https://www.youtube.com/watch?v=iYM2zFP3Zn0>`_ to learn more on that topic.
 
 Viewing a file
 --------------
