@@ -122,6 +122,34 @@ Above we had to pass both the form fields using `--form` twice.
    <https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4>`_ to learn
    about the difference.
 
+We can also put all the data into a file and post the content of the file.
+
+::
+
+    $ cat data.txt 
+    name=kushal&lang=Python
+    $ curl -d @data.txt https://httpbin.org/post
+    {
+      "args": {}, 
+      "data": "", 
+      "files": {}, 
+      "form": {
+        "lang": "Python", 
+        "name": "kushal"
+      }, 
+      "headers": {
+        "Accept": "*/*", 
+        "Content-Length": "23", 
+        "Content-Type": "application/x-www-form-urlencoded", 
+        "Host": "httpbin.org", 
+        "User-Agent": "curl/7.79.1", 
+        "X-Amzn-Trace-Id": "Root=1-62795cf0-2f1afd31178c28137be111d6"
+      }, 
+      "json": null, 
+      "origin": "193.138.218.212", 
+      "url": "https://httpbin.org/post"
+    }
+
 
 Following redirection
 ----------------------
