@@ -338,10 +338,20 @@ For example, if I want to get the `TXT` records, I can do the following command.
     "google-site-verification=DPpUk-OfBLT-5PkbSR9VM2Uht3eXaksthROvS-L9iKY"
     "kolab-verify=35f0040cd1ebb20fb7f0b3fade0e1c8e"
 
-You can use any of the following options instead of `TXT`: *A|MX|TXT|CNAME|NS*.
+You can use any of the following options instead of `TXT`: *A|AAAA|MX|TXT|CNAME|NS*.
+
+For example, you can ask `dig` to give you the IPv6 address of a domain.
+
+::
+
+    $ dig +short torproject.org AAAA
+    2604:8800:5000:82:466:38ff:fecb:d46e
+    2a01:4f8:fff0:4f:266:37ff:fe2c:5d19
+    2a01:4f8:fff0:4f:266:37ff:feae:3bbc
+    2a01:4f9:c010:19eb::1
 
 If you want to specify a DNS server to use, you can do that with the address
-specified at the end of the command along with a @ sign.
+specified at the end of the command along with a `@` sign.
 
 ::
 
