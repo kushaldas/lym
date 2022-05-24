@@ -73,7 +73,7 @@ We can also ping any particular computer to find if the computer is connected to
     rtt min/avg/max/mdev = 156.373/156.811/157.566/0.704 ms
 
 
-You can also ask *ping* to do an audio bell for each ECHO_RESPONSE. Pass `-a` as a flag. `-6` will make sure that ping works
+You can also ask *ping* to audibly ping for each ECHO_RESPONSE. Pass `-a` as a flag to do that. `-6` ensures that ping works
 over IPv6 only.
 
 ::
