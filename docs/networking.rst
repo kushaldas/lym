@@ -55,7 +55,9 @@ From the man page:
     ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway. ECHO_REQUEST datagrams (“pings”) have an IP and ICMP header, followed by a struct timeval and then an arbitrary number of “pad” bytes used to fill out the packet.
 
 
-*ping* is simple way to find if you are connected to Internet or not.
+
+
+*ping* is simple way to find out if you are connected to the Internet or not.
 We can also ping any particular computer to find if the computer is connected to the network or not. Press *Ctrl+c* to stop the loop.
 
 ::
