@@ -50,7 +50,14 @@ details using the following command.
 ping command
 -------------
 
-*ping* is simple way to find if you are connected to Internet or not.   
+From the man page:
+
+    ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway. ECHO_REQUEST datagrams (“pings”) have an IP and ICMP header, followed by a struct timeval and then an arbitrary number of “pad” bytes used to fill out the packet.
+
+
+
+
+*ping* is simple way to find out if you are connected to the Internet or not.
 We can also ping any particular computer to find if the computer is connected to the network or not. Press *Ctrl+c* to stop the loop.
 
 ::
@@ -65,6 +72,17 @@ We can also ping any particular computer to find if the computer is connected to
     3 packets transmitted, 3 received, 0% packet loss, time 2000ms
     rtt min/avg/max/mdev = 156.373/156.811/157.566/0.704 ms
 
+
+You can also ask *ping* to audibly ping for each ECHO_RESPONSE. Pass `-a` as a flag to do that. `-6` ensures that ping works
+over IPv6 only.
+
+::
+
+    $ ping -a -6 torproject.org
+    PING torproject.org(hetzner-hel1-03.torproject.org (2a01:4f9:c010:19eb::1)) 56 data bytes
+    64 bytes from hetzner-hel1-03.torproject.org (2a01:4f9:c010:19eb::1): icmp_seq=1 ttl=56 time=18.1 ms
+    64 bytes from hetzner-hel1-03.torproject.org (2a01:4f9:c010:19eb::1): icmp_seq=2 ttl=56 time=36.2 ms
+    64 bytes from hetzner-hel1-03.torproject.org (2a01:4f9:c010:19eb::1): icmp_seq=3 ttl=56 time=26.7 ms
 
 
 .. index:: dns
