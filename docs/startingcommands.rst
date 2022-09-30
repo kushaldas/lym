@@ -290,6 +290,7 @@ tree command
     ├── Templates
     └── Videos
 
+.. note:: The *tree* command may not be installed on your system by default, you can install it later after reading the package management chapter.
 
 wc command
 -----------
