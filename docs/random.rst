@@ -5,6 +5,18 @@ I have yet to figure out where to put this information, which is why they are
 here, in the random chapter. These will be moved to different chapters in the
 future.
 
+.. index:: xclip
+
+xclip to copy from terminal
+----------------------------
+
+The **xclip** command helps us to copy any file or output from another command into our clipboard, so that we can paste it via `Ctrl+v`.
+
+::
+
+    $ xclip -sel clip myfile.txt
+    $ ls -l /var/lib | xclip -sel clip
+
 .. index:: w
 
 w command
