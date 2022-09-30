@@ -1,15 +1,15 @@
-Curl for all your web
-======================
+Curl! For all your web needs
+============================
 
-In this chapter we will learn about a very special command, `curl`. It is used
-to trasfer data over network, it is written by `Daniel Stenberg
-<https://daniel.haxx.se/>`_. It is most probably one of the highest used
-software in the world, you can find it in your servers, cars and also in
+In this chapter we will learn about a very special command, `curl`. 
+It is used to trasfer data over network. Written by `Daniel Stenberg
+<https://daniel.haxx.se/>`_, it is most probably one of the highest used
+pieces of software in the world. You can find it in your servers, cars and also in
 television sets.
 
 In this chapter we will learn a few example use cases. In case you are new to
 HTTP land, you can watch `this video
-<https://www.youtube.com/watch?v=iYM2zFP3Zn0>`_ to learn more on that topic.
+<https://www.youtube.com/watch?v=iYM2zFP3Zn0>`_ to learn more about the protocol.
 
 Viewing a file
 --------------
@@ -28,12 +28,12 @@ Viewing a file
 
 
 Here we are reading the content of the file located at URL
-`https://kushaldas.in/test.html`, by default curl shows the output on STDOUT.
+`https://kushaldas.in/test.html`. By default curl shows the output on STDOUT.
 
 Downloading the file
 ---------------------
 
-You can use `-o` flag to download a file and save it with the given filename.
+You can use the `-o` flag to download a file and save it to disk, with the given filename.
 
 ::
 
@@ -46,7 +46,7 @@ You can use `-o` flag to download a file and save it with the given filename.
 Download with the same name
 ----------------------------
 
-Use `-O` flag to download the save the file with the same basename from the given URL.
+Use the `-O` flag to download and save the file with the same basename from the given URL.
 
 ::
 
@@ -55,20 +55,22 @@ Use `-O` flag to download the save the file with the same basename from the give
                                      Dload  Upload   Total   Spent    Left  Speed
     100   125  100   125    0     0    295      0 --:--:-- --:--:-- --:--:--   296
     $ ls -l test.html
-    .rw-r--r--@ 125 kdas 14 Apr 20:45 test.htm
+    .rw-r--r--@ 125 kdas 14 Apr 20:45 test.html
 
-Here the file is saved in the current directory as `test.html`.
+Here the file is saved in the current directory, as `test.html`.
 
-Doing POST request using curl
------------------------------
+Making a POST request using curl
+--------------------------------
 
-We can do `HTTP POST <https://en.wikipedia.org/wiki/POST_(HTTP)>`_ requests
-using curl in two different ways. Using `-d` flag for simple form submission
-style using `application/x-www-form-urlencoded` where each form names & values
+We can make `HTTP POST <https://en.wikipedia.org/wiki/POST_(HTTP)>`_ requests
+using curl in two different ways. 
+
+1. Using the `-d` flag, for simple form submissions
+(or using `application/x-www-form-urlencoded`), where each form name & its values
 are marked with  `=` and separate by `&`.
 
-You can also use `--form/-F` for `multipart/form-data` where we can upload
-files or send in large amount of binary data.
+2. You can also use `--form/-F` for `multipart/form-data` where we can upload
+files or send in large amounts of binary data.
 
 ::
 
@@ -116,13 +118,13 @@ files or send in large amount of binary data.
       "url": "https://httpbin.org/post"
     }
 
-Above we had to pass both the form fields using `--form` twice.
+In the second example above, we passed in each form field, using `--form` twice.
 
 .. note:: You can read the `SPEC
-   <https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4>`_ to learn
-   about the difference.
+   <https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4>`_ to learn more 
+   about the differences between the options and the reasoning behind each approach.
 
-We can also put all the data into a file and post the content of the file.
+We can also put all the data into a file and post the contents of the file.
 
 ::
 
@@ -154,10 +156,10 @@ We can also put all the data into a file and post the content of the file.
 Following redirection
 ----------------------
 
-One can use `-L` option to tell curl to follow any **3xx** redirect form the
-server. To see this, first we will call with `-I` to `http://kushaldas.in`,
-this will return a *302* redirection to the `https://kushaldas.in` site. In the
-second run, we will also provide `-L`, so that curl will follow the
+One can use `-L` option to tell curl to follow any **3xx** redirect from the
+server. To see this, first we call `curl` with `-I` to `http://kushaldas.in`.
+This will return a *302* redirection to the `https://kushaldas.in` site. In the
+second run, we will additionally provide a `-L` flag, so that curl will follow the
 redirection. `-I` allows curl to do a `HEAD` request to the server.
 
 ::
@@ -197,7 +199,7 @@ redirection. `-I` allows curl to do a `HEAD` request to the server.
     accept-ranges: bytes
 
 
-Example: to view github's pull request patch
+Example: To view github's pull request patch
 ---------------------------------------------
 
 We can use the options we already learned to get any patch from github. When I
@@ -209,16 +211,16 @@ when we just try to get the page.
 
     $ curl https://github.com/kushaldas/lym/pull/58 | less
 
-You will notice a lot of HTML/JS, but we want to see the actual code diff, we
-can try to do that by adding `.diff` to the end of the URL.
+You will notice a lot of HTML/JS, but we want to see the actual code diff. 
+We can try to do that by appending `.diff` to the end of the URL.
 
 ::
 
     $ curl https://github.com/kushaldas/lym/pull/58.diff
     <html><body>You are being <a href="https://patch-diff.githubusercontent.com/raw/kushaldas/lym/pull/58.diff">redirected</a>.</body></html>
 
-We can see that it is a redirect, now we can use `-LO` flag to follow the
-redirect, and also save the patch in `58.diff`.
+We see that it is a redirect.
+Now we can use `-LO` flag to follow the redirect, and also save the patch in `58.diff`.
 
 ::
 
@@ -229,7 +231,7 @@ Viewing more details about the transfer
 ---------------------------------------
 
 We can use `--write-out` flag to get more details about the transfer. It prints
-them after the main output, based on the variable we pass. For example we can
+them after the main output, based on the variable we pass in. For example, we can
 check the `HTTP status code` in both the calls.
 
 ::
@@ -239,15 +241,15 @@ check the `HTTP status code` in both the calls.
     $ curl -s --write-out '%{http_code}' https://kushaldas.in -o /dev/null
     200
 
-You can pass `--write-out '%{json}'` to see the all the different details as
-JSON. Read the man page of curl for more details.
+You can also pass `--write-out '%{json}'` to see the all the different details as
+JSON. Read `curl` man page for more details.
 
 
-Doing multiple requests at once
+Making multiple requests at once
 --------------------------------
 
-We can use `--next` flag to do multiple requests one after (as totally separate
-operations). It resets all of the settings/command line options used before.
+We can use `--next` flag to make multiple requests one after another (as totally separate
+operations). Note that, it resets all of the settings/command line options used before.
 
 
 ::
@@ -277,8 +279,8 @@ operations). It resets all of the settings/command line options used before.
     }
 
 
-In the above example you can see the different `User-Agent` value only in the
-first operation, but not on the second one.
+In the above example you can see the `User-Agent` value taking effect, only in the
+first operation, but not in the second one.
 
 Inspecting HTTP headers
 -----------------------
@@ -319,15 +321,15 @@ You can use `-v` flag to inspect the HTTP headers in a request/response.
     * Connection #0 to host httpbin.org left intact
 
 
-Here the lines with `>` at starting showing the headers in the request, and `<`
-shows the headers in the response.
+Here the lines with `>` at the start of the line, show the headers in the request, while 
+those with `<` show the headers in the response.
 
-For the rest of the chapter we will keep using `httpbin.org <https://httpbin.org>`_,
+For the rest of this chapter, we will keep using `httpbin.org <https://httpbin.org>`_,
 which is a service run by `Kenneth Reitz <https://twitter.com/kennethreitz42>`_.
 The service returns JSON as output.
 
-Say you want to only view the headers, and don't want to see the actual
-file/URL content, you can use `-s` and `-o /dev/null` as flags.
+Let's say you want to only view the headers, and not the actual
+file/URL content. You can use `-s` and `-o /dev/null` as flags to do so
 
 ::
 
@@ -357,7 +359,7 @@ file/URL content, you can use `-s` and `-o /dev/null` as flags.
 Adding new HTTP headers
 -----------------------
 
-To learn about this feature of `curl` first we will try to access one URL with a `GET` request. We will inspect the status code returned by the server,
+To learn about this feature of `curl` first we will try to access a URL with a `GET` request. We will inspect the status code returned by the server,
 and also the headers.
 
 ::
@@ -383,9 +385,9 @@ and also the headers.
     < 
     * Connection #0 to host httpbin.org left intact
 
-It says `401 UNAUTHORIZED`. Now, if check `the documentation
-<http://httpbin.org/#/Auth/get_bearer>`_, it says to send in `Authorization`
-header with a bearer token. Which is generally a random value depending on the
+It says `401 UNAUTHORIZED`. Now, if we check `the documentation
+<http://httpbin.org/#/Auth/get_bearer>`_, it tells us to send in an `Authorization`
+header with a bearer token. Which generally, is a random value depending on the
 server implementation (random, but only for actual authenticated users). We
 will try to send in `123456` as token using the `-H` flag. You can pass
 multiple such headers by using the `-H` multiple times.
