@@ -177,6 +177,11 @@ newline character as the last line of the file. Because that is how the
 a line.
 
 
+You can learn vim from various sources, the quickest one to start is `vimtutor`
+command in your system.  Or else, VS Code editor has a vim plugin, and there is
+a very nice `tutorial <https://www.barbarianmeetscoding.com/boost-your-coding-fu-with-vscode-and-vim/introduction/>`_
+which you can follow in your Linux terminal in a normal vim.
+
 .. index:: su
 
 Becoming root user
