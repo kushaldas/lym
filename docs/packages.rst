@@ -308,6 +308,11 @@ them, you can enable the following timer.
 In the configuration file, if you set **upgrade_type = security**, then the
 tool will only install security updates.
 
+
+.. index:: rpm-packaging
+
+.. note:: If you are interested to learn more about RPM packaging, start from `this guide <https://rpm-packaging-guide.github.io/>`_ from Adam Miller.
+
 .. index:: apt
 
 apt command
