@@ -194,7 +194,7 @@ by a command in our shell.
 The second example shows the output in case the *which* command cannot find the
 executable mentioned.
 
-.. index:: Use *which* command to see how $PATH variable works
+.. index:: which & $PATH
 
 Use *which* command to see how $PATH variable works
 ----------------------------------------------------
