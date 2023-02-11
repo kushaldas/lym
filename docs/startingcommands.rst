@@ -312,6 +312,22 @@ of a file.
 The *-l* flag finds the number of lines in a file, *-w* counts the number
 of words in the file.
 
+.. index:: less
+
+less command
+------------
+
+*less* command helps us to view the content of any file, it allows both
+forward and backward movement. It does not require to read the full file, so
+it helps to read faster any big text file.
+
+::
+
+    $ less ~/.bash_history
+
+In this example, we are reading the file `~/.bash_history`.
+
+
 echo command
 -------------
 
