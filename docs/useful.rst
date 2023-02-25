@@ -69,6 +69,21 @@ But, because *bye.txt* is a hard link, even if I delete the
 content.
 
 
+.. index:: hostnamectl
+
+Setting up hostname
+--------------------
+
+**hostnamectl** command can be used to setup hostname of a system. Below,
+we are first checking the current hostname, and then setting up the hostname
+as `fastbox`.
+
+::
+
+    $ sudo hostnamectl hostname
+    bigbox
+    $ sudo hostnamectl hostname fastbox
+
 .. index:: tar
 
 Extracting a tar file
