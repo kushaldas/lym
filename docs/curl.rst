@@ -416,6 +416,12 @@ multiple such headers by using the `-H` multiple times.
     { [50 bytes data]
     * Connection #0 to host httpbin.org left intact
 
+Curl video/talk
+----------------
+
+In `this video <https://www.youtube.com/watch?v=V5vZWHP-RqU>`_ Daniel Stenberg himself
+explained various features of curl, the talk is from August, 2023.
+
 Curl book
 ----------
 
