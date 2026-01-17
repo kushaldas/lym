@@ -301,3 +301,344 @@ IP address and port number.
     # iptables -t raw -A PREROUTING -p tcp --destination YOUR_IP/24 --dport PORT_NUMBER -j TRACE
     # iptables -t raw -A OUTPUT -p tcp --destination YOUR_IP/24 --dport PORT_NUMBER -j TRACE
 
+
+.. index:: nft
+
+nftables
+=========
+
+**nftables** is the modern replacement for iptables, ip6tables, arptables, and
+ebtables. It provides a single unified framework for packet filtering,
+uses a simpler syntax, and offers better performance. nftables is available
+in Linux kernel 3.13 and later, and is the default firewall framework in many
+modern distributions.
+
+
+Installing nftables
+--------------------
+
+On Debian/Ubuntu
+
+::
+
+    apt install nftables
+
+On Fedora/CentOS/RHEL
+
+::
+
+    dnf install nftables
+
+
+To enable nftables to start at boot:
+
+::
+
+    # systemctl enable nftables
+    # systemctl start nftables
+
+
+nftables concepts
+------------------
+
+nftables uses a similar concept to iptables with tables, chains, and rules,
+but the syntax and structure are different.
+
+- **Tables** contain chains. Unlike iptables, tables have no predefined
+  meaning and you can name them as you wish.
+- **Chains** contain rules. Chains must specify their type (filter, nat, route)
+  and hook point (input, output, forward, prerouting, postrouting).
+- **Rules** define the matching criteria and actions (called verdicts in nftables).
+
+Common verdicts in nftables:
+
+- **accept** - accept the packet
+- **drop** - silently drop the packet
+- **reject** - reject the packet and send an error response
+- **queue** - send packet to userspace
+- **continue** - continue with the next rule
+- **return** - return from the current chain
+- **jump** - jump to another chain
+- **goto** - go to another chain (without returning)
+
+
+The nft command
+----------------
+
+The **nft** command is used to manage nftables rules. Here are the basic
+operations:
+
+::
+
+    nft list ruleset          # show all rules
+    nft list tables           # list all tables
+    nft list table inet mytable   # show rules in a specific table
+    nft flush ruleset         # remove all rules
+    nft flush table inet mytable  # remove all rules from a table
+
+
+Address families
+-----------------
+
+nftables supports multiple address families:
+
+- **ip** - IPv4 only
+- **ip6** - IPv6 only
+- **inet** - both IPv4 and IPv6 (recommended for most cases)
+- **arp** - ARP packets
+- **bridge** - bridge packets
+- **netdev** - packets from ingress
+
+
+View the current ruleset
+-------------------------
+
+To view all active rules:
+
+.. code-block:: bash
+
+    # nft list ruleset
+
+If no rules are configured, the output will be empty. Let us create a basic
+firewall configuration.
+
+
+Creating a table
+-----------------
+
+First, create a table. We will use the **inet** family which handles both
+IPv4 and IPv6.
+
+::
+
+    # nft add table inet filter
+
+
+Creating chains
+----------------
+
+Now we create chains inside the table. We need to specify the type of chain
+and when it should be evaluated (the hook).
+
+::
+
+    # nft add chain inet filter input { type filter hook input priority 0 \; policy drop \; }
+    # nft add chain inet filter forward { type filter hook forward priority 0 \; policy drop \; }
+    # nft add chain inet filter output { type filter hook output priority 0 \; policy accept \; }
+
+The **priority** determines the order of evaluation (lower numbers are
+evaluated first). The **policy** sets the default action when no rules match.
+
+.. note:: The semicolons need to be escaped with backslash when running from
+          the shell. If you use a configuration file, escaping is not needed.
+
+
+Adding rules
+-------------
+
+Let us add rules to allow established connections and traffic on the loopback
+interface:
+
+::
+
+    # nft add rule inet filter input iif lo accept
+    # nft add rule inet filter input ct state established,related accept
+
+To allow SSH (port 22), HTTP (port 80), and HTTPS (port 443):
+
+::
+
+    # nft add rule inet filter input tcp dport 22 accept
+    # nft add rule inet filter input tcp dport { 80, 443 } accept
+
+Notice how nftables allows specifying multiple ports using curly braces.
+
+
+Viewing rules with handles
+---------------------------
+
+To delete or insert rules at specific positions, you need the rule handles:
+
+.. code-block:: bash
+
+    # nft -a list table inet filter
+    table inet filter {
+        chain input {
+            type filter hook input priority filter; policy drop;
+            iif "lo" accept # handle 4
+            ct state established,related accept # handle 5
+            tcp dport 22 accept # handle 6
+            tcp dport { 80, 443 } accept # handle 7
+        }
+        chain forward {
+            type filter hook forward priority filter; policy drop;
+        }
+        chain output {
+            type filter hook output priority filter; policy accept;
+        }
+    }
+
+
+Deleting a rule
+----------------
+
+To delete a rule, use its handle number:
+
+::
+
+    # nft delete rule inet filter input handle 7
+
+This removes the rule allowing ports 80 and 443.
+
+
+Inserting a rule at a specific position
+----------------------------------------
+
+To insert a rule before another rule (using its handle):
+
+::
+
+    # nft insert rule inet filter input position 5 tcp dport 80 accept
+
+This inserts the rule before the rule with handle 5.
+
+
+Example: Complete firewall configuration
+-----------------------------------------
+
+Here is a complete example of a server firewall configuration. You can put
+this in a file (for example, **/etc/nftables.conf**):
+
+::
+
+    #!/usr/sbin/nft -f
+
+    flush ruleset
+
+    table inet filter {
+        chain input {
+            type filter hook input priority 0; policy drop;
+
+            # allow loopback
+            iif lo accept
+
+            # allow established/related connections
+            ct state established,related accept
+
+            # drop invalid packets
+            ct state invalid drop
+
+            # allow ICMP (ping)
+            ip protocol icmp accept
+            ip6 nexthdr icmpv6 accept
+
+            # allow SSH
+            tcp dport 22 accept
+
+            # allow HTTP and HTTPS
+            tcp dport { 80, 443 } accept
+        }
+
+        chain forward {
+            type filter hook forward priority 0; policy drop;
+        }
+
+        chain output {
+            type filter hook output priority 0; policy accept;
+        }
+    }
+
+
+Loading a configuration file
+-----------------------------
+
+To load a configuration file:
+
+::
+
+    # nft -f /etc/nftables.conf
+
+To make sure your rules are loaded at boot, the systemd service will
+automatically load **/etc/nftables.conf** when nftables starts.
+
+
+Saving the current ruleset
+---------------------------
+
+To save the current rules to a file:
+
+::
+
+    # nft list ruleset > /etc/nftables.conf
+
+Make sure the file starts with ``#!/usr/sbin/nft -f`` and includes
+``flush ruleset`` at the beginning if you want it to replace all existing
+rules when loaded.
+
+
+NAT with nftables
+------------------
+
+nftables can also handle Network Address Translation. Here is an example
+of setting up masquerading (SNAT) for a system acting as a router:
+
+::
+
+    table inet nat {
+        chain postrouting {
+            type nat hook postrouting priority 100;
+            oif "eth0" masquerade
+        }
+    }
+
+For port forwarding (DNAT), to forward port 8080 to an internal server:
+
+::
+
+    table inet nat {
+        chain prerouting {
+            type nat hook prerouting priority -100;
+            tcp dport 8080 dnat to 192.168.1.100:80
+        }
+    }
+
+
+Rate limiting
+--------------
+
+nftables has built-in support for rate limiting. To limit SSH connections
+to 3 per minute per source IP:
+
+::
+
+    # nft add rule inet filter input tcp dport 22 ct state new limit rate 3/minute accept
+
+
+Logging packets
+----------------
+
+To log packets before accepting or dropping them:
+
+::
+
+    # nft add rule inet filter input tcp dport 22 log prefix \"SSH connection: \" accept
+
+Logs appear in the kernel log (use **dmesg** or check **/var/log/kern.log**).
+
+
+Differences from iptables
+--------------------------
+
+Key differences to remember when moving from iptables to nftables:
+
+- No built-in tables or chains - you create your own
+- Single tool (**nft**) replaces iptables, ip6tables, arptables, ebtables
+- Uses **inet** family for dual-stack IPv4/IPv6 rules
+- Sets can be used directly in rules: ``tcp dport { 22, 80, 443 }``
+- Syntax is more consistent and readable
+- Rules can be added atomically from a file
+- Better performance with large rulesets
+
+.. note:: Many distributions now include **iptables-nft**, which provides
+          iptables commands that translate to nftables rules. You can check
+          which backend you are using with ``iptables -V``.
